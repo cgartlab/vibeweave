@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LoginForm from '../components/auth/LoginForm';
+import RegisterForm from '../components/auth/RegisterForm';
+import OAuthButtons from '../components/auth/OAuthButtons';
+---
+
+<BaseLayout title="Sign In - VibeWeave">
+  <div class="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-12">
+    <div class="w-full max-w-md">
+      <!-- Brand Header -->
+      <div class="mb-8 text-center">
+        <h1 class="font-display text-3xl font-bold sm:text-4xl">
+          <span class="bg-gradient-to-r from-vw-accent via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            VibeWeave
+          </span>
+        </h1>
+        <p class="mt-2 text-vw-text-muted">
+          Discover the emotional DNA of your playlists
+        </p>
+      </div>
+
+      <!-- Auth Card -->
+      <div class="rounded-2xl border border-vw-border bg-vw-bg-card p-6 shadow-xl sm:p-8">
+        <!-- Tab Switcher -->
+        <div class="mb-6 flex rounded-lg bg-[var(--vw-bg-input)] p-1" id="auth-tabs" role="tablist">
+          <button
+            id="tab-login"
+            role="tab"
+            aria-selected="true"
+            data-tab="login"
+            class="flex-1 rounded-md px-4 py-2 text-sm font-medium transition-all text-white bg-vw-accent"
+          >
+            Sign In
+          </button>
+          <button
+            id="tab-register"
+            role="tab"
+            aria-selected="false"
+            data-tab="register"
+            class="flex-1 rounded-md px-4 py-2 text-sm font-medium transition-all text-vw-text-muted hover:text-vw-text"
+          >
+            Create Account
+          </button>
+        </div>
+
+        <!-- Login Form -->
+        <div id="panel-login" role="tabpanel">
+          <LoginForm client:load />
+        </div>
+
+        <!-- Register Form -->
+        <div id="panel-register" role="tabpanel" class="hidden">
+          <RegisterForm client:load />
+        </div>
+
+        <!-- Divider -->
+        <div class="relative my-6">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-vw-border"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="bg-vw-bg-card px-3 text-vw-text-muted">or continue with</span>
+          </div>
+        </div>
+
+        <!-- OAuth Buttons -->
+        <OAuthButtons client:load />
+      </div>
+
+      <!-- Bottom text -->
+      <p class="mt-6 text-center text-xs text-vw-text-muted">
+        By continuing, you agree to our{' '}
+        <a href="/terms" class="underline hover:text-vw-text-secondary">Terms of Service</a>
+        {' '}and{' '}
+        <a href="/privacy" class="underline hover:text-vw-text-secondary">Privacy Policy</a>.
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  function initAuthTabs() {
+    const tabLogin = document.getElementById('tab-login');
+    const tabRegister = document.getElementById('tab-register');
+    const panelLogin = document.getElementById('panel-login');
+    const panelRegister = document.getElementById('panel-register');
+
+    if (!tabLogin || !tabRegister || !panelLogin || !panelRegister) return;
+
+    const activeTabClasses = 'flex-1 rounded-md px-4 py-2 text-sm font-medium transition-all text-white bg-vw-accent';
+    const inactiveTabClasses = 'flex-1 rounded-md px-4 py-2 text-sm font-medium transition-all text-vw-text-muted hover:text-vw-text';
+
+    // Check URL params for initial tab
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('tab') === 'register') {
+      switchToRegister();
+    }
+
+    tabLogin?.addEventListener('click', switchToLogin);
+    tabRegister?.addEventListener('click', switchToRegister);
+
+    function switchToLogin() {
+      tabLogin.className = activeTabClasses;
+      tabLogin.setAttribute('aria-selected', 'true');
+      tabRegister.className = inactiveTabClasses;
+      tabRegister.setAttribute('aria-selected', 'false');
+      panelLogin.classList.remove('hidden');
+      panelRegister.classList.add('hidden');
+      // Update URL without reload
+      const url = new URL(window.location);
+      url.searchParams.delete('tab');
+      window.history.replaceState({}, '', url);
+    }
+
+    function switchToRegister() {
+      tabRegister.className = activeTabClasses;
+      tabRegister.setAttribute('aria-selected', 'true');
+      tabLogin.className = inactiveTabClasses;
+      tabLogin.setAttribute('aria-selected', 'false');
+      panelRegister.classList.remove('hidden');
+      panelLogin.classList.add('hidden');
+      // Update URL without reload
+      const url = new URL(window.location);
+      url.searchParams.set('tab', 'register');
+      window.history.replaceState({}, '', url);
+    }
+  }
+
+  // Run on initial load
+  initAuthTabs();
+
+  // Re-run after Astro page transitions
+  document.addEventListener('astro:page-load', initAuthTabs);
+</script>

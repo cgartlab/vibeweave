@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="我的歌单 - VibeWeave" description="管理你的歌单，开始情绪编织之旅">
+  <main class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <h1 class="font-display text-3xl font-bold text-[var(--vw-text)]">我的歌单</h1>
+        <p class="mt-1 text-sm text-[var(--vw-text-secondary)]">导入并管理你的音乐歌单</p>
+      </div>
+      <button
+        id="open-uploader-btn"
+        class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-amber-500/20 transition-all duration-200 hover:shadow-xl hover:shadow-amber-500/30"
+      >
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+        </svg>
+        导入歌单
+      </button>
+    </div>
+
+    <!-- Playlist Uploader -->
+    <div id="playlist-uploader-wrapper" class="mb-8 hidden">
+      <div client:visible>
+        <div id="playlist-uploader-root"></div>
+      </div>
+    </div>
+
+    <!-- Playlist Grid -->
+    <div id="playlist-grid" client:visible>
+      <div id="playlist-grid-root"></div>
+    </div>
+  </main>
+</BaseLayout>
+
+<script>
+  // Simple auth check - redirect to /login if not authenticated
+  async function checkAuth() {
+    try {
+      const { supabase } = await import('../lib/supabase/client');
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        window.location.href = '/login';
+      }
+    } catch {
+      // If supabase is not configured, allow access for development
+      console.warn('Auth check skipped: Supabase not available');
+    }
+  }
+
+  checkAuth();
+</script>
+
+<script>
+  // Toggle uploader visibility
+  const openBtn = document.getElementById('open-uploader-btn');
+  const uploaderWrapper = document.getElementById('playlist-uploader-wrapper');
+
+  if (openBtn && uploaderWrapper) {
+    openBtn.addEventListener('click', () => {
+      const isHidden = uploaderWrapper.classList.contains('hidden');
+      if (isHidden) {
+        uploaderWrapper.classList.remove('hidden');
+        openBtn.innerHTML = `
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+          关闭
+        `;
+      } else {
+        uploaderWrapper.classList.add('hidden');
+        openBtn.innerHTML = `
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+          </svg>
+          导入歌单
+        `;
+      }
+    });
+  }
+</script>
