@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WeavePage from '../../components/weave/WeavePage';
+
+// Since playlist IDs are dynamic and resolved client-side via Supabase,
+// we generate a catch-all static entry. The React component (client:load)
+// handles all data fetching, loading states, and 404 handling on the client.
+export function getStaticPaths() {
+  return [
+    {
+      params: { id: 'placeholder' },
+    },
+  ];
+}
+
+const { id } = Astro.params;
+---
+
+<BaseLayout title={id ? `Weave - ${id}` : 'Weave'} description="Analyze and rearrange your playlist with AI-powered emotion insights.">
+  <WeavePage client:load playlistId={id!} />
+</BaseLayout>
