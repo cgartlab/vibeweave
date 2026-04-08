@@ -1,0 +1,86 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'VibeWeave',
+  description = 'Analyze the emotional DNA of your playlists. Discover the vibe behind every song.',
+} = Astro.props;
+
+import '../styles/global.css';
+import UserMenu from '../components/auth/UserMenu';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-[var(--vw-bg-primary)]">
+    <!-- Top Navigation -->
+    <header class="sticky top-0 z-50 border-b border-vw-border bg-[var(--vw-bg-primary)]/80 backdrop-blur-lg">
+      <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2">
+          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-vw-accent">
+            <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+            </svg>
+          </div>
+          <span class="font-display text-xl font-bold text-vw-text">
+            VibeWeave
+          </span>
+        </a>
+
+        <!-- Navigation Links -->
+        <div class="hidden items-center gap-6 md:flex">
+          <a href="/features" class="text-sm text-vw-text-secondary transition-colors hover:text-vw-text">
+            Features
+          </a>
+          <a href="/how-it-works" class="text-sm text-vw-text-secondary transition-colors hover:text-vw-text">
+            How It Works
+          </a>
+        </div>
+
+        <!-- User Menu -->
+        <UserMenu client:load />
+      </nav>
+    </header>
+
+    <!-- Page Content -->
+    <main>
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-vw-border py-8">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+          <p class="text-sm text-vw-text-muted">
+            &copy; {new Date().getFullYear()} VibeWeave. All rights reserved.
+          </p>
+          <div class="flex gap-6">
+            <a href="/privacy" class="text-sm text-vw-text-muted transition-colors hover:text-vw-text-secondary">
+              Privacy
+            </a>
+            <a href="/terms" class="text-sm text-vw-text-muted transition-colors hover:text-vw-text-secondary">
+              Terms
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
