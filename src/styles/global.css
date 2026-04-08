@@ -1,0 +1,177 @@
+/* VibeWeave Global Styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --vw-bg-primary: #0a0a0f;
+    --vw-bg-elevated: #141228;
+    --vw-bg-card: #12121a;
+    --vw-bg-input: #1a1a25;
+    --vw-border: #2a2a3a;
+    --vw-border-focus: #6c5ce7;
+    --vw-text: #f0f0f5;
+    --vw-text-secondary: #a0a0b5;
+    --vw-text-muted: #6a6a80;
+    --vw-accent: #7c5cfc;
+    --vw-accent-hover: #6a48e8;
+    --vw-accent-amber: #f0a500;
+    --vw-cyan: #00d2ff;
+    --vw-success: #22c55e;
+    --vw-error: #ef4444;
+    --vw-warning: #f59e0b;
+    --vw-info: #3b82f6;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--vw-bg-primary);
+    color: var(--vw-text);
+    font-family: 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .bg-vw-bg-card {
+    background-color: var(--vw-bg-card);
+  }
+
+  .bg-vw-bg-elevated {
+    background-color: var(--vw-bg-elevated);
+  }
+
+  .bg-vw-bg-input {
+    background-color: var(--vw-bg-input);
+  }
+
+  .border-vw-border {
+    border-color: var(--vw-border);
+  }
+
+  .text-vw-text {
+    color: var(--vw-text);
+  }
+
+  .text-vw-text-secondary {
+    color: var(--vw-text-secondary);
+  }
+
+  .text-vw-text-muted {
+    color: var(--vw-text-muted);
+  }
+
+  .bg-vw-accent {
+    background-color: var(--vw-accent);
+  }
+
+  .hover\:bg-vw-accent-hover:hover {
+    background-color: var(--vw-accent-hover);
+  }
+
+  .text-vw-accent {
+    color: var(--vw-accent);
+  }
+
+  .hover\:text-vw-accent-hover:hover {
+    color: var(--vw-accent-hover);
+  }
+
+  .border-vw-accent {
+    border-color: var(--vw-accent);
+  }
+
+  .focus\:border-vw-accent:focus {
+    border-color: var(--vw-accent);
+  }
+
+  .focus\:ring-vw-accent:focus {
+    --tw-ring-color: var(--vw-accent);
+  }
+
+  .placeholder-vw-text-muted::placeholder {
+    color: var(--vw-text-muted);
+  }
+
+  .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-body {
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .text-vw-accent-amber {
+    color: var(--vw-accent-amber);
+  }
+
+  .text-vw-cyan {
+    color: var(--vw-cyan);
+  }
+
+  .text-vw-success {
+    color: var(--vw-success);
+  }
+
+  .text-vw-error {
+    color: var(--vw-error);
+  }
+
+  .text-vw-warning {
+    color: var(--vw-warning);
+  }
+
+  .text-vw-info {
+    color: var(--vw-info);
+  }
+
+  .border-vw-border-focus {
+    border-color: var(--vw-border-focus);
+  }
+
+  .bg-vw-accent-amber {
+    background-color: var(--vw-accent-amber);
+  }
+}
+
+/* Toast slide-in / slide-out animations */
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-right {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out;
+}
+
+.animate-slide-out-right {
+  animation: slide-out-right 0.3s ease-in forwards;
+}
