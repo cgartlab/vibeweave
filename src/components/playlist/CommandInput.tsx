@@ -127,6 +127,14 @@ export default function CommandInput({ playlistId, onCommandResult, disabled = f
     localStorage.removeItem(STORAGE_KEY);
   };
 
+  const handleHistoryDelete = useCallback((index: number) => {
+    setHistory(prev => {
+      const updated = prev.filter((_, i) => i !== index);
+      saveHistory(updated);
+      return updated;
+    });
+  }, []);
+
   const handleQuickCommand = (text: string) => {
     setCommand(text);
     textareaRef.current?.focus();
@@ -224,6 +232,7 @@ export default function CommandInput({ playlistId, onCommandResult, disabled = f
           commands={history}
           onSelect={handleHistorySelect}
           onClear={handleHistoryClear}
+          onDelete={handleHistoryDelete}
         />
       )}
     </div>

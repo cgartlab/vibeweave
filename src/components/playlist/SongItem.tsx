@@ -23,18 +23,15 @@ interface SongItemProps {
   dragHandleProps?: Record<string, unknown>;
 }
 
-/** Emotion label to display name and color mapping */
+/** Emotion label to display name and color mapping (Chinese keys to match AI analysis output) */
 const EMOTION_COLORS: Record<string, { label: string; bg: string; text: string }> = {
-  joy: { label: 'Joy', bg: 'bg-amber-500/20', text: 'text-amber-400' },
-  sadness: { label: 'Sadness', bg: 'bg-blue-500/20', text: 'text-blue-400' },
-  anger: { label: 'Anger', bg: 'bg-red-500/20', text: 'text-red-400' },
-  fear: { label: 'Fear', bg: 'bg-purple-500/20', text: 'text-purple-400' },
-  surprise: { label: 'Surprise', bg: 'bg-yellow-500/20', text: 'text-yellow-400' },
-  disgust: { label: 'Disgust', bg: 'bg-green-500/20', text: 'text-green-400' },
-  love: { label: 'Love', bg: 'bg-pink-500/20', text: 'text-pink-400' },
-  calm: { label: 'Calm', bg: 'bg-cyan-500/20', text: 'text-cyan-400' },
-  energy: { label: 'Energy', bg: 'bg-orange-500/20', text: 'text-orange-400' },
-  nostalgia: { label: 'Nostalgia', bg: 'bg-indigo-500/20', text: 'text-indigo-400' },
+  '快乐': { label: '快乐', bg: 'bg-amber-500/20', text: 'text-amber-400' },
+  '悲伤': { label: '悲伤', bg: 'bg-purple-500/20', text: 'text-purple-400' },
+  '放松': { label: '放松', bg: 'bg-emerald-500/20', text: 'text-emerald-400' },
+  '兴奋': { label: '兴奋', bg: 'bg-red-500/20', text: 'text-red-400' },
+  '宁静': { label: '宁静', bg: 'bg-blue-500/20', text: 'text-blue-400' },
+  '紧张': { label: '紧张', bg: 'bg-pink-500/20', text: 'text-pink-400' },
+  '怀旧': { label: '怀旧', bg: 'bg-orange-500/20', text: 'text-orange-400' },
 };
 
 function formatDuration(seconds: number): string {
@@ -56,12 +53,12 @@ function getTopEmotion(analysis?: SongAnalysisResult | null): { label: string; b
 
   if (topValue < 0.1) return null;
 
-  const matched = EMOTION_COLORS[topKey.toLowerCase()];
+  const matched = EMOTION_COLORS[topKey];
   if (matched) return matched;
 
   // Fallback for unknown emotion keys
   return {
-    label: topKey.charAt(0).toUpperCase() + topKey.slice(1),
+    label: topKey,
     bg: 'bg-vw-accent/20',
     text: 'text-vw-accent',
   };

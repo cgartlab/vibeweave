@@ -9,6 +9,7 @@ interface CommandHistoryProps {
   commands: CommandHistoryItem[];
   onSelect: (text: string) => void;
   onClear: () => void;
+  onDelete?: (index: number) => void;
 }
 
 function formatRelativeTime(timestamp: number): string {
@@ -26,7 +27,7 @@ function formatRelativeTime(timestamp: number): string {
   return `${Math.floor(days / 30)}个月前`;
 }
 
-export default function CommandHistory({ commands, onSelect, onClear }: CommandHistoryProps) {
+export default function CommandHistory({ commands, onSelect, onClear, onDelete }: CommandHistoryProps) {
   if (commands.length === 0) {
     return (
       <div className="rounded-xl border border-[var(--vw-border)] bg-[var(--vw-bg-card)] px-4 py-8 text-center">
@@ -77,14 +78,7 @@ export default function CommandHistory({ commands, onSelect, onClear }: CommandH
             <button
               onClick={e => {
                 e.stopPropagation();
-                // Remove this specific command by index
-                const updated = [...commands];
-                updated.splice(index, 1);
-                // We need to trigger the parent's clear with filtered list
-                // Since onClear clears all, we use onSelect to signal deletion
-                // Actually, we should have an onDelete prop, but per spec we'll
-                // use a workaround: emit empty string as a delete signal
-                onSelect(`__DELETE_INDEX_${index}__`);
+                onDelete?.(index);
               }}
               className="flex-shrink-0 rounded-md p-1 text-[var(--vw-text-muted)] opacity-0 transition-all hover:bg-red-500/10 hover:text-red-400 group-hover:opacity-100"
               aria-label="删除此命令"
