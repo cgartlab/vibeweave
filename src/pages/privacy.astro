@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="隐私政策 - VibeWeave" description="VibeWeave 隐私政策。了解我们如何收集、使用和保护您的数据。">
+  <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+    <a href="/" class="mb-8 inline-flex items-center gap-2 text-sm text-vw-text-muted transition-colors hover:text-vw-text-secondary">
+      <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+      返回首页
+    </a>
+
+    <h1 class="font-display text-3xl font-bold text-vw-text sm:text-4xl">隐私政策</h1>
+    <p class="mt-2 text-sm text-vw-text-muted">最后更新：2025 年 4 月</p>
+
+    <div class="mt-10 space-y-10">
+      <section>
+        <h2 class="text-xl font-semibold text-vw-text">1. 简介</h2>
+        <p class="mt-3 leading-relaxed text-vw-text-secondary">VibeWeave（"我们"）致力于保护您的隐私。本隐私政策说明了我们在您使用服务时如何收集、使用、披露和保护您的信息。使用 VibeWeave 即表示您同意本政策中描述的做法。</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-vw-text">2. 信息收集</h2>
+        <div class="mt-3 space-y-4">
+          <div>
+            <h3 class="text-sm font-medium text-vw-text">账户信息</h3>
+            <p class="mt-1 leading-relaxed text-vw-text-secondary">创建账户时，我们会收集您的邮箱地址和认证凭据。我们使用 Supabase 进行身份验证，不直接存储密码。</p>
+          </div>
+          <div>
+            <h3 class="text-sm font-medium text-vw-text">歌单数据</h3>
+            <p class="mt-1 leading-relaxed text-vw-text-secondary">我们从第三方音乐平台（网易云音乐）获取并存储歌单信息（歌曲标题、艺术家、专辑、时长）和歌词，以提供分析服务。此数据存储在我们的数据库中并与您的账户关联。</p>
+          </div>
+          <div>
+            <h3 class="text-sm font-medium text-vw-text">分析结果</h3>
+            <p class="mt-1 leading-relaxed text-vw-text-secondary">我们生成并存储情绪分析结果，包括效价/唤醒度分数、情绪置信度、氛围标签和推理文本。此数据来源于您歌曲的歌词和元数据。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-vw-text">3. Cookie 与本地存储</h2>
+        <p class="mt-3 leading-relaxed text-vw-text-secondary">VibeWeave 使用 Cookie 和浏览器本地存储来实现基本功能，包括身份验证令牌、偏好设置和会话数据。我们不使用第三方广告 Cookie 或跟踪像素。</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-vw-text">4. 第三方服务</h2>
+        <ul class="mt-3 list-disc space-y-2 pl-6 text-vw-text-secondary">
+          <li><strong class="text-vw-text">Supabase：</strong>用于身份验证、数据库存储和无服务器函数。</li>
+          <li><strong class="text-vw-text">网易云音乐：</strong>用于获取公开歌单数据和歌词。</li>
+          <li><strong class="text-vw-text">AI 分析提供商：</strong>用于生成歌曲歌词的情绪分析。</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-vw-text">5. 数据共享</h2>
+        <p class="mt-3 leading-relaxed text-vw-text-secondary">我们不会出售、交易或出租您的个人信息给第三方。您的歌单数据和分析结果对您的账户是私有的，不会与其他用户共享。</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-vw-text">6. 数据保留与删除</h2>
+        <p class="mt-3 leading-relaxed text-vw-text-secondary">您可以随时删除您的账户和所有相关数据。删除后，您的歌单、分析结果和账户信息将在 30 天内从我们的系统中永久移除。</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-vw-text">7. 安全</h2>
+        <p class="mt-3 leading-relaxed text-vw-text-secondary">我们实施行业标准的安全措施来保护您的数据，包括加密连接（HTTPS）、通过 Supabase 的安全身份验证以及数据库访问控制。</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-vw-text">8. 联系我们</h2>
+        <p class="mt-3 leading-relaxed text-vw-text-secondary">如果您对本隐私政策或您的数据有任何疑问，请通过 <a href="mailto:privacy@vibeweave.app" class="text-vw-accent hover:underline">privacy@vibeweave.app</a> 联系我们。</p>
+      </section>
+    </div>
+
+    <div class="mt-12 border-t border-vw-border pt-8">
+      <a href="/" class="inline-flex items-center gap-2 rounded-lg border border-vw-border px-4 py-2 text-sm font-medium text-vw-text-secondary transition-colors hover:border-vw-accent hover:text-vw-text">
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+        返回首页
+      </a>
+    </div>
+  </div>
+</BaseLayout>
