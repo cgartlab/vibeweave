@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout title="登录中...">
+  <div id="auth-callback" class="flex min-h-[60vh] items-center justify-center">
+    <div class="text-center">
+      <div class="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-2 border-[var(--vw-border)] border-t-amber-500"></div>
+      <p class="text-sm text-[var(--vw-text-secondary)]">正在完成登录...</p>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  import { supabase } from '../../lib/supabase/client';
+
+  async function handleCallback() {
+    const hashParams = new URLSearchParams(window.location.hash.substring(1));
+    const accessToken = hashParams.get('access_token');
+    const refreshToken = hashParams.get('refresh_token');
+    const error = hashParams.get('error');
+    const errorDescription = hashParams.get('error_description');
+
+    if (error) {
+      console.error('OAuth error:', error, errorDescription);
+      window.location.href = '/login?error=' + encodeURIComponent(errorDescription || error);
+      return;
+    }
+
+    if (accessToken && refreshToken) {
+      const { data, error: setError } = await supabase.auth.setSession({
+        access_token: accessToken,
+        refresh_token: refreshToken,
+      });
+
+      if (setError) {
+        console.error('Session error:', setError);
+        window.location.href = '/login?error=' + encodeURIComponent('Failed to establish session');
+        return;
+      }
+
+      window.location.href = '/dashboard';
+    } else {
+      const urlParams = new URLSearchParams(window.location.search);
+      const desc = urlParams.get('error_description');
+      if (desc) {
+        window.location.href = '/login?error=' + encodeURIComponent(desc);
+      } else {
+        window.location.href = '/login';
+      }
+    }
+  }
+
+  handleCallback();
+</script>
