@@ -1,6 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { supabase } from '../../lib/supabase/client';
 import SongList from '../playlist/SongList';
+import CommandInput from '../playlist/CommandInput';
+import EmotionChart from '../playlist/EmotionChart';
+import EmotionRadar from '../playlist/EmotionRadar';
+import TagManager from '../playlist/TagManager';
+import SongTagger from '../playlist/SongTagger';
 import type { Song } from '../playlist/SongItem';
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -32,6 +37,24 @@ interface PlaylistSongRow {
     vibe_tags: Record<string, number>;
     reasoning: string;
   } | null;
+}
+
+/** Flattened song shape expected by EmotionChart / EmotionRadar */
+interface ChartSong {
+  id: string | number;
+  title: string;
+  artist: string;
+  valence?: number;
+  arousal?: number;
+  emotion_confidence?: Record<string, number>;
+}
+
+/** Tag shape shared by TagManager / SongTagger */
+interface Tag {
+  id: string;
+  tag_name: string;
+  tag_type: 'emotion' | 'vibe';
+  color: string;
 }
 
 // ── Status Badge ─────────────────────────────────────────────────────────────
@@ -92,8 +115,8 @@ function AnalyzeButton({
     setError(null);
 
     try {
-      const { error: fnError } = await supabase.functions.invoke('analyze-playlist', {
-        body: { playlistId },
+      const { error: fnError } = await supabase.functions.invoke('analyze-batch', {
+        body: { playlist_id: playlistId },
       });
 
       if (fnError) throw fnError;
@@ -190,62 +213,6 @@ function AnalysisProgress({ songs }: { songs: Song[] }) {
   );
 }
 
-// ── Command Input Placeholder ────────────────────────────────────────────────
-
-function CommandInput() {
-  const [command, setCommand] = useState('');
-
-  return (
-    <div className="space-y-2">
-      <label className="block text-sm font-medium text-vw-text-secondary">
-        AI Command
-      </label>
-      <textarea
-        value={command}
-        onChange={(e) => setCommand(e.target.value)}
-        placeholder="e.g., &quot;Sort by energy, from high to low&quot; or &quot;Create a chill evening flow&quot;"
-        rows={3}
-        className="w-full resize-none rounded-lg border border-vw-border bg-[var(--vw-bg-input)] px-3 py-2 text-sm text-vw-text placeholder-vw-text-muted transition-colors focus:border-vw-accent focus:outline-none focus:ring-1 focus:ring-vw-accent"
-      />
-      <button
-        disabled={!command.trim()}
-        className="inline-flex items-center gap-2 rounded-lg bg-vw-accent px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-vw-accent-hover disabled:cursor-not-allowed disabled:opacity-50"
-      >
-        <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-        Apply Command
-      </button>
-    </div>
-  );
-}
-
-// ── Emotion Chart Placeholder ────────────────────────────────────────────────
-
-function EmotionChartPlaceholder() {
-  return (
-    <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-vw-border py-12">
-      <svg
-        className="mb-3 h-10 w-10 text-vw-text-muted"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={1.5}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"
-        />
-      </svg>
-      <p className="text-sm font-medium text-vw-text-secondary">Emotion Chart</p>
-      <p className="mt-1 text-xs text-vw-text-muted">
-        Analyze songs to see the emotional landscape
-      </p>
-    </div>
-  );
-}
-
 // ── Loading Skeleton ─────────────────────────────────────────────────────────
 
 function LoadingSkeleton() {
@@ -332,6 +299,66 @@ export default function WeavePage({ playlistId: playlistIdProp }: { playlistId: 
   const [songs, setSongs] = useState<Song[]>([]);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const [userId, setUserId] = useState<string | null>(null);
+  const [taggingSongId, setTaggingSongId] = useState<string | null>(null);
+  const [allTags, setAllTags] = useState<Tag[]>([]);
+  const [currentSongTags, setCurrentSongTags] = useState<Tag[]>([]);
+
+  // Fetch all custom tags for the user
+  useEffect(() => {
+    async function fetchAllTags() {
+      if (!userId) return;
+      try {
+        const { data, error } = await supabase
+          .from('custom_tags')
+          .select('*')
+          .eq('user_id', userId);
+
+        if (!error && data) {
+          setAllTags(data as Tag[]);
+        }
+      } catch {
+        console.warn('Failed to fetch custom tags');
+      }
+    }
+    fetchAllTags();
+  }, [userId]);
+
+  // Fetch current tags for the selected song
+  useEffect(() => {
+    async function fetchSongTags() {
+      if (!taggingSongId) {
+        setCurrentSongTags([]);
+        return;
+      }
+      try {
+        const { data, error } = await supabase
+          .from('song_tags')
+          .select('tag_id, custom_tags(*)')
+          .eq('song_id', taggingSongId);
+
+        if (!error && data) {
+          const tags: Tag[] = data
+            .map((row: { custom_tags: Tag | null }) => row.custom_tags)
+            .filter((t: Tag | null): t is Tag => t != null);
+          setCurrentSongTags(tags);
+        }
+      } catch {
+        console.warn('Failed to fetch song tags');
+        setCurrentSongTags([]);
+      }
+    }
+    fetchSongTags();
+  }, [taggingSongId]);
+
+  // Fetch current user ID for TagManager
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => {
+      if (data?.user) {
+        setUserId(data.user.id);
+      }
+    });
+  }, []);
 
   // Fetch playlist data
   const fetchPlaylist = useCallback(async () => {
@@ -353,8 +380,8 @@ export default function WeavePage({ playlistId: playlistIdProp }: { playlistId: 
     setPlaylist(playlistData as PlaylistData);
 
     const { data: songData, error: songsError } = await supabase
-      .from('playlist_songs')
-      .select('*, analysis:song_analyses(*)')
+      .from('songs')
+      .select('*, analysis:vibe_analysis(*)')
       .eq('playlist_id', playlistId)
       .order('sort_order', { ascending: true });
 
@@ -389,23 +416,74 @@ export default function WeavePage({ playlistId: playlistIdProp }: { playlistId: 
     fetchPlaylist();
   }, [fetchPlaylist]);
 
+  // ── Convert Song[] to ChartSong[] for EmotionChart / EmotionRadar ──
+  const chartSongs: ChartSong[] = useMemo(
+    () =>
+      songs
+        .filter((s) => s.analysisStatus === 'completed' && s.analysis)
+        .map((s) => ({
+          id: s.id,
+          title: s.title,
+          artist: s.artist,
+          valence: s.analysis!.valence,
+          arousal: s.analysis!.arousal,
+          emotion_confidence: s.analysis!.emotion_confidence,
+        })),
+    [songs]
+  );
+
+  // ── Command result handler ──
+  const handleCommandResult = useCallback(
+    (result: { sorted_ids: string[]; filtered_ids?: string[]; note: string }) => {
+      if (result.sorted_ids && result.sorted_ids.length > 0) {
+        const reordered = result.sorted_ids
+          .map((id) => songs.find((s) => s.id === id))
+          .filter((s): s is Song => s != null);
+
+        const sortedSet = new Set(result.sorted_ids);
+        const remaining = songs.filter((s) => !sortedSet.has(s.id));
+
+        const newSongs = [...reordered, ...remaining];
+        setSongs(newSongs);
+
+        const updates = newSongs.map((s, index) => ({
+          id: s.id,
+          sort_order: index,
+        }));
+
+        supabase
+          .from('songs')
+          .upsert(updates, { onConflict: 'id' })
+          .then(({ error }) => {
+            if (error) {
+              console.error('Failed to persist AI reorder:', error);
+              fetchPlaylist();
+            }
+          });
+      }
+
+      if (result.filtered_ids && result.filtered_ids.length > 0) {
+        const filteredSet = new Set(result.filtered_ids);
+        setSongs((prev) => prev.filter((s) => filteredSet.has(s.id)));
+      }
+    },
+    [songs, fetchPlaylist]
+  );
+
   // Handlers
   const handleReorder = useCallback(
     async (songIds: string[]) => {
-      // Optimistic update already handled by SongList local state
-      // Persist to Supabase
       const updates = songIds.map((id, index) => ({
         id,
         sort_order: index,
       }));
 
       const { error } = await supabase
-        .from('playlist_songs')
+        .from('songs')
         .upsert(updates, { onConflict: 'id' });
 
       if (error) {
         console.error('Failed to reorder songs:', error);
-        // Revert by refetching
         fetchPlaylist();
       }
     },
@@ -419,13 +497,12 @@ export default function WeavePage({ playlistId: playlistIdProp }: { playlistId: 
 
       const newLocked = !song.isLocked;
 
-      // Optimistic update
       setSongs((prev) =>
         prev.map((s) => (s.id === id ? { ...s, isLocked: newLocked } : s))
       );
 
       const { error } = await supabase
-        .from('playlist_songs')
+        .from('songs')
         .update({ is_locked: newLocked })
         .eq('id', id);
 
@@ -441,11 +518,10 @@ export default function WeavePage({ playlistId: playlistIdProp }: { playlistId: 
 
   const handleDelete = useCallback(
     async (id: string) => {
-      // Optimistic update
       setSongs((prev) => prev.filter((s) => s.id !== id));
 
       const { error } = await supabase
-        .from('playlist_songs')
+        .from('songs')
         .delete()
         .eq('id', id);
 
@@ -454,7 +530,6 @@ export default function WeavePage({ playlistId: playlistIdProp }: { playlistId: 
         fetchPlaylist();
       }
 
-      // Update song count
       setPlaylist((prev) =>
         prev ? { ...prev, song_count: Math.max(0, prev.song_count - 1) } : prev
       );
@@ -499,26 +574,50 @@ export default function WeavePage({ playlistId: playlistIdProp }: { playlistId: 
           <StatusBadge status={playlist.status} />
         </div>
 
-        <div className="mt-4 flex items-center gap-4 text-sm text-vw-text-muted">
-          <span className="flex items-center gap-1.5">
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-            </svg>
-            {playlist.song_count} song{playlist.song_count !== 1 ? 's' : ''}
-          </span>
-          <span className="flex items-center gap-1.5">
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Updated {new Date(playlist.updated_at).toLocaleDateString()}
-          </span>
+        {/* ── Quick Stats (inline in header) ─────────────────────────── */}
+        <div className="mt-4 grid grid-cols-2 gap-3 sm:inline-flex sm:items-center sm:gap-6">
+          <div className="rounded-lg bg-[var(--vw-bg-input)] px-3 py-2 text-center sm:text-left">
+            <p className="text-lg font-bold text-vw-text">
+              {songs.filter((s) => s.analysisStatus === 'completed').length}
+            </p>
+            <p className="text-[10px] uppercase tracking-wider text-vw-text-muted">
+              Analyzed
+            </p>
+          </div>
+          <div className="rounded-lg bg-[var(--vw-bg-input)] px-3 py-2 text-center sm:text-left">
+            <p className="text-lg font-bold text-vw-text">
+              {songs.filter((s) => s.isLocked).length}
+            </p>
+            <p className="text-[10px] uppercase tracking-wider text-vw-text-muted">
+              Locked
+            </p>
+          </div>
+          <div className="rounded-lg bg-[var(--vw-bg-input)] px-3 py-2 text-center sm:text-left">
+            <p className="text-lg font-bold text-vw-text">
+              {songs.length > 0
+                ? formatTotalDuration(songs.reduce((sum, s) => sum + s.duration, 0))
+                : '0:00'}
+            </p>
+            <p className="text-[10px] uppercase tracking-wider text-vw-text-muted">
+              Duration
+            </p>
+          </div>
+          <div className="rounded-lg bg-[var(--vw-bg-input)] px-3 py-2 text-center sm:text-left">
+            <p className="text-lg font-bold text-vw-text">
+              {new Set(songs.map((s) => s.artist)).size}
+            </p>
+            <p className="text-[10px] uppercase tracking-wider text-vw-text-muted">
+              Artists
+            </p>
+          </div>
         </div>
       </div>
 
       {/* ── Main Content: Two-Column Layout ────────────────────────────── */}
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         {/* Left / Main: Song List */}
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2 space-y-8">
+          {/* Song List Card */}
           <div className="rounded-xl border border-vw-border bg-vw-bg-card p-4">
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-sm font-semibold uppercase tracking-wider text-vw-text-muted">
@@ -536,13 +635,14 @@ export default function WeavePage({ playlistId: playlistIdProp }: { playlistId: 
             />
           </div>
 
-          {/* ── Emotion Chart Area ──────────────────────────────────────── */}
-          <div className="mt-8">
+          {/* ── Emotion Visualization Area ─────────────────────────────── */}
+          <div>
             <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-vw-text-muted">
               Emotional Landscape
             </h2>
-            <div className="rounded-xl border border-vw-border bg-vw-bg-card p-4">
-              <EmotionChartPlaceholder />
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <EmotionChart songs={chartSongs} />
+              <EmotionRadar songs={chartSongs} />
             </div>
           </div>
         </div>
@@ -566,58 +666,79 @@ export default function WeavePage({ playlistId: playlistIdProp }: { playlistId: 
             </div>
           </div>
 
-          {/* Command Input */}
+          {/* AI Command Input */}
           <div className="rounded-xl border border-vw-border bg-vw-bg-card p-4">
             <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-vw-text-muted">
               AI Commands
             </h2>
-            <CommandInput />
+            <CommandInput
+              playlistId={playlist.id}
+              onCommandResult={handleCommandResult}
+            />
           </div>
 
-          {/* Quick Stats */}
-          <div className="rounded-xl border border-vw-border bg-vw-bg-card p-4">
-            <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-vw-text-muted">
-              Quick Stats
-            </h2>
-            <div className="grid grid-cols-2 gap-3">
-              <div className="rounded-lg bg-[var(--vw-bg-input)] p-3 text-center">
-                <p className="text-lg font-bold text-vw-text">
-                  {songs.filter((s) => s.analysisStatus === 'completed').length}
-                </p>
-                <p className="text-[10px] uppercase tracking-wider text-vw-text-muted">
-                  Analyzed
-                </p>
-              </div>
-              <div className="rounded-lg bg-[var(--vw-bg-input)] p-3 text-center">
-                <p className="text-lg font-bold text-vw-text">
-                  {songs.filter((s) => s.isLocked).length}
-                </p>
-                <p className="text-[10px] uppercase tracking-wider text-vw-text-muted">
-                  Locked
-                </p>
-              </div>
-              <div className="rounded-lg bg-[var(--vw-bg-input)] p-3 text-center">
-                <p className="text-lg font-bold text-vw-text">
-                  {songs.length > 0
-                    ? formatTotalDuration(songs.reduce((sum, s) => sum + s.duration, 0))
-                    : '0:00'}
-                </p>
-                <p className="text-[10px] uppercase tracking-wider text-vw-text-muted">
-                  Duration
-                </p>
-              </div>
-              <div className="rounded-lg bg-[var(--vw-bg-input)] p-3 text-center">
-                <p className="text-lg font-bold text-vw-text">
-                  {new Set(songs.map((s) => s.artist)).size}
-                </p>
-                <p className="text-[10px] uppercase tracking-wider text-vw-text-muted">
-                  Artists
-                </p>
-              </div>
+          {/* Tag Manager */}
+          {userId && (
+            <div className="rounded-xl border border-vw-border bg-vw-bg-card p-4">
+              <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-vw-text-muted">
+                Tag Manager
+              </h2>
+              <TagManager userId={userId} />
             </div>
-          </div>
+          )}
         </div>
       </div>
+
+      {/* ── Bottom: Song Tagger Row ────────────────────────────────────── */}
+      {songs.length > 0 && (
+        <div className="mt-8">
+          <div className="rounded-xl border border-vw-border bg-vw-bg-card p-4">
+            <div className="mb-4 flex items-center justify-between">
+              <h2 className="text-sm font-semibold uppercase tracking-wider text-vw-text-muted">
+                Song Tags
+              </h2>
+              <span className="text-xs text-vw-text-muted">
+                Click a song to add tags
+              </span>
+            </div>
+
+            {/* Song selector chips */}
+            <div className="mb-4 flex flex-wrap gap-2">
+              {songs.map((song) => (
+                <button
+                  key={song.id}
+                  onClick={() =>
+                    setTaggingSongId((prev) => (prev === song.id ? null : song.id))
+                  }
+                  className={`
+                    inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5
+                    text-xs font-medium transition-all
+                    ${
+                      taggingSongId === song.id
+                        ? 'border-vw-accent bg-vw-accent/10 text-vw-accent'
+                        : 'border-vw-border bg-[var(--vw-bg-input)] text-vw-text-secondary hover:border-vw-accent/40 hover:text-vw-text'
+                    }
+                  `}
+                >
+                  {song.title}
+                  <span className="text-vw-text-muted">{song.artist}</span>
+                </button>
+              ))}
+            </div>
+
+            {/* Active SongTagger */}
+            {taggingSongId && (
+              <div className="rounded-lg border border-vw-border/50 bg-[var(--vw-bg-input)] p-3">
+                <SongTagger
+                  songId={taggingSongId}
+                  currentTags={currentSongTags}
+                  allTags={allTags}
+                />
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
