@@ -86,10 +86,7 @@ export default function PlaylistUploader() {
         setProgress(30);
 
         const { data, error: fnError } = await supabase.functions.invoke('fetch-playlist', {
-          body: {
-            platform: parsed.platform,
-            playlist_id: parsed.id,
-          },
+          body: { url: trimmedUrl },
         });
 
         setProgress(80);
@@ -127,7 +124,6 @@ export default function PlaylistUploader() {
 
       <form onSubmit={handleSubmit}>
         <div className="flex gap-2">
-          {/* URL Input */}
           <div className="relative flex-1">
             <input
               type="url"
@@ -149,7 +145,6 @@ export default function PlaylistUploader() {
                 disabled:opacity-50
               `}
             />
-            {/* Paste button */}
             <button
               type="button"
               onClick={handlePaste}
@@ -163,7 +158,6 @@ export default function PlaylistUploader() {
             </button>
           </div>
 
-          {/* Submit button */}
           <button
             type="submit"
             disabled={loading || !url.trim()}
@@ -190,7 +184,6 @@ export default function PlaylistUploader() {
           </button>
         </div>
 
-        {/* Platform detection indicator */}
         {detectedPlatform && !error && (
           <div className="mt-2 flex items-center gap-1.5 text-sm">
             {PLATFORM_SVGS[detectedPlatform]}
@@ -201,7 +194,6 @@ export default function PlaylistUploader() {
           </div>
         )}
 
-        {/* Progress bar */}
         {loading && (
           <div className="mt-3">
             <div className="h-1.5 w-full overflow-hidden rounded-full bg-[var(--vw-bg-input)]">
@@ -219,7 +211,6 @@ export default function PlaylistUploader() {
           </div>
         )}
 
-        {/* Error display */}
         {error && (
           <div className="mt-3 flex items-start gap-2 rounded-lg border border-red-500/20 bg-red-500/10 px-3 py-2.5">
             <svg className="mt-0.5 h-4 w-4 shrink-0 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
