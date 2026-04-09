@@ -3,52 +3,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="VibeWeave - 编织你的情绪歌单" description="不是推荐音乐，而是帮你编织情绪。分析歌单的情绪DNA，发现每首歌背后的氛围。">
-  <main class="relative overflow-hidden">
-    <!-- Animated gradient mesh background -->
-    <div class="animate-gradient pointer-events-none absolute inset-0 -z-10 opacity-40">
-      <div class="gradient-orb gradient-orb-1"></div>
-      <div class="gradient-orb gradient-orb-2"></div>
-      <div class="gradient-orb gradient-orb-3"></div>
-    </div>
+  <div class="relative overflow-hidden">
 
-    <!-- Floating decorative music notes -->
-    <div class="pointer-events-none absolute inset-0 -z-5 overflow-hidden" aria-hidden="true">
-      <svg class="floating-note floating-note-1 absolute left-[10%] top-[15%] h-8 w-8 text-amber-500/20" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55C7.79 13 6 14.79 6 17s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-      </svg>
-      <svg class="floating-note floating-note-2 absolute right-[15%] top-[25%] h-6 w-6 text-purple-500/20" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55C7.79 13 6 14.79 6 17s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-      </svg>
-      <svg class="floating-note floating-note-3 absolute left-[20%] top-[60%] h-10 w-10 text-cyan-500/15" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55C7.79 13 6 14.79 6 17s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-      </svg>
-      <svg class="floating-note floating-note-4 absolute right-[10%] top-[70%] h-7 w-7 text-amber-400/15" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55C7.79 13 6 14.79 6 17s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-      </svg>
-      <svg class="floating-note floating-note-5 absolute left-[50%] top-[10%] h-5 w-5 text-orange-500/15" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55C7.79 13 6 14.79 6 17s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-      </svg>
-    </div>
+    <!-- ============================================ -->
+    <!-- HERO SECTION -->
+    <!-- ============================================ -->
+    <section class="hero-section relative flex min-h-[calc(100svh-4rem)] flex-col items-center justify-center px-4 py-20 text-center">
+      <!-- Animated gradient orbs -->
+      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div class="hero-orb hero-orb-amber"></div>
+        <div class="hero-orb hero-orb-purple"></div>
+        <div class="hero-orb hero-orb-cyan"></div>
+      </div>
 
-    <!-- Floating waveform SVG -->
-    <div class="pointer-events-none absolute bottom-0 left-0 right-0 -z-5 opacity-10" aria-hidden="true">
-      <svg class="animate-waveform h-32 w-full" viewBox="0 0 1440 128" preserveAspectRatio="none" fill="none">
-        <path d="M0 64 Q60 20 120 64 T240 64 T360 64 T480 64 T600 64 T720 64 T840 64 T960 64 T1080 64 T1200 64 T1320 64 T1440 64 V128 H0 Z" fill="url(#waveform-gradient)"/>
-        <defs>
-          <linearGradient id="waveform-gradient" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#7c5cfc"/>
-            <stop offset="50%" stop-color="#f0a500"/>
-            <stop offset="100%" stop-color="#00d2ff"/>
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-4 py-20 text-center">
-      <div class="animate-fade-in-up mx-auto max-w-4xl">
-        <!-- Logo mark -->
-        <div class="mb-8 inline-flex items-center gap-2 rounded-full border border-[var(--vw-border)] bg-[var(--vw-bg-card)]/60 px-4 py-1.5 text-sm text-[var(--vw-text-secondary)] backdrop-blur-sm">
+      <!-- Hero content -->
+      <div class="hero-content relative z-10 mx-auto max-w-4xl">
+        <!-- Pill badge -->
+        <div class="hero-fade mb-8 inline-flex items-center gap-2 rounded-full border border-[var(--vw-border)] bg-[var(--vw-bg-card)]/60 px-4 py-1.5 text-sm text-[var(--vw-text-secondary)] backdrop-blur-sm" style="--delay: 0s">
           <span class="relative flex h-2 w-2">
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75"></span>
             <span class="relative inline-flex h-2 w-2 rounded-full bg-amber-500"></span>
@@ -56,293 +27,512 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           情绪驱动的音乐体验
         </div>
 
-        <!-- Main heading -->
-        <h1 class="font-display mb-6 text-5xl font-bold leading-tight tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
-          <span class="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 bg-clip-text text-transparent">
-            VibeWeave
-          </span>
+        <!-- Brand title -->
+        <h1 class="hero-fade font-display mb-6 text-6xl font-bold leading-tight tracking-tight sm:text-7xl md:text-8xl lg:text-9xl" style="--delay: 0.15s">
+          <span class="hero-title-gradient">VibeWeave</span>
         </h1>
 
         <!-- Tagline -->
-        <p class="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-[var(--vw-text-secondary)] sm:text-xl">
+        <p class="hero-fade mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-[var(--vw-text-secondary)] sm:text-xl md:text-2xl" style="--delay: 0.3s">
           不是推荐音乐，而是帮你<span class="font-medium text-[var(--vw-text)]">编织情绪</span>
         </p>
 
         <!-- CTA Buttons -->
-        <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <div class="hero-fade flex flex-col items-center justify-center gap-4 sm:flex-row" style="--delay: 0.5s">
           <a
             href="/login"
-            class="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-amber-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-amber-500/30"
+            class="cta-primary group relative inline-flex items-center gap-2 overflow-hidden rounded-xl px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-amber-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-amber-500/30 hover:scale-[1.03]"
           >
             <span class="relative z-10">开始编织</span>
             <svg class="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
             </svg>
-            <div class="absolute inset-0 bg-gradient-to-r from-amber-400 to-orange-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+            <div class="cta-shine absolute inset-0 bg-gradient-to-r from-amber-400 to-orange-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
           </a>
           <a
-            href="#features"
-            class="inline-flex items-center gap-2 rounded-xl border border-[var(--vw-border)] bg-[var(--vw-bg-card)]/60 px-8 py-3.5 text-base font-medium text-[var(--vw-text-secondary)] backdrop-blur-sm transition-all duration-300 hover:border-[var(--vw-accent)]/40 hover:text-[var(--vw-text)]"
+            href="#how-it-works"
+            class="cta-outline inline-flex items-center gap-2 rounded-xl border border-[var(--vw-border)] bg-[var(--vw-bg-card)]/60 px-8 py-3.5 text-base font-medium text-[var(--vw-text-secondary)] backdrop-blur-sm transition-all duration-300 hover:border-amber-500/40 hover:text-[var(--vw-text)] hover:scale-[1.03]"
           >
             了解更多
-            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <svg class="h-4 w-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
             </svg>
           </a>
         </div>
+      </div>
 
-        <!-- Stats row -->
-        <div class="mt-16 flex items-center justify-center gap-8 text-center sm:gap-12">
-          <div>
-            <div class="text-2xl font-bold text-[var(--vw-text)] sm:text-3xl">3</div>
-            <div class="mt-1 text-xs text-[var(--vw-text-muted)] sm:text-sm">支持平台</div>
-          </div>
-          <div class="h-8 w-px bg-[var(--vw-border)]"></div>
-          <div>
-            <div class="text-2xl font-bold text-[var(--vw-text)] sm:text-3xl">AI</div>
-            <div class="mt-1 text-xs text-[var(--vw-text-muted)] sm:text-sm">情绪分析</div>
-          </div>
-          <div class="h-8 w-px bg-[var(--vw-border)]"></div>
-          <div>
-            <div class="text-2xl font-bold text-[var(--vw-text)] sm:text-3xl">&infin;</div>
-            <div class="mt-1 text-xs text-[var(--vw-text-muted)] sm:text-sm">编织可能</div>
+      <!-- Bottom sound wave decoration -->
+      <div class="hero-wave-container pointer-events-none absolute bottom-0 left-0 right-0" aria-hidden="true">
+        <svg class="hero-wave h-24 w-full sm:h-32" viewBox="0 0 1440 128" preserveAspectRatio="none" fill="none">
+          <path d="M0 80 Q30 60 60 80 T120 80 T180 80 T240 80 T300 80 T360 80 T420 80 T480 80 T540 80 T600 80 T660 80 T720 80 T780 80 T840 80 T900 80 T960 80 T1020 80 T1080 80 T1140 80 T1200 80 T1260 80 T1320 80 T1380 80 T1440 80 V128 H0 Z" fill="url(#hero-wave-grad)" opacity="0.08"/>
+          <path d="M0 90 Q45 70 90 90 T180 90 T270 90 T360 90 T450 90 T540 90 T630 90 T720 90 T810 90 T900 90 T990 90 T1080 90 T1170 90 T1260 90 T1350 90 T1440 90 V128 H0 Z" fill="url(#hero-wave-grad)" opacity="0.05"/>
+          <defs>
+            <linearGradient id="hero-wave-grad" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#f0a500"/>
+              <stop offset="50%" stop-color="#7c5cfc"/>
+              <stop offset="100%" stop-color="#00d2ff"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="hero-fade absolute bottom-8 left-1/2 -translate-x-1/2 sm:bottom-12" style="--delay: 0.8s" aria-hidden="true">
+        <div class="scroll-indicator flex flex-col items-center gap-2">
+          <span class="text-xs tracking-widest text-[var(--vw-text-muted)] uppercase">Scroll</span>
+          <div class="scroll-dot h-8 w-5 rounded-full border border-[var(--vw-text-muted)]/40 p-1">
+            <div class="scroll-dot-inner h-1.5 w-1.5 rounded-full bg-amber-400"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="relative px-4 py-24">
-      <div class="mx-auto max-w-6xl">
-        <div class="mb-16 text-center">
-          <h2 class="font-display mb-4 text-3xl font-bold text-[var(--vw-text)] sm:text-4xl">
-            用情绪重新定义<span class="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">歌单</span>
+    <!-- ============================================ -->
+    <!-- HOW IT WORKS SECTION -->
+    <!-- ============================================ -->
+    <section id="how-it-works" class="reveal-section relative px-4 py-24 sm:py-32">
+      <div class="mx-auto max-w-5xl">
+        <!-- Section header -->
+        <div class="mb-16 text-center sm:mb-20">
+          <span class="reveal-item mb-4 inline-block text-sm font-medium tracking-widest text-amber-400/80 uppercase">How it works</span>
+          <h2 class="reveal-item font-display mb-4 text-3xl font-bold text-[var(--vw-text)] sm:text-4xl md:text-5xl">
+            三步编织你的<span class="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">情绪歌单</span>
           </h2>
-          <p class="mx-auto max-w-xl text-[var(--vw-text-secondary)]">
-            每首歌都承载着独特的情感频率，VibeWeave 帮你捕捉、理解、编织
+          <p class="reveal-item mx-auto max-w-xl text-[var(--vw-text-secondary)]">
+            从导入到编织，AI 全程理解你的音乐情绪
           </p>
         </div>
 
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <!-- Feature 1: Emotion Analysis -->
-          <div class="group rounded-xl border border-[var(--vw-border)] bg-[var(--vw-bg-card)]/60 p-6 backdrop-blur-sm transition-all duration-300 hover:border-purple-500/30 hover:shadow-lg hover:shadow-purple-500/5 hover:-translate-y-1">
-            <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-purple-500/10 text-purple-400 transition-colors duration-300 group-hover:bg-purple-500/20">
-              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/>
-              </svg>
-            </div>
-            <h3 class="mb-2 text-lg font-semibold text-[var(--vw-text)]">情绪分析</h3>
-            <p class="text-sm leading-relaxed text-[var(--vw-text-secondary)]">
-              AI 深度解析每首歌的情绪DNA，从歌词、旋律、节奏多维度理解音乐情感
-            </p>
+        <!-- Steps -->
+        <div class="relative">
+          <!-- Connection line (desktop) -->
+          <div class="steps-line absolute left-0 right-0 top-1/2 hidden h-px -translate-y-1/2 lg:block" aria-hidden="true">
+            <div class="h-full w-full bg-gradient-to-r from-transparent via-[var(--vw-border)] to-transparent"></div>
           </div>
 
-          <!-- Feature 2: Smart Sorting -->
-          <div class="group rounded-xl border border-[var(--vw-border)] bg-[var(--vw-bg-card)]/60 p-6 backdrop-blur-sm transition-all duration-300 hover:border-amber-500/30 hover:shadow-lg hover:shadow-amber-500/5 hover:-translate-y-1">
-            <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 transition-colors duration-300 group-hover:bg-amber-500/20">
-              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5-6L16.5 15m0 0L12 10.5m4.5 4.5V3"/>
-              </svg>
+          <div class="grid gap-8 sm:gap-6 lg:grid-cols-3">
+            <!-- Step 1 -->
+            <div class="reveal-item step-card group relative rounded-2xl border border-[var(--vw-border)] bg-[var(--vw-bg-card)]/40 p-8 text-center backdrop-blur-sm transition-all duration-500 hover:border-amber-500/30 hover:shadow-lg hover:shadow-amber-500/5 hover:-translate-y-1">
+              <div class="step-number mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500/20 to-amber-600/10 text-xl font-bold text-amber-400 transition-all duration-300 group-hover:from-amber-500/30 group-hover:to-amber-600/20 group-hover:scale-110">
+                1
+              </div>
+              <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+                </svg>
+              </div>
+              <h3 class="mb-2 text-lg font-semibold text-[var(--vw-text)]">导入歌单</h3>
+              <p class="text-sm leading-relaxed text-[var(--vw-text-secondary)]">
+                从网易云音乐、QQ音乐或 Spotify 导入你的歌单链接
+              </p>
             </div>
-            <h3 class="mb-2 text-lg font-semibold text-[var(--vw-text)]">智能排序</h3>
-            <p class="text-sm leading-relaxed text-[var(--vw-text-secondary)]">
-              基于情绪流动自动编排歌曲顺序，让歌单成为一个完整的故事线
-            </p>
-          </div>
 
-          <!-- Feature 3: Natural Language -->
-          <div class="group rounded-xl border border-[var(--vw-border)] bg-[var(--vw-bg-card)]/60 p-6 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/30 hover:shadow-lg hover:shadow-cyan-500/5 hover:-translate-y-1">
-            <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-cyan-500/10 text-cyan-400 transition-colors duration-300 group-hover:bg-cyan-500/20">
-              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/>
+            <!-- Arrow (mobile) -->
+            <div class="flex items-center justify-center lg:hidden" aria-hidden="true">
+              <svg class="h-6 w-6 text-[var(--vw-text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"/>
               </svg>
             </div>
-            <h3 class="mb-2 text-lg font-semibold text-[var(--vw-text)]">自然语言控制</h3>
-            <p class="text-sm leading-relaxed text-[var(--vw-text-secondary)]">
-              用日常语言描述你想要的氛围，AI 自动挑选并排列最契合的歌曲
-            </p>
-          </div>
 
-          <!-- Feature 4: Cross Platform -->
-          <div class="group rounded-xl border border-[var(--vw-border)] bg-[var(--vw-bg-card)]/60 p-6 backdrop-blur-sm transition-all duration-300 hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-500/5 hover:-translate-y-1">
-            <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400 transition-colors duration-300 group-hover:bg-emerald-500/20">
-              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/>
+            <!-- Step 2 -->
+            <div class="reveal-item step-card group relative rounded-2xl border border-[var(--vw-border)] bg-[var(--vw-bg-card)]/40 p-8 text-center backdrop-blur-sm transition-all duration-500 hover:border-purple-500/30 hover:shadow-lg hover:shadow-purple-500/5 hover:-translate-y-1" style="--reveal-delay: 0.15s">
+              <div class="step-number mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-600/10 text-xl font-bold text-purple-400 transition-all duration-300 group-hover:from-purple-500/30 group-hover:to-purple-600/20 group-hover:scale-110">
+                2
+              </div>
+              <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-purple-500/10 text-purple-400">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"/>
+                </svg>
+              </div>
+              <h3 class="mb-2 text-lg font-semibold text-[var(--vw-text)]">AI 情绪分析</h3>
+              <p class="text-sm leading-relaxed text-[var(--vw-text-secondary)]">
+                AI 解析每首歌的情绪 DNA -- 从歌词、旋律、节奏多维度理解
+              </p>
+            </div>
+
+            <!-- Arrow (mobile) -->
+            <div class="flex items-center justify-center lg:hidden" aria-hidden="true">
+              <svg class="h-6 w-6 text-[var(--vw-text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"/>
               </svg>
             </div>
-            <h3 class="mb-2 text-lg font-semibold text-[var(--vw-text)]">跨平台支持</h3>
-            <p class="text-sm leading-relaxed text-[var(--vw-text-secondary)]">
-              支持网易云音乐、QQ音乐、Spotify，一个工具管理所有平台的歌单
+
+            <!-- Step 3 -->
+            <div class="reveal-item step-card group relative rounded-2xl border border-[var(--vw-border)] bg-[var(--vw-bg-card)]/40 p-8 text-center backdrop-blur-sm transition-all duration-500 hover:border-cyan-500/30 hover:shadow-lg hover:shadow-cyan-500/5 hover:-translate-y-1" style="--reveal-delay: 0.3s">
+              <div class="step-number mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 text-xl font-bold text-cyan-400 transition-all duration-300 group-hover:from-cyan-500/30 group-hover:to-cyan-600/20 group-hover:scale-110">
+                3
+              </div>
+              <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"/>
+                </svg>
+              </div>
+              <h3 class="mb-2 text-lg font-semibold text-[var(--vw-text)]">编织你的情绪</h3>
+              <p class="text-sm leading-relaxed text-[var(--vw-text-secondary)]">
+                可视化情绪分布，重新编排歌曲顺序，让歌单成为一个故事
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- EMOTION VISUALIZATION SECTION -->
+    <!-- ============================================ -->
+    <section id="emotion-viz" class="reveal-section relative px-4 py-24 sm:py-32">
+      <!-- Subtle background glow -->
+      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-500/[0.03] blur-[120px]"></div>
+      </div>
+
+      <div class="relative mx-auto max-w-5xl">
+        <!-- Section header -->
+        <div class="mb-16 text-center sm:mb-20">
+          <span class="reveal-item mb-4 inline-block text-sm font-medium tracking-widest text-amber-400/80 uppercase">Emotion Map</span>
+          <h2 class="reveal-item font-display mb-4 text-3xl font-bold text-[var(--vw-text)] sm:text-4xl md:text-5xl">
+            看见音乐的<span class="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">情绪形状</span>
+          </h2>
+          <p class="reveal-item mx-auto max-w-xl text-[var(--vw-text-secondary)]">
+            每首歌在情绪坐标系中都有自己的位置，编织就是连接这些点
+          </p>
+        </div>
+
+        <!-- Emotion scatter plot -->
+        <div class="reveal-item mx-auto max-w-2xl">
+          <div class="emotion-chart relative rounded-2xl border border-[var(--vw-border)] bg-[var(--vw-bg-card)]/40 p-6 backdrop-blur-sm sm:p-10">
+            <!-- SVG Quadrant Chart -->
+            <div class="relative mx-auto aspect-square max-w-md">
+              <svg viewBox="0 0 400 400" class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+                <!-- Grid lines -->
+                <line x1="200" y1="0" x2="200" y2="400" stroke="var(--vw-border)" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+                <line x1="0" y1="200" x2="400" y2="200" stroke="var(--vw-border)" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+
+                <!-- Quadrant background tints -->
+                <rect x="200" y="0" width="200" height="200" fill="rgba(240,165,0,0.03)" rx="0"/>
+                <rect x="0" y="0" width="200" height="200" fill="rgba(124,92,252,0.03)" rx="0"/>
+                <rect x="0" y="200" width="200" height="200" fill="rgba(0,210,255,0.03)" rx="0"/>
+                <rect x="200" y="200" width="200" height="200" fill="rgba(239,68,68,0.03)" rx="0"/>
+
+                <!-- Axis labels -->
+                <text x="200" y="390" text-anchor="middle" fill="var(--vw-text-muted)" font-size="11" font-family="DM Sans, sans-serif">消极 ← → 积极</text>
+                <text x="12" y="200" text-anchor="middle" fill="var(--vw-text-muted)" font-size="11" font-family="DM Sans, sans-serif" transform="rotate(-90, 12, 200)">低能量 ← → 高能量</text>
+
+                <!-- Quadrant labels -->
+                <text x="300" y="30" text-anchor="middle" fill="rgba(240,165,0,0.6)" font-size="13" font-weight="600" font-family="DM Sans, sans-serif">快乐 · 兴奋</text>
+                <text x="100" y="30" text-anchor="middle" fill="rgba(124,92,252,0.6)" font-size="13" font-weight="600" font-family="DM Sans, sans-serif">悲伤 · 激动</text>
+                <text x="100" y="385" text-anchor="middle" fill="rgba(0,210,255,0.6)" font-size="13" font-weight="600" font-family="DM Sans, sans-serif">放松 · 平静</text>
+                <text x="300" y="385" text-anchor="middle" fill="rgba(239,68,68,0.5)" font-size="13" font-weight="600" font-family="DM Sans, sans-serif">消极 · 低落</text>
+
+                <!-- Song dots - Q1: Happy/Excited (amber/orange) -->
+                <circle class="song-dot" cx="280" cy="80" r="6" fill="#f0a500" opacity="0.8">
+                  <animate attributeName="r" values="6;7;6" dur="3s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="song-dot" cx="320" cy="120" r="5" fill="#f59e0b" opacity="0.7">
+                  <animate attributeName="r" values="5;6;5" dur="4s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="song-dot" cx="250" cy="140" r="7" fill="#f97316" opacity="0.75">
+                  <animate attributeName="r" values="7;8;7" dur="3.5s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="song-dot" cx="350" cy="60" r="4" fill="#fbbf24" opacity="0.65">
+                  <animate attributeName="r" values="4;5;4" dur="5s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="song-dot" cx="300" cy="160" r="5" fill="#fb923c" opacity="0.7"/>
+
+                <!-- Song dots - Q2: Sad/Intense (purple) -->
+                <circle class="song-dot" cx="80" cy="70" r="6" fill="#7c5cfc" opacity="0.75">
+                  <animate attributeName="r" values="6;7;6" dur="4s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="song-dot" cx="120" cy="100" r="5" fill="#8b5cf6" opacity="0.7"/>
+                <circle class="song-dot" cx="60" cy="130" r="7" fill="#a78bfa" opacity="0.65">
+                  <animate attributeName="r" values="7;8;7" dur="3s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="song-dot" cx="140" cy="50" r="4" fill="#7c5cfc" opacity="0.6"/>
+
+                <!-- Song dots - Q3: Relaxed/Calm (cyan) -->
+                <circle class="song-dot" cx="70" cy="280" r="6" fill="#00d2ff" opacity="0.7">
+                  <animate attributeName="r" values="6;7;6" dur="3.5s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="song-dot" cx="130" cy="310" r="5" fill="#06b6d4" opacity="0.65"/>
+                <circle class="song-dot" cx="100" cy="250" r="7" fill="#22d3ee" opacity="0.7">
+                  <animate attributeName="r" values="7;8;7" dur="4.5s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="song-dot" cx="50" cy="340" r="4" fill="#67e8f9" opacity="0.6"/>
+
+                <!-- Song dots - Q4: Negative/Low (red/pink) -->
+                <circle class="song-dot" cx="300" cy="300" r="5" fill="#ef4444" opacity="0.6"/>
+                <circle class="song-dot" cx="340" cy="270" r="6" fill="#f87171" opacity="0.55">
+                  <animate attributeName="r" values="6;7;6" dur="4s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="song-dot" cx="260" cy="330" r="4" fill="#fb7185" opacity="0.5"/>
+
+                <!-- Center cluster (mixed emotions) -->
+                <circle class="song-dot" cx="190" cy="180" r="5" fill="#f0a500" opacity="0.5"/>
+                <circle class="song-dot" cx="220" cy="210" r="4" fill="#7c5cfc" opacity="0.5"/>
+                <circle class="song-dot" cx="180" cy="220" r="5" fill="#00d2ff" opacity="0.5"/>
+                <circle class="song-dot" cx="210" cy="190" r="6" fill="#a78bfa" opacity="0.45">
+                  <animate attributeName="r" values="6;7;6" dur="5s" repeatCount="indefinite"/>
+                </circle>
+
+                <!-- Weaving path (dashed curve connecting some dots) -->
+                <path d="M80 70 Q140 100 190 180 Q210 190 280 80" stroke="rgba(240,165,0,0.2)" stroke-width="1.5" fill="none" stroke-dasharray="6 4">
+                  <animate attributeName="stroke-dashoffset" values="0;-20" dur="3s" repeatCount="indefinite"/>
+                </path>
+                <path d="M100 250 Q150 230 210 210 Q240 220 300 300" stroke="rgba(0,210,255,0.15)" stroke-width="1.5" fill="none" stroke-dasharray="6 4">
+                  <animate attributeName="stroke-dashoffset" values="0;-20" dur="4s" repeatCount="indefinite"/>
+                </path>
+              </svg>
+            </div>
+
+            <!-- Caption -->
+            <p class="mt-6 text-center text-sm text-[var(--vw-text-muted)]">
+              情绪坐标系：每首歌根据 AI 分析结果落位于此，编织路径连接情绪相近的曲目
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="relative px-4 py-24">
-      <div class="mx-auto max-w-3xl text-center">
-        <div class="relative rounded-2xl border border-[var(--vw-border)] bg-[var(--vw-bg-card)]/40 p-12 backdrop-blur-sm sm:p-16">
-          <!-- Glow effect behind card -->
-          <div class="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-r from-amber-500/10 via-purple-500/10 to-cyan-500/10 blur-2xl"></div>
+    <!-- ============================================ -->
+    <!-- FINAL CTA SECTION -->
+    <!-- ============================================ -->
+    <section class="reveal-section relative px-4 py-24 sm:py-32">
+      <div class="relative mx-auto max-w-3xl text-center">
+        <!-- Background glow -->
+        <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+          <div class="absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-amber-500/10 via-purple-500/5 to-cyan-500/10 blur-[100px]"></div>
+        </div>
 
-          <h2 class="font-display mb-4 text-3xl font-bold text-[var(--vw-text)] sm:text-4xl">
+        <div class="reveal-item relative rounded-2xl border border-[var(--vw-border)] bg-[var(--vw-bg-card)]/40 px-6 py-12 backdrop-blur-sm sm:px-16 sm:py-16">
+          <h2 class="font-display mb-4 text-3xl font-bold text-[var(--vw-text)] sm:text-4xl md:text-5xl">
             准备好编织你的情绪了吗？
           </h2>
-          <p class="mx-auto mb-8 max-w-lg text-[var(--vw-text-secondary)]">
+          <p class="reveal-item mx-auto mb-10 max-w-lg text-[var(--vw-text-secondary)]">
             导入你的歌单，让 AI 揭开每首歌的情绪密码，重新发现你音乐库中的隐藏故事
           </p>
           <a
             href="/login"
-            class="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-amber-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-amber-500/30"
+            class="cta-primary group relative inline-flex items-center gap-2 overflow-hidden rounded-xl px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-amber-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-amber-500/30 hover:scale-[1.03]"
           >
-            <span class="relative z-10">开始编织</span>
-            <svg class="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <span class="relative z-10">开始使用</span>
+            <svg class="relative z-10 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
             </svg>
-            <div class="absolute inset-0 bg-gradient-to-r from-amber-400 to-orange-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+            <div class="cta-shine absolute inset-0 bg-gradient-to-r from-amber-400 to-orange-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
           </a>
         </div>
       </div>
     </section>
-  </main>
+
+  </div>
 </BaseLayout>
 
 <style>
-  /* Gradient mesh animation */
-  .animate-gradient {
-    position: relative;
-  }
+  /* ============================================= */
+  /* HERO SECTION STYLES                           */
+  /* ============================================= */
 
-  .gradient-orb {
+  /* Gradient orbs */
+  .hero-orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px);
-    animation: gradient-float 20s ease-in-out infinite;
+    filter: blur(100px);
+    will-change: transform;
   }
 
-  .gradient-orb-1 {
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(124, 92, 252, 0.3) 0%, transparent 70%);
-    top: -10%;
-    left: -10%;
-    animation-delay: 0s;
-  }
-
-  .gradient-orb-2 {
+  .hero-orb-amber {
     width: 500px;
     height: 500px;
     background: radial-gradient(circle, rgba(240, 165, 0, 0.25) 0%, transparent 70%);
-    top: 30%;
-    right: -10%;
-    animation-delay: -7s;
-    animation-duration: 25s;
+    top: -5%;
+    right: -5%;
+    animation: orb-drift-1 20s ease-in-out infinite;
   }
 
-  .gradient-orb-3 {
+  .hero-orb-purple {
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(0, 210, 255, 0.2) 0%, transparent 70%);
-    bottom: -5%;
-    left: 30%;
-    animation-delay: -14s;
-    animation-duration: 22s;
+    background: radial-gradient(circle, rgba(124, 92, 252, 0.2) 0%, transparent 70%);
+    top: 40%;
+    left: -8%;
+    animation: orb-drift-2 25s ease-in-out infinite;
   }
 
-  @keyframes gradient-float {
-    0%, 100% {
-      transform: translate(0, 0) scale(1);
-    }
-    25% {
-      transform: translate(60px, -40px) scale(1.1);
-    }
-    50% {
-      transform: translate(-30px, 60px) scale(0.95);
-    }
-    75% {
-      transform: translate(40px, 30px) scale(1.05);
-    }
+  .hero-orb-cyan {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(0, 210, 255, 0.15) 0%, transparent 70%);
+    bottom: 5%;
+    right: 25%;
+    animation: orb-drift-3 22s ease-in-out infinite;
   }
 
-  /* Floating music notes */
-  .floating-note {
-    animation: note-float 15s ease-in-out infinite;
+  @keyframes orb-drift-1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(-50px, 40px) scale(1.1); }
+    50% { transform: translate(30px, -30px) scale(0.95); }
+    75% { transform: translate(-20px, -50px) scale(1.05); }
   }
 
-  .floating-note-1 {
-    animation-duration: 18s;
-    animation-delay: 0s;
+  @keyframes orb-drift-2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(40px, -30px) scale(1.05); }
+    50% { transform: translate(-20px, 50px) scale(1.1); }
+    75% { transform: translate(50px, 20px) scale(0.95); }
   }
 
-  .floating-note-2 {
-    animation-duration: 22s;
-    animation-delay: -4s;
+  @keyframes orb-drift-3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(-30px, -40px) scale(1.08); }
+    50% { transform: translate(40px, 30px) scale(0.92); }
+    75% { transform: translate(-10px, 50px) scale(1.04); }
   }
 
-  .floating-note-3 {
-    animation-duration: 20s;
-    animation-delay: -8s;
+  /* Hero title gradient */
+  .hero-title-gradient {
+    background: linear-gradient(135deg, #f0a500 0%, #f97316 40%, #fbbf24 70%, #f0a500 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 6s ease-in-out infinite;
   }
 
-  .floating-note-4 {
-    animation-duration: 16s;
-    animation-delay: -12s;
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
 
-  .floating-note-5 {
-    animation-duration: 24s;
-    animation-delay: -6s;
+  /* CTA button base gradient */
+  .cta-primary {
+    background: linear-gradient(135deg, #f0a500, #f97316);
   }
 
-  @keyframes note-float {
-    0%, 100% {
-      transform: translateY(0) rotate(0deg);
-      opacity: 0.6;
-    }
-    25% {
-      transform: translateY(-30px) rotate(10deg);
-      opacity: 1;
-    }
-    50% {
-      transform: translateY(-15px) rotate(-5deg);
-      opacity: 0.8;
-    }
-    75% {
-      transform: translateY(-40px) rotate(8deg);
-      opacity: 0.5;
-    }
+  /* Hero fade-in animation with staggered delay */
+  .hero-fade {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: hero-fade-in 0.8s ease-out forwards;
+    animation-delay: var(--delay, 0s);
   }
 
-  /* Waveform animation */
-  .animate-waveform {
-    animation: waveform-pulse 8s ease-in-out infinite;
-  }
-
-  @keyframes waveform-pulse {
-    0%, 100% {
-      transform: scaleY(1);
-      transform-origin: bottom;
-    }
-    50% {
-      transform: scaleY(1.3);
-      transform-origin: bottom;
-    }
-  }
-
-  /* Fade in up animation */
-  .animate-fade-in-up {
-    animation: fade-in-up 0.8s ease-out;
-  }
-
-  @keyframes fade-in-up {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
+  @keyframes hero-fade-in {
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
+
+  /* Hero wave subtle pulse */
+  .hero-wave {
+    animation: wave-breathe 6s ease-in-out infinite;
+  }
+
+  @keyframes wave-breathe {
+    0%, 100% { transform: scaleY(1); transform-origin: bottom; }
+    50% { transform: scaleY(1.15); transform-origin: bottom; }
+  }
+
+  /* Scroll indicator dot bounce */
+  .scroll-dot-inner {
+    animation: scroll-bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes scroll-bounce {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(8px); opacity: 0.3; }
+  }
+
+  /* ============================================= */
+  /* REVEAL ON SCROLL                              */
+  /* ============================================= */
+
+  .reveal-section {
+    /* Sections start hidden and revealed by JS */
+  }
+
+  .reveal-item {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    transition-delay: var(--reveal-delay, 0s);
+  }
+
+  .reveal-item.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Step cards get a slightly longer transition */
+  .step-card {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out, border-color 0.5s ease, box-shadow 0.5s ease;
+    transition-delay: var(--reveal-delay, 0s);
+  }
+
+  .step-card.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ============================================= */
+  /* EMOTION CHART                                 */
+  /* ============================================= */
+
+  .song-dot {
+    transition: r 0.3s ease;
+  }
+
+  .emotion-chart {
+    transition: border-color 0.5s ease, box-shadow 0.5s ease;
+  }
+
+  .emotion-chart:hover {
+    border-color: rgba(240, 165, 0, 0.2);
+    box-shadow: 0 0 40px rgba(240, 165, 0, 0.05);
+  }
+
+  /* ============================================= */
+  /* RESPONSIVE TWEAKS                             */
+  /* ============================================= */
+
+  @media (max-width: 640px) {
+    .hero-orb-amber {
+      width: 300px;
+      height: 300px;
+    }
+    .hero-orb-purple {
+      width: 250px;
+      height: 250px;
+    }
+    .hero-orb-cyan {
+      width: 200px;
+      height: 200px;
+    }
+  }
 </style>
+
+<script>
+  // IntersectionObserver for scroll-triggered reveal animations
+  document.addEventListener('DOMContentLoaded', () => {
+    const revealItems = document.querySelectorAll('.reveal-item, .step-card');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px',
+      }
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+  });
+</script>
