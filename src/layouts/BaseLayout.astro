@@ -6,15 +6,16 @@ interface Props {
 
 const {
   title = 'VibeWeave',
-  description = 'Analyze the emotional DNA of your playlists. Discover the vibe behind every song.',
+  description = '不是推荐音乐，而是帮你编织情绪。分析歌单的情绪DNA，发现每首歌背后的氛围。',
 } = Astro.props;
 
 import '../styles/global.css';
 import UserMenu from '../components/auth/UserMenu';
+import ToastWrapper from '../components/ui/ToastWrapper';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -47,22 +48,21 @@ import UserMenu from '../components/auth/UserMenu';
         <!-- Navigation Links -->
         <div class="hidden items-center gap-6 md:flex">
           <a href="/features" class="text-sm text-vw-text-secondary transition-colors hover:text-vw-text">
-            Features
+            功能
           </a>
           <a href="/how-it-works" class="text-sm text-vw-text-secondary transition-colors hover:text-vw-text">
-            How It Works
+            使用方法
           </a>
         </div>
 
         <!-- User Menu -->
-        <UserMenu client:load />
-      </nav>
+        <UserMenu client:load />\n      </nav>
     </header>
 
-    <!-- Page Content -->
-    <main>
+    <!-- Page Content wrapped in ToastProvider -->
+    <ToastWrapper client:load>
       <slot />
-    </main>
+    </ToastWrapper>
 
     <!-- Footer -->
     <footer class="border-t border-vw-border py-8">
@@ -73,10 +73,10 @@ import UserMenu from '../components/auth/UserMenu';
           </p>
           <div class="flex gap-6">
             <a href="/privacy" class="text-sm text-vw-text-muted transition-colors hover:text-vw-text-secondary">
-              Privacy
+              隐私政策
             </a>
             <a href="/terms" class="text-sm text-vw-text-muted transition-colors hover:text-vw-text-secondary">
-              Terms
+              服务条款
             </a>
           </div>
         </div>
