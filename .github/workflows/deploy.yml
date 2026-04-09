@@ -26,6 +26,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Remove stale lock file
+        run: rm -f package-lock.json
       - name: Install dependencies
         run: npm install
       - name: Build
