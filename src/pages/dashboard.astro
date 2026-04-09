@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PlaylistUploader from '../components/playlist/PlaylistUploader';
+import PlaylistCard from '../components/playlist/PlaylistCard';
 ---
 
 <BaseLayout title="我的歌单 - VibeWeave" description="管理你的歌单，开始情绪编织之旅">
@@ -23,14 +25,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <!-- Playlist Uploader -->
     <div id="playlist-uploader-wrapper" class="mb-8 hidden">
-      <div client:visible>
-        <div id="playlist-uploader-root"></div>
-      </div>
+      <PlaylistUploader client:visible />
     </div>
 
     <!-- Playlist Grid -->
-    <div id="playlist-grid" client:visible>
-      <div id="playlist-grid-root"></div>
+    <div id="playlist-grid">
+      <!-- Empty state when no playlists -->
+      <div id="playlist-empty-state" class="flex flex-col items-center justify-center rounded-xl border border-dashed border-[var(--vw-border)] py-20">
+        <svg class="mb-4 h-16 w-16 text-[var(--vw-text-muted)] opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+        </svg>
+        <p class="text-sm font-medium text-[var(--vw-text-secondary)]">还没有歌单</p>
+        <p class="mt-1 text-xs text-[var(--vw-text-muted)]">点击上方「导入歌单」按钮，开始你的情绪编织之旅</p>
+      </div>
+
+      <!-- Playlist cards grid (populated by client-side script or React components) -->
+      <div id="playlist-cards-grid" class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 hidden"></div>
     </div>
   </main>
 </BaseLayout>
@@ -42,7 +52,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       const { supabase } = await import('../lib/supabase/client');
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) {
-        window.location.href = '/login';
+        window.location.href = import.meta.env.BASE_URL + 'login';
       }
     } catch {
       // If supabase is not configured, allow access for development
@@ -80,4 +90,55 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       }
     });
   }
+
+  // Fetch and render user's playlists
+  async function loadPlaylists() {
+    try {
+      const { supabase } = await import('../lib/supabase/client');
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return;
+
+      const { data: playlists, error } = await supabase
+        .from('playlists')
+        .select('*')
+        .eq('user_id', session.user.id)
+        .order('updated_at', { ascending: false });
+
+      if (error || !playlists || playlists.length === 0) {
+        document.getElementById('playlist-empty-state')?.classList.remove('hidden');
+        document.getElementById('playlist-cards-grid')?.classList.add('hidden');
+        return;
+      }
+
+      document.getElementById('playlist-empty-state')?.classList.add('hidden');
+      const grid = document.getElementById('playlist-cards-grid');
+      if (grid) {
+        grid.classList.remove('hidden');
+        const { createElement: h } = await import('react');
+        const { createRoot } = await import('react-dom/client');
+        const PlaylistCardModule = await import('../components/playlist/PlaylistCard');
+
+        grid.innerHTML = '';
+        playlists.forEach((playlist) => {
+          const cardContainer = document.createElement('div');
+          grid.appendChild(cardContainer);
+          const root = createRoot(cardContainer);
+          root.render(
+            h(PlaylistCardModule.default, {
+              id: playlist.id,
+              name: playlist.name,
+              songCount: playlist.song_count,
+              status: playlist.status || 'draft',
+            })
+          );
+        });
+      }
+    } catch (err) {
+      console.warn('Failed to load playlists:', err);
+      document.getElementById('playlist-empty-state')?.classList.remove('hidden');
+      document.getElementById('playlist-cards-grid')?.classList.add('hidden');
+    }
+  }
+
+  loadPlaylists();
 </script>
