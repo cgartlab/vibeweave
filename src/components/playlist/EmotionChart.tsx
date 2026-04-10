@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import {
   Chart as ChartJS,
   LinearScale,
@@ -125,6 +125,21 @@ const quadrantPlugin: ChartJS['plugins'][number] = {
 };
 
 export default function EmotionChart({ songs }: EmotionChartProps) {
+  const [chartWidth, setChartWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 800);
+
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
+    const handleResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => setChartWidth(window.innerWidth), 200);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(timeoutId);
+    };
+  }, []);
+
   const analyzedSongs = useMemo(
     () => songs.filter((s) => s.valence != null && s.arousal != null),
     [songs]
@@ -175,7 +190,7 @@ export default function EmotionChart({ songs }: EmotionChartProps) {
     () => ({
       responsive: true,
       maintainAspectRatio: true,
-      aspectRatio: window.innerWidth < 640 ? 1 : 1.6,
+      aspectRatio: chartWidth < 640 ? 1 : 1.6,
       layout: {
         padding: { top: 24, right: 12, bottom: 24, left: 12 },
       },
@@ -279,7 +294,7 @@ export default function EmotionChart({ songs }: EmotionChartProps) {
         },
       },
     }),
-    [legendLabels]
+    [legendLabels, chartWidth]
   );
 
   // 空状态

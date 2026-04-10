@@ -314,6 +314,26 @@ Deno.serve(async (req) => {
     const createdPlaylists = await playlistResponse.json() as Array<{ id: string }>;
     const dbPlaylistId = createdPlaylists[0].id;
 
+    // Fetch lyrics for the first 20 songs (to keep response fast)
+    const LYRICS_FETCH_LIMIT = 20;
+    const lyricsMap = new Map<number, string | null>();
+
+    const lyricsPromises = playlist.tracks.slice(0, LYRICS_FETCH_LIMIT).map(async (track) => {
+      try {
+        const lrcContent = await fetchNetEaseLyrics(track.id);
+        if (lrcContent) {
+          lyricsMap.set(track.id, parseLrcLyrics(lrcContent));
+        } else {
+          lyricsMap.set(track.id, null);
+        }
+      } catch {
+        lyricsMap.set(track.id, null);
+      }
+    });
+
+    await Promise.all(lyricsPromises);
+    console.log(`Fetched lyrics for ${lyricsMap.size} songs (limit: ${LYRICS_FETCH_LIMIT})`);
+
     // Insert songs in batches of 50
     const BATCH_SIZE = 50;
     let insertedCount = 0;
@@ -330,6 +350,7 @@ Deno.serve(async (req) => {
         duration: track.duration ? Math.round(track.duration / 1000) : null,
         sort_order: i + index,
         analysis_status: 'pending' as const,
+        lyrics: lyricsMap.get(track.id) ?? null,
       }));
 
       const songsResponse = await fetch(`${SUPABASE_URL}/rest/v1/songs`, {

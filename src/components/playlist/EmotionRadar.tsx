@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -38,6 +38,21 @@ const DIMENSION_COLORS: Record<string, { border: string; bg: string }> = {
 };
 
 export default function EmotionRadar({ songs }: EmotionRadarProps) {
+  const [chartWidth, setChartWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 800);
+
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
+    const handleResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => setChartWidth(window.innerWidth), 200);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(timeoutId);
+    };
+  }, []);
+
   const analyzedSongs = useMemo(
     () => songs.filter((s) => s.emotion_confidence && Object.keys(s.emotion_confidence).length > 0),
     [songs]
@@ -117,7 +132,7 @@ export default function EmotionRadar({ songs }: EmotionRadarProps) {
     () => ({
       responsive: true,
       maintainAspectRatio: true,
-      aspectRatio: window.innerWidth < 640 ? 1 : 1.4,
+      aspectRatio: chartWidth < 640 ? 1 : 1.4,
       layout: {
         padding: { top: 8, right: 8, bottom: 8, left: 8 },
       },
@@ -144,7 +159,7 @@ export default function EmotionRadar({ songs }: EmotionRadarProps) {
           pointLabels: {
             color: '#c0bdd0',
             font: {
-              size: window.innerWidth < 640 ? 11 : 13,
+              size: chartWidth < 640 ? 11 : 13,
               weight: 'normal' as const,
             },
             padding: 12,
@@ -179,7 +194,7 @@ export default function EmotionRadar({ songs }: EmotionRadarProps) {
         },
       },
     }),
-    []
+    [chartWidth]
   );
 
   // 空状态

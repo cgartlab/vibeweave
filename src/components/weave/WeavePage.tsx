@@ -6,6 +6,8 @@ import EmotionChart from '../playlist/EmotionChart';
 import EmotionRadar from '../playlist/EmotionRadar';
 import TagManager from '../playlist/TagManager';
 import SongTagger from '../playlist/SongTagger';
+import AnalysisProgress from '../playlist/AnalysisProgress';
+import AnalyzeButton from '../playlist/AnalyzeButton';
 import type { Song } from '../playlist/SongItem';
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -91,125 +93,6 @@ function StatusBadge({ status }: { status: PlaylistData['status'] }) {
       )}
       {label}
     </span>
-  );
-}
-
-// ── Analyze Button ───────────────────────────────────────────────────────────
-
-function AnalyzeButton({
-  playlistId,
-  songCount,
-  onAnalysisStart,
-}: {
-  playlistId: string;
-  songCount: number;
-  onAnalysisStart: () => void;
-}) {
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const handleAnalyze = async () => {
-    if (isAnalyzing || songCount === 0) return;
-
-    setIsAnalyzing(true);
-    setError(null);
-
-    try {
-      const { error: fnError } = await supabase.functions.invoke('analyze-batch', {
-        body: { playlist_id: playlistId },
-      });
-
-      if (fnError) throw fnError;
-
-      onAnalysisStart();
-    } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Failed to start analysis';
-      setError(message);
-    } finally {
-      setIsAnalyzing(false);
-    }
-  };
-
-  return (
-    <div className="space-y-2">
-      <button
-        onClick={handleAnalyze}
-        disabled={isAnalyzing || songCount === 0}
-        className={`
-          inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5
-          text-sm font-medium transition-all duration-200
-          ${
-            isAnalyzing || songCount === 0
-              ? 'cursor-not-allowed bg-vw-border/50 text-vw-text-muted'
-              : 'bg-vw-accent text-white shadow-md shadow-vw-accent/25 hover:bg-vw-accent-hover active:scale-[0.98]'
-          }
-        `}
-      >
-        {isAnalyzing ? (
-          <>
-            <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-            </svg>
-            Analyzing...
-          </>
-        ) : (
-          <>
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-            </svg>
-            Analyze All Songs
-          </>
-        )}
-      </button>
-      {error && (
-        <p className="text-xs text-red-400">{error}</p>
-      )}
-    </div>
-  );
-}
-
-// ── Analysis Progress ────────────────────────────────────────────────────────
-
-function AnalysisProgress({ songs }: { songs: Song[] }) {
-  const total = songs.length;
-  const completed = songs.filter((s) => s.analysisStatus === 'completed').length;
-  const failed = songs.filter((s) => s.analysisStatus === 'failed').length;
-  const analyzing = songs.filter((s) => s.analysisStatus === 'analyzing').length;
-  const inProgress = analyzing > 0;
-
-  const progressPercent = total > 0 ? Math.round((completed / total) * 100) : 0;
-
-  if (total === 0 || (!inProgress && completed === 0 && failed === 0)) {
-    return null;
-  }
-
-  return (
-    <div className="space-y-2">
-      <div className="flex items-center justify-between text-xs">
-        <span className="text-vw-text-secondary">
-          {completed} of {total} analyzed
-        </span>
-        <span className="tabular-nums text-vw-text-muted">{progressPercent}%</span>
-      </div>
-      <div className="h-2 overflow-hidden rounded-full bg-vw-border/50">
-        <div
-          className={`h-full rounded-full transition-all duration-500 ease-out ${
-            inProgress
-              ? 'bg-amber-500'
-              : completed === total
-                ? 'bg-emerald-500'
-                : 'bg-vw-accent'
-          }`}
-          style={{ width: `${progressPercent}%` }}
-        />
-      </div>
-      {failed > 0 && (
-        <p className="text-xs text-red-400">
-          {failed} song{failed > 1 ? 's' : ''} failed to analyze
-        </p>
-      )}
-    </div>
   );
 }
 
@@ -655,7 +538,7 @@ export default function WeavePage({ playlistId: playlistIdProp }: { playlistId: 
               Analysis
             </h2>
 
-            <AnalysisProgress songs={songs} />
+            <AnalysisProgress playlistId={playlist.id} onComplete={fetchPlaylist} />
 
             <div className="mt-4">
               <AnalyzeButton
