@@ -1,1 +1,432 @@
-LS0tCmltcG9ydCBCYXNlTGF5b3V0IGZyb20gJy4uL2xheW91dHMvQmFzZUxheW91dC5hc3Rybyc7Ci0tLQoKPEJhc2VMYXlvdXQgdGl0bGU9IlZpYmVXZWF2ZSAtIOe8lue7h+S9oOeahOaDhee7quatjOWNlSIgZGVzY3JpcHRpb249IuS4jeaYr+aOqOiNkOmfs+S5kO+8jOiAjOaYr+W4ruS9oOe8lue7h+aDhee7quOAguWIhuaekOatjOWNleeahOaDhee7qkROQe+8jOWPkeeOsOavj+mmluatjOiDjOWQjueahOawm+WbtOOAgiI+CiAgPGRpdiBjbGFzcz0icmVsYXRpdmUgb3ZlcmZsb3ctaGlkZGVuIj4KCiAgICA8IS0tID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IC0tPgogICAgPCEtLSBTRUNUSU9OIDE6IEhFUk8g4oCUIOWFqOWxj+ayiea1uOW8jyAgICAgICAgICAgICAgICAgIC0tPgogICAgPCEtLSA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAtLT4KICAgIDxzZWN0aW9uIGNsYXNzPSJoZXJvLXNlY3Rpb24gcmVsYXRpdmUgZmxleCBtaW4taC1bY2FsYygxMDBzdmgtM3JlbSldIGZsZXgtY29sIGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciBweC02IHBiLTE2IHB0LTIwIHRleHQtY2VudGVyIj4KICAgICAgPCEtLSBCYWNrZ3JvdW5kIHJhZGlhbCBnbG93cyAtLT4KICAgICAgPGRpdiBjbGFzcz0icG9pbnRlci1ldmVudHMtbm9uZSBhYnNvbHV0ZSBpbnNldC0wIG92ZXJmbG93LWhpZGRlbiIgYXJpYS1oaWRkZW49InRydWUiPgogICAgICAgIDxkaXYgY2xhc3M9Imhlcm8tZ2xvdy1wcmltYXJ5Ij48L2Rpdj4KICAgICAgICA8ZGl2IGNsYXNzPSJoZXJvLWdsb3ctc2Vjb25kYXJ5Ij48L2Rpdj4KICAgICAgPC9kaXY+CgogICAgICA8IS0tIEhlcm8gY29udGVudCAtLT4KICAgICAgPGRpdiBjbGFzcz0icmVsYXRpdmUgei0xMCBteC1hdXRvIG1heC13LTR4bCI+CiAgICAgICAgPCEtLSBQaWxsIGJhZGdlIC0tPgogICAgICAgIDxkaXYgY2xhc3M9Imhlcm8tZmFkZSBtYi04IGlubGluZS1mbGV4IGl0ZW1zLWNlbnRlciBnYXAtMiByb3VuZGVkLWZ1bGwgYm9yZGVyIGJvcmRlci13aGl0ZS9bMC4wOF0gYmctd2hpdGUvWzAuMDZdIHB4LTQgcHktMS41IHRleHQteHMgdHJhY2tpbmctd2lkZSB0ZXh0LXdoaXRlLzYwIiBzdHlsZT0iLS1kZWxheTogMHMiPgogICAgICAgICAgPHNwYW4gY2xhc3M9InJlbGF0aXZlIGZsZXggaC0yIHctMiI+CiAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJhYnNvbHV0ZSBpbmxpbmUtZmxleCBoLWZ1bGwgdy1mdWxsIGFuaW1hdGUtcGluZyByb3VuZGVkLWZ1bGwgYmctWyM1ZTVjZTZdIG9wYWNpdHktNzUiPjwvc3Bhbj4KICAgICAgICAgICAgPHNwYW4gY2xhc3M9InJlbGF0aXZlIGlubGluZS1mbGV4IGgtMiB3LTIgcm91bmRlZC1mdWxsIGJnLVsjNWU1Y2U2XSI+PC9zcGFuPgogICAgICAgICAgPC9zcGFuPgogICAgICAgICAgQUkg6amx5Yqo55qE6Z+z5LmQ5oOF57uq5YiG5p6QCiAgICAgICAgPC9kaXY+CgogICAgICAgIDwhLS0gTWFpbiB0aXRsZSAtLT4KICAgICAgICA8aDEgY2xhc3M9Imhlcm8tZmFkZSBmb250LWJvZHkgdGV4dC1bY2xhbXAoNDBweCw4dncsODhweCldIGZvbnQtc2VtaWJvbGQgbGVhZGluZy1bMS4wNV0gdHJhY2tpbmctWy0wLjAzZW1dIHRleHQtd2hpdGUiIHN0eWxlPSItLWRlbGF5OiAwLjE1cyI+CiAgICAgICAgICDmhJ/lj5fpn7PkuZDnmoQ8YnIgY2xhc3M9InNtOmhpZGRlbiIgLz4KICAgICAgICAgIDxzcGFuIGNsYXNzPSJoZXJvLXRpdGxlLWdyYWRpZW50Ij7mg4Xnu6rohInmkI88L3NwYW4+CiAgICAgICAgPC9oMT4KCiAgICAgICAgPCEtLSBTdWJ0aXRsZSAtLT4KICAgICAgICA8cCBjbGFzcz0iaGVyby1mYWRlIG14LWF1dG8gbXQtNiBtYXgtdy1sZyB0ZXh0LVsxN3B4XSBsZWFkaW5nLXJlbGF4ZWQgdGV4dC13aGl0ZS81MCIgc3R5bGU9Ii0tZGVsYXk6IDAuM3MiPgogICAgICAgICAg5LiN5piv5o6o6I2Q6Z+z5LmQ77yM6ICM5piv5biu5L2g57yW57uH5oOF57uqCiAgICAgICAgPC9wPgoKICAgICAgICA8IS0tIENUQSBCdXR0b25zIC0tPgogICAgICAgIDxkaXYgY2xhc3M9Imhlcm8tZmFkZSBtdC0xMCBmbGV4IGZsZXgtY29sIGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciBnYXAtNCBzbTpmbGV4LXJvdyIgc3R5bGU9Ii0tZGVsYXk6IDAuNXMiPgogICAgICAgICAgPGEKICAgICAgICAgICAgaHJlZj0iL2xvZ2luIgogICAgICAgICAgICBjbGFzcz0iaW5saW5lLWZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIHJvdW5kZWQtZnVsbCBiZy13aGl0ZSBweC03IHB5LTMgdGV4dC1bMTVweF0gZm9udC1tZWRpdW0gdGV4dC1ibGFjayB0cmFuc2l0aW9uLWFsbCBkdXJhdGlvbi0zMDAgaG92ZXI6c2NhbGUtWzEuMDJdIGhvdmVyOmJnLXdoaXRlLzkwIGFjdGl2ZTpzY2FsZS1bMC45OF0iCiAgICAgICAgICA+CiAgICAgICAgICAgIOW8gOWni+WIhuaekAogICAgICAgICAgPC9hPgogICAgICAgICAgPGEKICAgICAgICAgICAgaHJlZj0iI2hvdy1pdC13b3JrcyIKICAgICAgICAgICAgY2xhc3M9ImlubGluZS1mbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciByb3VuZGVkLWZ1bGwgYm9yZGVyIGJvcmRlci13aGl0ZS8yMCBweC03IHB5LTMgdGV4dC1bMTVweF0gZm9udC1tZWRpdW0gdGV4dC13aGl0ZS84MCB0cmFuc2l0aW9uLWFsbCBkdXJhdGlvbi0zMDAgaG92ZXI6Ymctd2hpdGUvWzAuMDZdIgogICAgICAgICAgPgogICAgICAgICAgICDkuobop6Pmm7TlpJoKICAgICAgICAgIDwvYT4KICAgICAgICA8L2Rpdj4KICAgICAgPC9kaXY+CgogICAgICA8IS0tIEJvdHRvbSBzb3VuZCB3YXZlIGRlY29yYXRpb24gLS0+CiAgICAgIDxkaXYgY2xhc3M9InBvaW50ZXItZXZlbnRzLW5vbmUgYWJzb2x1dGUgYm90dG9tLTAgbGVmdC0wIHJpZ2h0LTAiIGFyaWEtaGlkZGVuPSJ0cnVlIj4KICAgICAgICA8c3ZnIGNsYXNzPSJoZXJvLXdhdmUgaC0xNiB3LWZ1bGwgc206aC0yNCIgdmlld0JveD0iMCAwIDE0NDAgOTYiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiIGZpbGw9Im5vbmUiPgogICAgICAgICAgPHBhdGggZD0iTTAgNDggUTIwIDM4IDQwIDQ4IFQ4MCA0OCBUMTIwIDQ4IFQxNjAgNDggVDIwMCA0OCBUMjQwIDQ4IFQyODAgNDggVDMyMCA0OCBUMzYwIDQ4IFQ0MDAgNDggVDQ0MCA0OCBUNDgwIDQ4IFQ1MjAgNDggVDU2MCA0OCBUNjAwIDQ4IFQ2NDAgNDggVDY4MCA0OCBUNzIwIDQ4IFQ3NjAgNDggVDgwMCA0OCBUODQwIDQ4IFQ4ODAgNDggVDkyMCA0OCBUOTYwIDQ4IFQxMDAwIDQ4IFQxMDQwIDQ4IFQxMDgwIDQ4IFQxMTIwIDQ4IFQxMTYwIDQ4IFQxMjAwIDQ4IFQxMjQwIDQ4IFQxMjgwIDQ4IFQxMzIwIDQ4IFQxMzYwIDQ4IFQxNDAwIDQ4IFQxNDQwIDQ4IFY5NiBIMCBaIiBmaWxsPSJ1cmwoI2hlcm8td2F2ZS1ncmFkLW5ldykiIG9wYWNpdHk9IjAuMDYiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0wIDU2IFEzMCA0NCA2MCA1NiBUMTIwIDU2IFQxODAgNTYgVDI0MCA1NiBUMzAwIDU2IFQzNjAgNTYgVDQyMCA1NiBUNDgwIDU2IFQ1NDAgNTYgVDYwMCA1NiBUNjYwIDU2IFQ3MjAgNTYgVDc4MCA1NiBUODQwIDU2IFQ5MDAgNTYgVDk2MCA1NiBUMTAyMCA1NiBUMTA4MCA1NiBUMTE0MCA1NiBUMTIwMCA1NiBUMTI2MCA1NiBUMTMyMCA1NiBUMTM4MCA1NiBUMTQ0MCA1NiBWOTYgSDAgWiIgZmlsbD0idXJsKCNoZXJvLXdhdmUtZ3JhZC1uZXcpIiBvcGFjaXR5PSIwLjA0Ii8+CiAgICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJoZXJvLXdhdmUtZ3JhZC1uZXciIHgxPSIwIiB5MT0iMCIgeDI9IjE0NDAiIHkyPSIwIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzVlNWNlNiIvPgogICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjYmY1YWYyIi8+CiAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZmYzNzVmIi8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgICA8L2RlZnM+CiAgICAgICAgPC9zdmc+CiAgICAgIDwvZGl2PgogICAgPC9zZWN0aW9uPgoKICAgIDwhLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gLS0+CiAgICA8IS0tIFNFQ1RJT04gMjogSE9XIElUIFdPUktTIOKAlCDkuInmraXmtYHnqIsgICAgICAgICAgICAtLT4KICAgIDwhLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gLS0+CiAgICA8c2VjdGlvbiBpZD0iaG93LWl0LXdvcmtzIiBjbGFzcz0icmVsYXRpdmUgcHgtNiBweS0yNCBzbTpweS0zMiI+CiAgICAgIDxkaXYgY2xhc3M9Im14LWF1dG8gbWF4LXctNXhsIj4KICAgICAgICA8IS0tIFNlY3Rpb24gaGVhZGVyIC0tPgogICAgICAgIDxkaXYgY2xhc3M9Im1iLTE2IHRleHQtY2VudGVyIHNtOm1iLTIwIj4KICAgICAgICAgIDxoMiBjbGFzcz0icmV2ZWFsLWl0ZW0gdGV4dC1bY2xhbXAoMjhweCw0dncsNDhweCldIGZvbnQtc2VtaWJvbGQgdHJhY2tpbmctdGlnaHQgdGV4dC13aGl0ZSI+CiAgICAgICAgICAgIOS4ieatpeW8gOWniwogICAgICAgICAgPC9oMj4KICAgICAgICAgIDxwIGNsYXNzPSJyZXZlYWwtaXRlbSBtdC0zIHRleHQtWzE1cHhdIHRleHQtd2hpdGUvNDAiIHN0eWxlPSItLXJldmVhbC1kZWxheTogMC4xcyI+CiAgICAgICAgICAgIOWvvOWFpeatjOWNle+8jEFJIOiHquWKqOWIhuaekOaDhee7qiBETkEKICAgICAgICAgIDwvcD4KICAgICAgICA8L2Rpdj4KCiAgICAgICAgPCEtLSBTdGVwcyBncmlkIC0tPgogICAgICAgIDxkaXYgY2xhc3M9ImdyaWQgZ2FwLTQgbGc6Z3JpZC1jb2xzLTMiPgogICAgICAgICAgPCEtLSBTdGVwIDEgLS0+CiAgICAgICAgICA8ZGl2IGNsYXNzPSJyZXZlYWwtaXRlbSBzdGVwLWNhcmQgcm91bmRlZC0yeGwgYm9yZGVyIGJvcmRlci13aGl0ZS9bMC4wNl0gYmctd2hpdGUvWzAuMDRdIHAtOCB0cmFuc2l0aW9uLWFsbCBkdXJhdGlvbi01MDAgaG92ZXI6Ymctd2hpdGUvWzAuMDZdIiBzdHlsZT0iLS1yZXZlYWwtZGVsYXk6IDBzIj4KICAgICAgICAgICAgPGRpdiBjbGFzcz0idGV4dC02eGwgZm9udC1ib2xkIHRleHQtd2hpdGUvWzAuMDZdIj4wMTwvZGl2PgogICAgICAgICAgICA8aDMgY2xhc3M9Im10LTQgdGV4dC1sZyBmb250LXNlbWlib2xkIHRleHQtd2hpdGUiPuWvvOWFpeatjOWNlTwvaDM+CiAgICAgICAgICAgIDxwIGNsYXNzPSJtdC0yIHRleHQtWzE1cHhdIGxlYWRpbmctcmVsYXhlZCB0ZXh0LXdoaXRlLzQwIj4KICAgICAgICAgICAgICDnspjotLTnvZHmmJPkupHmrYzljZXpk77mjqXvvIzkuIDplK7lr7zlhaXlhajpg6jmrYzmm7IKICAgICAgICAgICAgPC9wPgogICAgICAgICAgPC9kaXY+CgogICAgICAgICAgPCEtLSBTdGVwIDIgLS0+CiAgICAgICAgICA8ZGl2IGNsYXNzPSJyZXZlYWwtaXRlbSBzdGVwLWNhcmQgcm91bmRlZC0yeGwgYm9yZGVyIGJvcmRlci13aGl0ZS9bMC4wNl0gYmctd2hpdGUvWzAuMDRdIHAtOCB0cmFuc2l0aW9uLWFsbCBkdXJhdGlvbi01MDAgaG92ZXI6Ymctd2hpdGUvWzAuMDZdIiBzdHlsZT0iLS1yZXZlYWwtZGVsYXk6IDAuMTVzIj4KICAgICAgICAgICAgPGRpdiBjbGFzcz0idGV4dC02eGwgZm9udC1ib2xkIHRleHQtd2hpdGUvWzAuMDZdIj4wMjwvZGl2PgogICAgICAgICAgICA8aDMgY2xhc3M9Im10LTQgdGV4dC1sZyBmb250LXNlbWlib2xkIHRleHQtd2hpdGUiPkFJIOWIhuaekDwvaDM+CiAgICAgICAgICAgIDxwIGNsYXNzPSJtdC0yIHRleHQtWzE1cHhdIGxlYWRpbmctcmVsYXhlZCB0ZXh0LXdoaXRlLzQwIj4KICAgICAgICAgICAgICDln7rkuo7mrYzor43lkozpn7PpopHnibnlvoHvvIzmt7Hluqbop6PmnpDmr4/pppbmrYznmoTmg4Xnu6ogRE5BCiAgICAgICAgICAgIDwvcD4KICAgICAgICAgIDwvZGl2PgoKICAgICAgICAgIDwhLS0gU3RlcCAzIC0tPgogICAgICAgICAgPGRpdiBjbGFzcz0icmV2ZWFsLWl0ZW0gc3RlcC1jYXJkIHJvdW5kZWQtMnhsIGJvcmRlciBib3JkZXItd2hpdGUvWzAuMDZdIGJnLXdoaXRlL1swLjA0XSBwLTggdHJhbnNpdGlvbi1hbGwgZHVyYXRpb24tNTAwIGhvdmVyOmJnLXdoaXRlL1swLjA2XSIgc3R5bGU9Ii0tcmV2ZWFsLWRlbGF5OiAwLjNzIj4KICAgICAgICAgICAgPGRpdiBjbGFzcz0idGV4dC02eGwgZm9udC1ib2xkIHRleHQtd2hpdGUvWzAuMDZdIj4wMzwvZGl2PgogICAgICAgICAgICA8aDMgY2xhc3M9Im10LTQgdGV4dC1sZyBmb250LXNlbWlib2xkIHRleHQtd2hpdGUiPuaDhee7que8lue7hzwvaDM+CiAgICAgICAgICAgIDxwIGNsYXNzPSJtdC0yIHRleHQtWzE1cHhdIGxlYWRpbmctcmVsYXhlZCB0ZXh0LXdoaXRlLzQwIj4KICAgICAgICAgICAgICDlj6/op4bljJbmg4Xnu6rliIbluIPvvIxBSSDmmbrog73nvJbmjpLlroznvo7mkq3mlL7pobrluo8KICAgICAgICAgICAgPC9wPgogICAgICAgICAgPC9kaXY+CiAgICAgICAgPC9kaXY+CiAgICAgIDwvZGl2PgogICAgPC9zZWN0aW9uPgoKICAgIDwhLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gLS0+CiAgICA8IS0tIFNFQ1RJT04gMzogRU1PVElPTiBWSVNVQUxJWkFUSU9OICAgICAgICAgICAgICAtLT4KICAgIDwhLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gLS0+CiAgICA8c2VjdGlvbiBpZD0iZW1vdGlvbi12aXoiIGNsYXNzPSJyZWxhdGl2ZSBiZy1ibGFjayBweC02IHB5LTI0IHNtOnB5LTMyIj4KICAgICAgPGRpdiBjbGFzcz0ibXgtYXV0byBtYXgtdy01eGwiPgogICAgICAgIDwhLS0gU2VjdGlvbiBoZWFkZXIgLS0+CiAgICAgICAgPGRpdiBjbGFzcz0ibWItMTYgdGV4dC1jZW50ZXIgc206bWItMjAiPgogICAgICAgICAgPGgyIGNsYXNzPSJyZXZlYWwtaXRlbSB0ZXh0LVtjbGFtcCgyOHB4LDR2dyw0OHB4KV0gZm9udC1zZW1pYm9sZCB0cmFja2luZy10aWdodCB0ZXh0LXdoaXRlIj4KICAgICAgICAgICAg55yL6KeB5L2g55qEIDxzcGFuIGNsYXNzPSJlbW90aW9uLXRpdGxlLWdyYWRpZW50Ij7mg4Xnu6rlm77osLE8L3NwYW4+CiAgICAgICAgICA8L2gyPgogICAgICAgICAgPHAgY2xhc3M9InJldmVhbC1pdGVtIG10LTMgdGV4dC1bMTVweF0gdGV4dC13aGl0ZS80MCIgc3R5bGU9Ii0tcmV2ZWFsLWRlbGF5OiAwLjFzIj4KICAgICAgICAgICAg5LiD57u05oOF57uq5qih5Z6L77yM57K+5YeG5pig5bCE5q+P6aaW5q2M55qE5oOF5oSf5Z2Q5qCHCiAgICAgICAgICA8L3A+CiAgICAgICAgPC9kaXY+CgogICAgICAgIDwhLS0gRW1vdGlvbiBzY2F0dGVyIHBsb3QgLS0+CiAgICAgICAgPGRpdiBjbGFzcz0icmV2ZWFsLWl0ZW0gbXgtYXV0byBtYXgtdy0zeGwiIHN0eWxlPSItLXJldmVhbC1kZWxheTogMC4xNXMiPgogICAgICAgICAgPGRpdiBjbGFzcz0iZW1vdGlvbi1jaGFydCByZWxhdGl2ZSByb3VuZGVkLTJ4bCBib3JkZXIgYm9yZGVyLXdoaXRlL1swLjA2XSBiZy13aGl0ZS9bMC4wM10gcC02IHNtOnAtMTAiPgogICAgICAgICAgICA8IS0tIFNWRyBRdWFkcmFudCBDaGFydCAtLT4KICAgICAgICAgICAgPGRpdiBjbGFzcz0icmVsYXRpdmUgbXgtYXV0byBhc3BlY3Qtc3F1YXJlIG1heC13LW1kIj4KICAgICAgICAgICAgICA8c3ZnIHZpZXdCb3g9IjAgMCA0MDAgNDAwIiBjbGFzcz0iaC1mdWxsIHctZnVsbCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgICAgICAgICAgICAgIDwhLS0gUXVhZHJhbnQgYmFja2dyb3VuZCB0aW50cyAtLT4KICAgICAgICAgICAgICAgIDxkZWZzPgogICAgICAgICAgICAgICAgICA8cmFkaWFsR3JhZGllbnQgaWQ9InExLWdsb3ciIGN4PSI3NSUiIGN5PSIyNSUiIHI9IjUwJSI+CiAgICAgICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0icmdiYSgyNDAsMTY1LDAsMC4wNikiLz4KICAgICAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9InRyYW5zcGFyZW50Ii8+CiAgICAgICAgICAgICAgICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgICAgICAgICAgICAgICAgIDxyYWRpYWxHcmFkaWVudCBpZD0icTItZ2xvdyIgY3g9IjI1JSIgY3k9IjI1JSIgcj0iNTAlIj4KICAgICAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSJyZ2JhKDk0LDkyLDIzMCwwLjA2KSIvPgogICAgICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0idHJhbnNwYXJlbnQiLz4KICAgICAgICAgICAgICAgICAgPC9yYWRpYWxHcmFkaWVudD4KICAgICAgICAgICAgICAgICAgPHJhZGlhbEdyYWRpZW50IGlkPSJxMy1nbG93IiBjeD0iMjUlIiBjeT0iNzUlIiByPSI1MCUiPgogICAgICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9InJnYmEoMCwyMTAsMjU1LDAuMDYpIi8+CiAgICAgICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSJ0cmFuc3BhcmVudCIvPgogICAgICAgICAgICAgICAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgICAgICAgICAgICAgICA8cmFkaWFsR3JhZGllbnQgaWQ9InE0LWdsb3ciIGN4PSI3NSUiIGN5PSI3NSUiIHI9IjUwJSI+CiAgICAgICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0icmdiYSgyNTUsNTUsOTUsMC4wNikiLz4KICAgICAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9InRyYW5zcGFyZW50Ii8+CiAgICAgICAgICAgICAgICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgICAgICAgICAgICAgICA8L2RlZnM+CgogICAgICAgICAgICAgICAgPHJlY3QgeD0iMjAwIiB5PSIwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0idXJsKCNxMS1nbG93KSIvPgogICAgICAgICAgICAgICAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9InVybCgjcTItZ2xvdykiLz4KICAgICAgICAgICAgICAgIDxyZWN0IHg9IjAiIHk9IjIwMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9InVybCgjcTMtZ2xvdykiLz4KICAgICAgICAgICAgICAgIDxyZWN0IHg9IjIwMCIgeT0iMjAwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0idXJsKCNxNC1nbG93KSIvPgoKICAgICAgICAgICAgICAgIDwhLS0gR3JpZCBsaW5lcyAtLT4KICAgICAgICAgICAgICAgIDxsaW5lIHgxPSIyMDAiIHkxPSIwIiB4Mj0iMjAwIiB5Mj0iNDAwIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4wOCkiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWRhc2hhcnJheT0iNCA0Ii8+CiAgICAgICAgICAgICAgICA8bGluZSB4MT0iMCIgeTE9IjIwMCIgeDI9IjQwMCIgeTI9IjIwMCIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDgpIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1kYXNoYXJyYXk9IjQgNCIvPgoKICAgICAgICAgICAgICAgIDwhLS0gQXhpcyBsYWJlbHMgLS0+CiAgICAgICAgICAgICAgICA8dGV4dCB4PSIyMDAiIHk9IjM5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjI1KSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9IkRNIFNhbnMsIHNhbnMtc2VyaWYiPua2iOaegSAmbGFycjsgJnJhcnI7IOenr+aegTwvdGV4dD4KICAgICAgICAgICAgICAgIDx0ZXh0IHg9IjEyIiB5PSIyMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4yNSkiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJETSBTYW5zLCBzYW5zLXNlcmlmIiB0cmFuc2Zvcm09InJvdGF0ZSgtOTAsIDEyLCAyMDApIj7kvY7og73ph48gJmxhcnI7ICZyYXJyOyDpq5jog73ph488L3RleHQ+CgogICAgICAgICAgICAgICAgPCEtLSBRdWFkcmFudCBsYWJlbHMgLS0+CiAgICAgICAgICAgICAgICA8dGV4dCB4PSIzMDAiIHk9IjMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJyZ2JhKDI0MCwxNjUsMCwwLjQpIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iNTAwIiBmb250LWZhbWlseT0iRE0gU2Fucywgc2Fucy1zZXJpZiI+5b+r5LmQIMK3IOWFtOWlizwvdGV4dD4KICAgICAgICAgICAgICAgIDx0ZXh0IHg9IjEwMCIgeT0iMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9InJnYmEoOTQsOTIsMjMwLDAuNCkiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSI1MDAiIGZvbnQtZmFtaWx5PSJETSBTYW5zLCBzYW5zLXNlcmlmIj7mgrLkvKQgwrcg5r+A5YqoPC90ZXh0PgogICAgICAgICAgICAgICAgPHRleHQgeD0iMTAwIiB5PSIzODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9InJnYmEoMCwyMTAsMjU1LDAuNCkiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSI1MDAiIGZvbnQtZmFtaWx5PSJETSBTYW5zLCBzYW5zLXNlcmlmIj7mlL7mnb4gwrcg5bmz6Z2ZPC90ZXh0PgogICAgICAgICAgICAgICAgPHRleHQgeD0iMzAwIiB5PSIzODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9InJnYmEoMjU1LDU1LDk1LDAuMzUpIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iNTAwIiBmb250LWZhbWlseT0iRE0gU2Fucywgc2Fucy1zZXJpZiI+57Sn5bygIMK3IOS9juiQvTwvdGV4dD4KCiAgICAgICAgICAgICAgICA8IS0tIFNvbmcgZG90cyDigJQgUTE6IEhhcHB5L0V4Y2l0ZWQgLS0+CiAgICAgICAgICAgICAgICA8Y2lyY2xlIGNsYXNzPSJzb25nLWRvdCIgY3g9IjI4MCIgY3k9IjgwIiByPSI3IiBmaWxsPSIjZjBhNTAwIiBvcGFjaXR5PSIwLjc1Ij4KICAgICAgICAgICAgICAgICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgdmFsdWVzPSI3OzguNTs3IiBkdXI9IjNzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIvPgogICAgICAgICAgICAgICAgPC9jaXJjbGU+CiAgICAgICAgICAgICAgICA8Y2lyY2xlIGNsYXNzPSJzb25nLWRvdCIgY3g9IjMzMCIgY3k9IjEzMCIgcj0iNSIgZmlsbD0iI2ZiYmYyNCIgb3BhY2l0eT0iMC42NSI+CiAgICAgICAgICAgICAgICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9InIiIHZhbHVlcz0iNTs2OzUiIGR1cj0iNC4ycyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz4KICAgICAgICAgICAgICAgIDwvY2lyY2xlPgogICAgICAgICAgICAgICAgPGNpcmNsZSBjbGFzcz0ic29uZy1kb3QiIGN4PSIyNTAiIGN5PSIxNDAiIHI9IjgiIGZpbGw9IiNmOTczMTYiIG9wYWNpdHk9IjAuNyI+CiAgICAgICAgICAgICAgICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9InIiIHZhbHVlcz0iODs5LjU7OCIgZHVyPSIzLjVzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIvPgogICAgICAgICAgICAgICAgPC9jaXJjbGU+CiAgICAgICAgICAgICAgICA8Y2lyY2xlIGNsYXNzPSJzb25nLWRvdCIgY3g9IjM1NSIgY3k9IjYwIiByPSI0LjUiIGZpbGw9IiNmYmJmMjQiIG9wYWNpdHk9IjAuNiI+CiAgICAgICAgICAgICAgICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9InIiIHZhbHVlcz0iNC41OzUuNTs0LjUiIGR1cj0iNXMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIi8+CiAgICAgICAgICAgICAgICA8L2NpcmNsZT4KICAgICAgICAgICAgICAgIDxjaXJjbGUgY2xhc3M9InNvbmctZG90IiBjeD0iMzEwIiBjeT0iMTcwIiByPSI1LjUiIGZpbGw9IiNmYjkyM2MiIG9wYWNpdHk9IjAuNjUiLz4KCiAgICAgICAgICAgICAgICA8IS0tIFNvbmcgZG90cyDigJQgUTI6IFNhZC9JbnRlbnNlIC0tPgogICAgICAgICAgICAgICAgPGNpcmNsZSBjbGFzcz0ic29uZy1kb3QiIGN4PSI4MCIgY3k9IjcwIiByPSI2LjUiIGZpbGw9IiM1ZTVjZTYiIG9wYWNpdHk9IjAuNyI+CiAgICAgICAgICAgICAgICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9InIiIHZhbHVlcz0iNi41OzcuNTs2LjUiIGR1cj0iNHMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIi8+CiAgICAgICAgICAgICAgICA8L2NpcmNsZT4KICAgICAgICAgICAgICAgIDxjaXJjbGUgY2xhc3M9InNvbmctZG90IiBjeD0iMTIwIiBjeT0iMTEwIiByPSI1IiBmaWxsPSIjOGI1Y2Y2IiBvcGFjaXR5PSIwLjYiLz4KICAgICAgICAgICAgICAgIDxjaXJjbGUgY2xhc3M9InNvbmctZG90IiBjeD0iNTUiIGN5PSIxNDAiIHI9IjciIGZpbGw9IiNhNzhiZmEiIG9wYWNpdHk9IjAuNiI+CiAgICAgICAgICAgICAgICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9InIiIHZhbHVlcz0iNzs4OzciIGR1cj0iMy4ycyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz4KICAgICAgICAgICAgICAgIDwvY2lyY2xlPgogICAgICAgICAgICAgICAgPGNpcmNsZSBjbGFzcz0ic29uZy1kb3QiIGN4PSIxNDUiIGN5PSI1NSIgcj0iNCIgZmlsbD0iIzdjNWNmYyIgb3BhY2l0eT0iMC41NSIvPgoKICAgICAgICAgICAgICAgIDwhLS0gU29uZyBkb3RzIOKAlCBRMzogUmVsYXhlZC9DYWxtIC0tPgogICAgICAgICAgICAgICAgPGNpcmNsZSBjbGFzcz0ic29uZy1kb3QiIGN4PSI3MCIgY3k9IjI4MCIgcj0iNiIgZmlsbD0iIzAwZDJmZiIgb3BhY2l0eT0iMC42NSI+CiAgICAgICAgICAgICAgICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9InIiIHZhbHVlcz0iNjs3OzYiIGR1cj0iMy44cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz4KICAgICAgICAgICAgICAgIDwvY2lyY2xlPgogICAgICAgICAgICAgICAgPGNpcmNsZSBjbGFzcz0ic29uZy1kb3QiIGN4PSIxMzAiIGN5PSIzMTAiIHI9IjUiIGZpbGw9IiMwNmI2ZDQiIG9wYWNpdHk9IjAuNiIvPgogICAgICAgICAgICAgICAgPGNpcmNsZSBjbGFzcz0ic29uZy1kb3QiIGN4PSI5NSIgY3k9IjI1MCIgcj0iNy41IiBmaWxsPSIjMjJkM2VlIiBvcGFjaXR5PSIwLjY1Ij4KICAgICAgICAgICAgICAgICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgdmFsdWVzPSI3LjU7OC41OzcuNSIgZHVyPSI0LjVzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIvPgogICAgICAgICAgICAgICAgPC9jaXJjbGU+CiAgICAgICAgICAgICAgICA8Y2lyY2xlIGNsYXNzPSJzb25nLWRvdCIgY3g9IjUwIiBjeT0iMzQwIiByPSI0IiBmaWxsPSIjNjdlOGY5IiBvcGFjaXR5PSIwLjUiLz4KCiAgICAgICAgICAgICAgICA8IS0tIFNvbmcgZG90cyDigJQgUTQ6IFRlbnNlL0xvdyAtLT4KICAgICAgICAgICAgICAgIDxjaXJjbGUgY2xhc3M9InNvbmctZG90IiBjeD0iMzEwIiBjeT0iMzAwIiByPSI1LjUiIGZpbGw9IiNmZjM3NWYiIG9wYWNpdHk9IjAuNTUiPgogICAgICAgICAgICAgICAgICA8YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJyIiB2YWx1ZXM9IjUuNTs2LjU7NS41IiBkdXI9IjRzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIvPgogICAgICAgICAgICAgICAgPC9jaXJjbGU+CiAgICAgICAgICAgICAgICA8Y2lyY2xlIGNsYXNzPSJzb25nLWRvdCIgY3g9IjM0NSIgY3k9IjI3MCIgcj0iNiIgZmlsbD0iI2Y4NzE3MSIgb3BhY2l0eT0iMC41Ii8+CiAgICAgICAgICAgICAgICA8Y2lyY2xlIGNsYXNzPSJzb25nLWRvdCIgY3g9IjI2NSIgY3k9IjMzNSIgcj0iNC41IiBmaWxsPSIjZmI3MTg1IiBvcGFjaXR5PSIwLjQ1Ii8+CgogICAgICAgICAgICAgICAgPCEtLSBDZW50ZXIgY2x1c3RlciAobWl4ZWQgZW1vdGlvbnMpIC0tPgogICAgICAgICAgICAgICAgPGNpcmNsZSBjbGFzcz0ic29uZy1kb3QiIGN4PSIxODUiIGN5PSIxODUiIHI9IjUiIGZpbGw9IiNmMGE1MDAiIG9wYWNpdHk9IjAuNCIvPgogICAgICAgICAgICAgICAgPGNpcmNsZSBjbGFzcz0ic29uZy1kb3QiIGN4PSIyMjAiIGN5PSIyMTUiIHI9IjQiIGZpbGw9IiM1ZTVjZTYiIG9wYWNpdHk9IjAuNCIvPgogICAgICAgICAgICAgICAgPGNpcmNsZSBjbGFzcz0ic29uZy1kb3QiIGN4PSIxNzUiIGN5PSIyMjUiIHI9IjUiIGZpbGw9IiMwMGQyZmYiIG9wYWNpdHk9IjAuNCIvPgogICAgICAgICAgICAgICAgPGNpcmNsZSBjbGFzcz0ic29uZy1kb3QiIGN4PSIyMTUiIGN5PSIxODUiIHI9IjYiIGZpbGw9IiNhNzhiZmEiIG9wYWNpdHk9IjAuMzUiPgogICAgICAgICAgICAgICAgICA8YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJyIiB2YWx1ZXM9IjY7Nzs2IiBkdXI9IjVzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIvPgogICAgICAgICAgICAgICAgPC9jaXJjbGU+CgogICAgICAgICAgICAgICAgPCEtLSBXZWF2aW5nIHBhdGhzIC0tPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTgwIDcwIFExNDAgMTAwIDE4NSAxODUgUTIxNSAxODUgMjgwIDgwIiBzdHJva2U9InJnYmEoOTQsOTIsMjMwLDAuMTUpIiBzdHJva2Utd2lkdGg9IjEuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWRhc2hhcnJheT0iNiA0Ij4KICAgICAgICAgICAgICAgICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ic3Ryb2tlLWRhc2hvZmZzZXQiIHZhbHVlcz0iMDstMjAiIGR1cj0iM3MiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIi8+CiAgICAgICAgICAgICAgICA8L3BhdGg+CiAgICAgICAgICAgICAgICA8cGF0aCBkPSJNOTUgMjUwIFExNTAgMjMwIDIxNSAyMTUgUTI0NSAyMjUgMzEwIDMwMCIgc3Ryb2tlPSJyZ2JhKDAsMjEwLDI1NSwwLjEyKSIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIHN0cm9rZS1kYXNoYXJyYXk9IjYgNCI+CiAgICAgICAgICAgICAgICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9InN0cm9rZS1kYXNob2Zmc2V0IiB2YWx1ZXM9IjA7LTIwIiBkdXI9IjRzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIvPgogICAgICAgICAgICAgICAgPC9wYXRoPgogICAgICAgICAgICAgIDwvc3ZnPgogICAgICAgICAgICA8L2Rpdj4KCiAgICAgICAgICAgIDwhLS0gRW1vdGlvbiB0YWdzIC0tPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJtdC04IGZsZXggZmxleC13cmFwIGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciBnYXAtMiI+CiAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9InJvdW5kZWQtZnVsbCBiZy1bI2YwYTUwMF0vMTAgcHgtMyBweS0xIHRleHQteHMgdGV4dC1bI2YwYTUwMF0vODAiPuW/q+S5kDwvc3Bhbj4KICAgICAgICAgICAgICA8c3BhbiBjbGFzcz0icm91bmRlZC1mdWxsIGJnLVsjNWU1Y2U2XS8xMCBweC0zIHB5LTEgdGV4dC14cyB0ZXh0LVsjNWU1Y2U2XS84MCI+5oKy5LykPC9zcGFuPgogICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJyb3VuZGVkLWZ1bGwgYmctWyMwMGQyZmZdLzEwIHB4LTMgcHktMSB0ZXh0LXhzIHRleHQtWyMwMGQyZmZdLzgwIj7mlL7mnb48L3NwYW4+CiAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9InJvdW5kZWQtZnVsbCBiZy1bI2Y5NzMxNl0vMTAgcHgtMyBweS0xIHRleHQteHMgdGV4dC1bI2Y5NzMxNl0vODAiPuWFtOWlizwvc3Bhbj4KICAgICAgICAgICAgICA8c3BhbiBjbGFzcz0icm91bmRlZC1mdWxsIGJnLVsjMjJkM2VlXS8xMCBweC0zIHB5LTEgdGV4dC14cyB0ZXh0LVsjMjJkM2VlXS84MCI+5a6B6Z2ZPC9zcGFuPgogICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJyb3VuZGVkLWZ1bGwgYmctWyNmZjM3NWZdLzEwIHB4LTMgcHktMSB0ZXh0LXhzIHRleHQtWyNmZjM3NWZdLzgwIj7ntKflvKA8L3NwYW4+CiAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9InJvdW5kZWQtZnVsbCBiZy1bI2E3OGJmYV0vMTAgcHgtMyBweS0xIHRleHQteHMgdGV4dC1bI2E3OGJmYV0vODAiPuaAgOaXpzwvc3Bhbj4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICA8L2Rpdj4KICAgICAgPC9kaXY+CiAgICA8L3NlY3Rpb24+CgogICAgPCEtLSA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAtLT4KICAgIDwhLS0gU0VDVElPTiA0OiBGSU5BTCBDVEEg4oCUIOihjOWKqOWPrOWUpCAgICAgICAgICAgICAgIC0tPgogICAgPCEtLSA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAtLT4KICAgIDxzZWN0aW9uIGNsYXNzPSJyZWxhdGl2ZSBweC02IHB5LTI0IHNtOnB5LTMyIj4KICAgICAgPGRpdiBjbGFzcz0icmVsYXRpdmUgbXgtYXV0byBtYXgtdy0zeGwgdGV4dC1jZW50ZXIiPgogICAgICAgIDwhLS0gQmFja2dyb3VuZCBnbG93IC0tPgogICAgICAgIDxkaXYgY2xhc3M9InBvaW50ZXItZXZlbnRzLW5vbmUgYWJzb2x1dGUgaW5zZXQtMCAtei0xMCIgYXJpYS1oaWRkZW49InRydWUiPgogICAgICAgICAgPGRpdiBjbGFzcz0iYWJzb2x1dGUgbGVmdC0xLzIgdG9wLTEvMiBoLVs0MDBweF0gdy1bNDAwcHhdIC10cmFuc2xhdGUteC0xLzIgLXRyYW5zbGF0ZS15LTEvMiByb3VuZGVkLWZ1bGwgYmctWyM1ZTVjZTZdL1swLjA2XSBibHVyLVsxMjBweF0iPjwvZGl2PgogICAgICAgIDwvZGl2PgoKICAgICAgICA8aDIgY2xhc3M9InJldmVhbC1pdGVtIHRleHQtW2NsYW1wKDMycHgsNXZ3LDU2cHgpXSBmb250LXNlbWlib2xkIHRyYWNraW5nLXRpZ2h0IHRleHQtd2hpdGUiPgogICAgICAgICAg5YeG5aSH5aW95LqG5ZCX77yfCiAgICAgICAgPC9oMj4KICAgICAgICA8cCBjbGFzcz0icmV2ZWFsLWl0ZW0gbXQtNCB0ZXh0LVsxNXB4XSB0ZXh0LXdoaXRlLzQwIiBzdHlsZT0iLS1yZXZlYWwtZGVsYXk6IDAuMXMiPgogICAgICAgICAg6K6pIEFJIOS4uuS9oOe8lue7h+WujOe+jueahOaDhee7quS9k+mqjAogICAgICAgIDwvcD4KICAgICAgICA8ZGl2IGNsYXNzPSJyZXZlYWwtaXRlbSBtdC0xMCIgc3R5bGU9Ii0tcmV2ZWFsLWRlbGF5OiAwLjJzIj4KICAgICAgICAgIDxhCiAgICAgICAgICAgIGhyZWY9Ii9sb2dpbiIKICAgICAgICAgICAgY2xhc3M9ImlubGluZS1mbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciByb3VuZGVkLWZ1bGwgYmctd2hpdGUgcHgtNyBweS0zIHRleHQtWzE1cHhdIGZvbnQtbWVkaXVtIHRleHQtYmxhY2sgdHJhbnNpdGlvbi1hbGwgZHVyYXRpb24tMzAwIGhvdmVyOnNjYWxlLVsxLjAyXSBob3ZlcjpiZy13aGl0ZS85MCBhY3RpdmU6c2NhbGUtWzAuOThdIgogICAgICAgICAgPgogICAgICAgICAgICDnq4vljbPlvIDlp4sKICAgICAgICAgIDwvYT4KICAgICAgICA8L2Rpdj4KICAgICAgPC9kaXY+CiAgICA8L3NlY3Rpb24+CgogIDwvZGl2Pgo8L0Jhc2VMYXlvdXQ+Cgo8c3R5bGU+CiAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgLyogSEVSTyDigJQgQmFja2dyb3VuZCBHbG93cyAgICAgICAgICAgICAgICAgICAgICAgKi8KICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KCiAgLmhlcm8tZ2xvdy1wcmltYXJ5IHsKICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTsKICAgIGluc2V0OiAwOwogICAgYmFja2dyb3VuZDogcmFkaWFsLWdyYWRpZW50KGVsbGlwc2UgODAlIDYwJSBhdCA1MCUgMzAlLCByZ2JhKDk0LCA5MiwgMjMwLCAwLjE1KSwgdHJhbnNwYXJlbnQgNzAlKTsKICAgIHBvaW50ZXItZXZlbnRzOiBub25lOwogIH0KCiAgLmhlcm8tZ2xvdy1zZWNvbmRhcnkgewogICAgcG9zaXRpb246IGFic29sdXRlOwogICAgaW5zZXQ6IDA7CiAgICBiYWNrZ3JvdW5kOiByYWRpYWwtZ3JhZGllbnQoZWxsaXBzZSA1MCUgNDAlIGF0IDgwJSA4MCUsIHJnYmEoMjQwLCAxNjUsIDAsIDAuMDgpLCB0cmFuc3BhcmVudCA2MCUpOwogICAgcG9pbnRlci1ldmVudHM6IG5vbmU7CiAgfQoKICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KICAvKiBIRVJPIOKAlCBUaXRsZSBHcmFkaWVudCAgICAgICAgICAgICAgICAgICAgICAgICAqLwogIC8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwoKICAuaGVyby10aXRsZS1ncmFkaWVudCB7CiAgICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLCAjNWU1Y2U2IDAlLCAjYmY1YWYyIDUwJSwgI2ZmMzc1ZiAxMDAlKTsKICAgIC13ZWJraXQtYmFja2dyb3VuZC1jbGlwOiB0ZXh0OwogICAgYmFja2dyb3VuZC1jbGlwOiB0ZXh0OwogICAgLXdlYmtpdC10ZXh0LWZpbGwtY29sb3I6IHRyYW5zcGFyZW50OwogIH0KCiAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgLyogSEVSTyDigJQgRmFkZS1pbiBBbmltYXRpb24gKEFwcGxlIGVhc2luZykgICAgICAgKi8KICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KCiAgLmhlcm8tZmFkZSB7CiAgICBvcGFjaXR5OiAwOwogICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDI0cHgpOwogICAgYW5pbWF0aW9uOiBmYWRlSW5VcCAwLjhzIGN1YmljLWJlemllcigwLjI1LCAwLjQ2LCAwLjQ1LCAwLjk0KSBmb3J3YXJkczsKICAgIGFuaW1hdGlvbi1kZWxheTogdmFyKC0tZGVsYXksIDBzKTsKICB9CgogIEBrZXlmcmFtZXMgZmFkZUluVXAgewogICAgMCUgewogICAgICBvcGFjaXR5OiAwOwogICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMjRweCk7CiAgICB9CiAgICAxMDAlIHsKICAgICAgb3BhY2l0eTogMTsKICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDApOwogICAgfQogIH0KCiAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgLyogSEVSTyDigJQgV2F2ZSBTdWJ0bGUgQnJlYXRoZSAgICAgICAgICAgICAgICAgICAgKi8KICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KCiAgLmhlcm8td2F2ZSB7CiAgICBhbmltYXRpb246IHdhdmVCcmVhdGhlIDZzIGVhc2UtaW4tb3V0IGluZmluaXRlOwogIH0KCiAgQGtleWZyYW1lcyB3YXZlQnJlYXRoZSB7CiAgICAwJSwgMTAwJSB7IHRyYW5zZm9ybTogc2NhbGVZKDEpOyB0cmFuc2Zvcm0tb3JpZ2luOiBib3R0b207IH0KICAgIDUwJSB7IHRyYW5zZm9ybTogc2NhbGVZKDEuMTIpOyB0cmFuc2Zvcm0tb3JpZ2luOiBib3R0b207IH0KICB9CgogIC8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwogIC8qIEVNT1RJT04g4oCUIFRpdGxlIEdyYWRpZW50ICAgICAgICAgICAgICAgICAgICAgICovCiAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCgogIC5lbW90aW9uLXRpdGxlLWdyYWRpZW50IHsKICAgIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCgxMzVkZWcsICM1ZTVjZTYgMCUsICNiZjVhZjIgNTAlLCAjZmYzNzVmIDEwMCUpOwogICAgLXdlYmtpdC1iYWNrZ3JvdW5kLWNsaXA6IHRleHQ7CiAgICBiYWNrZ3JvdW5kLWNsaXA6IHRleHQ7CiAgICAtd2Via2l0LXRleHQtZmlsbC1jb2xvcjogdHJhbnNwYXJlbnQ7CiAgfQoKICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KICAvKiBSRVZFQUwgT04gU0NST0xMICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKi8KICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KCiAgLnJldmVhbC1pdGVtIHsKICAgIG9wYWNpdHk6IDA7CiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMzJweCk7CiAgICB0cmFuc2l0aW9uOiBvcGFjaXR5IDAuN3MgY3ViaWMtYmV6aWVyKDAuMjUsIDAuNDYsIDAuNDUsIDAuOTQpLAogICAgICAgICAgICAgICAgdHJhbnNmb3JtIDAuN3MgY3ViaWMtYmV6aWVyKDAuMjUsIDAuNDYsIDAuNDUsIDAuOTQpOwogICAgdHJhbnNpdGlvbi1kZWxheTogdmFyKC0tcmV2ZWFsLWRlbGF5LCAwcyk7CiAgfQoKICAucmV2ZWFsLWl0ZW0ucmV2ZWFsZWQgewogICAgb3BhY2l0eTogMTsKICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgwKTsKICB9CgogIC5zdGVwLWNhcmQgewogICAgb3BhY2l0eTogMDsKICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgzMnB4KTsKICAgIHRyYW5zaXRpb246IG9wYWNpdHkgMC44cyBjdWJpYy1iZXppZXIoMC4yNSwgMC40NiwgMC40NSwgMC45NCksCiAgICAgICAgICAgICAgICB0cmFuc2Zvcm0gMC44cyBjdWJpYy1iZXppZXIoMC4yNSwgMC40NiwgMC40NSwgMC45NCksCiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yIDAuNXMgZWFzZTsKICAgIHRyYW5zaXRpb24tZGVsYXk6IHZhcigtLXJldmVhbC1kZWxheSwgMHMpOwogIH0KCiAgLnN0ZXAtY2FyZC5yZXZlYWxlZCB7CiAgICBvcGFjaXR5OiAxOwogICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDApOwogIH0KCiAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgLyogRU1PVElPTiBDSEFSVCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICovCiAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCgogIC5zb25nLWRvdCB7CiAgICB0cmFuc2l0aW9uOiByIDAuM3MgZWFzZTsKICB9CgogIC5lbW90aW9uLWNoYXJ0IHsKICAgIHRyYW5zaXRpb246IGJvcmRlci1jb2xvciAwLjVzIGVhc2UsIGJveC1zaGFkb3cgMC41cyBlYXNlOwogIH0KCiAgLmVtb3Rpb24tY2hhcnQ6aG92ZXIgewogICAgYm9yZGVyLWNvbG9yOiByZ2JhKDk0LCA5MiwgMjMwLCAwLjE1KTsKICAgIGJveC1zaGFkb3c6IDAgMCA2MHB4IHJnYmEoOTQsIDkyLCAyMzAsIDAuMDQpOwogIH0KPC9zdHlsZT4KCjxzY3JpcHQ+CiAgLy8gSW50ZXJzZWN0aW9uT2JzZXJ2ZXIgZm9yIHNjcm9sbC10cmlnZ2VyZWQgcmV2ZWFsIGFuaW1hdGlvbnMKICBkb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCdET01Db250ZW50TG9hZGVkJywgKCkgPT4gewogICAgY29uc3QgcmV2ZWFsSXRlbXMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCcucmV2ZWFsLWl0ZW0sIC5zdGVwLWNhcmQnKTsKCiAgICBjb25zdCBvYnNlcnZlciA9IG5ldyBJbnRlcnNlY3Rpb25PYnNlcnZlcigKICAgICAgKGVudHJpZXMpID0+IHsKICAgICAgICBlbnRyaWVzLmZvckVhY2goKGVudHJ5KSA9PiB7CiAgICAgICAgICBpZiAoZW50cnkuaXNJbnRlcnNlY3RpbmcpIHsKICAgICAgICAgICAgZW50cnkudGFyZ2V0LmNsYXNzTGlzdC5hZGQoJ3JldmVhbGVkJyk7CiAgICAgICAgICAgIG9ic2VydmVyLnVub2JzZXJ2ZShlbnRyeS50YXJnZXQpOwogICAgICAgICAgfQogICAgICAgIH0pOwogICAgICB9LAogICAgICB7CiAgICAgICAgdGhyZXNob2xkOiAwLjE1LAogICAgICAgIHJvb3RNYXJnaW46ICcwcHggMHB4IC00MHB4IDBweCcsCiAgICAgIH0KICAgICk7CgogICAgcmV2ZWFsSXRlbXMuZm9yRWFjaCgoaXRlbSkgPT4gb2JzZXJ2ZXIub2JzZXJ2ZShpdGVtKSk7CiAgfSk7Cjwvc2NyaXB0Pg==
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="VibeWeave - 编织你的情绪歌单" description="不是推荐音乐，而是帮你编织情绪。分析歌单的情绪DNA，发现每首歌背后的氛围。">
+  <div class="relative overflow-hidden">
+
+    <!-- ============================================ -->
+    <!-- SECTION 1: HERO — 全屏沉浸式                  -->
+    <!-- ============================================ -->
+    <section class="hero-section relative flex min-h-[calc(100svh-3rem)] flex-col items-center justify-center px-6 pb-16 pt-20 text-center">
+      <!-- Background radial glows -->
+      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div class="hero-glow-primary"></div>
+        <div class="hero-glow-secondary"></div>
+      </div>
+
+      <!-- Hero content -->
+      <div class="relative z-10 mx-auto max-w-4xl">
+        <!-- Pill badge -->
+        <div class="hero-fade mb-8 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.06] px-4 py-1.5 text-xs tracking-wide text-white/60" style="--delay: 0s">
+          <span class="relative flex h-2 w-2">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#5e5ce6] opacity-75"></span>
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-[#5e5ce6]"></span>
+          </span>
+          AI 驱动的音乐情绪分析
+        </div>
+
+        <!-- Main title -->
+        <h1 class="hero-fade font-body text-[clamp(40px,8vw,88px)] font-semibold leading-[1.05] tracking-[-0.03em] text-white" style="--delay: 0.15s">
+          感受音乐的<br class="sm:hidden" />
+          <span class="hero-title-gradient">情绪脉搏</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="hero-fade mx-auto mt-6 max-w-lg text-[17px] leading-relaxed text-white/50" style="--delay: 0.3s">
+          不是推荐音乐，而是帮你编织情绪
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="hero-fade mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row" style="--delay: 0.5s">
+          <a
+            href="/login"
+            class="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-[15px] font-medium text-black transition-all duration-300 hover:scale-[1.02] hover:bg-white/90 active:scale-[0.98]"
+          >
+            开始分析
+          </a>
+          <a
+            href="#how-it-works"
+            class="inline-flex items-center justify-center rounded-full border border-white/20 px-7 py-3 text-[15px] font-medium text-white/80 transition-all duration-300 hover:bg-white/[0.06]"
+          >
+            了解更多
+          </a>
+        </div>
+      </div>
+
+      <!-- Bottom sound wave decoration -->
+      <div class="pointer-events-none absolute bottom-0 left-0 right-0" aria-hidden="true">
+        <svg class="hero-wave h-16 w-full sm:h-24" viewBox="0 0 1440 96" preserveAspectRatio="none" fill="none">
+          <path d="M0 48 Q20 38 40 48 T80 48 T120 48 T160 48 T200 48 T240 48 T280 48 T320 48 T360 48 T400 48 T440 48 T480 48 T520 48 T560 48 T600 48 T640 48 T680 48 T720 48 T760 48 T800 48 T840 48 T880 48 T920 48 T960 48 T1000 48 T1040 48 T1080 48 T1120 48 T1160 48 T1200 48 T1240 48 T1280 48 T1320 48 T1360 48 T1400 48 T1440 48 V96 H0 Z" fill="url(#hero-wave-grad-new)" opacity="0.06"/>
+          <path d="M0 56 Q30 44 60 56 T120 56 T180 56 T240 56 T300 56 T360 56 T420 56 T480 56 T540 56 T600 56 T660 56 T720 56 T780 56 T840 56 T900 56 T960 56 T1020 56 T1080 56 T1140 56 T1200 56 T1260 56 T1320 56 T1380 56 T1440 56 V96 H0 Z" fill="url(#hero-wave-grad-new)" opacity="0.04"/>
+          <defs>
+            <linearGradient id="hero-wave-grad-new" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#5e5ce6"/>
+              <stop offset="50%" stop-color="#bf5af2"/>
+              <stop offset="100%" stop-color="#ff375f"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 2: HOW IT WORKS — 三步流程            -->
+    <!-- ============================================ -->
+    <section id="how-it-works" class="relative px-6 py-24 sm:py-32">
+      <div class="mx-auto max-w-5xl">
+        <!-- Section header -->
+        <div class="mb-16 text-center sm:mb-20">
+          <h2 class="reveal-item text-[clamp(28px,4vw,48px)] font-semibold tracking-tight text-white">
+            三步开始
+          </h2>
+          <p class="reveal-item mt-3 text-[15px] text-white/40" style="--reveal-delay: 0.1s">
+            导入歌单，AI 自动分析情绪 DNA
+          </p>
+        </div>
+
+        <!-- Steps grid -->
+        <div class="grid gap-4 lg:grid-cols-3">
+          <!-- Step 1 -->
+          <div class="reveal-item step-card rounded-2xl border border-white/[0.06] bg-white/[0.04] p-8 transition-all duration-500 hover:bg-white/[0.06]" style="--reveal-delay: 0s">
+            <div class="text-6xl font-bold text-white/[0.06]">01</div>
+            <h3 class="mt-4 text-lg font-semibold text-white">导入歌单</h3>
+            <p class="mt-2 text-[15px] leading-relaxed text-white/40">
+              粘贴网易云歌单链接，一键导入全部歌曲
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="reveal-item step-card rounded-2xl border border-white/[0.06] bg-white/[0.04] p-8 transition-all duration-500 hover:bg-white/[0.06]" style="--reveal-delay: 0.15s">
+            <div class="text-6xl font-bold text-white/[0.06]">02</div>
+            <h3 class="mt-4 text-lg font-semibold text-white">AI 分析</h3>
+            <p class="mt-2 text-[15px] leading-relaxed text-white/40">
+              基于歌词和音频特征，深度解析每首歌的情绪 DNA
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="reveal-item step-card rounded-2xl border border-white/[0.06] bg-white/[0.04] p-8 transition-all duration-500 hover:bg-white/[0.06]" style="--reveal-delay: 0.3s">
+            <div class="text-6xl font-bold text-white/[0.06]">03</div>
+            <h3 class="mt-4 text-lg font-semibold text-white">情绪编织</h3>
+            <p class="mt-2 text-[15px] leading-relaxed text-white/40">
+              可视化情绪分布，AI 智能编排完美播放顺序
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 3: EMOTION VISUALIZATION              -->
+    <!-- ============================================ -->
+    <section id="emotion-viz" class="relative bg-black px-6 py-24 sm:py-32">
+      <div class="mx-auto max-w-5xl">
+        <!-- Section header -->
+        <div class="mb-16 text-center sm:mb-20">
+          <h2 class="reveal-item text-[clamp(28px,4vw,48px)] font-semibold tracking-tight text-white">
+            看见你的 <span class="emotion-title-gradient">情绪图谱</span>
+          </h2>
+          <p class="reveal-item mt-3 text-[15px] text-white/40" style="--reveal-delay: 0.1s">
+            七维情绪模型，精准映射每首歌的情感坐标
+          </p>
+        </div>
+
+        <!-- Emotion scatter plot -->
+        <div class="reveal-item mx-auto max-w-3xl" style="--reveal-delay: 0.15s">
+          <div class="emotion-chart relative rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6 sm:p-10">
+            <!-- SVG Quadrant Chart -->
+            <div class="relative mx-auto aspect-square max-w-md">
+              <svg viewBox="0 0 400 400" class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+                <!-- Quadrant background tints -->
+                <defs>
+                  <radialGradient id="q1-glow" cx="75%" cy="25%" r="50%">
+                    <stop offset="0%" stop-color="rgba(240,165,0,0.06)"/>
+                    <stop offset="100%" stop-color="transparent"/>
+                  </radialGradient>
+                  <radialGradient id="q2-glow" cx="25%" cy="25%" r="50%">
+                    <stop offset="0%" stop-color="rgba(94,92,230,0.06)"/>
+                    <stop offset="100%" stop-color="transparent"/>
+                  </radialGradient>
+                  <radialGradient id="q3-glow" cx="25%" cy="75%" r="50%">
+                    <stop offset="0%" stop-color="rgba(0,210,255,0.06)"/>
+                    <stop offset="100%" stop-color="transparent"/>
+                  </radialGradient>
+                  <radialGradient id="q4-glow" cx="75%" cy="75%" r="50%">
+                    <stop offset="0%" stop-color="rgba(255,55,95,0.06)"/>
+                    <stop offset="100%" stop-color="transparent"/>
+                  </radialGradient>
+                </defs>
+
+                <rect x="200" y="0" width="200" height="200" fill="url(#q1-glow)"/>
+                <rect x="0" y="0" width="200" height="200" fill="url(#q2-glow)"/>
+                <rect x="0" y="200" width="200" height="200" fill="url(#q3-glow)"/>
+                <rect x="200" y="200" width="200" height="200" fill="url(#q4-glow)"/>
+
+                <!-- Grid lines -->
+                <line x1="200" y1="0" x2="200" y2="400" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="4 4"/>
+                <line x1="0" y1="200" x2="400" y2="200" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="4 4"/>
+
+                <!-- Axis labels -->
+                <text x="200" y="390" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="11" font-family="DM Sans, sans-serif">消极 &larr; &rarr; 积极</text>
+                <text x="12" y="200" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="11" font-family="DM Sans, sans-serif" transform="rotate(-90, 12, 200)">低能量 &larr; &rarr; 高能量</text>
+
+                <!-- Quadrant labels -->
+                <text x="300" y="30" text-anchor="middle" fill="rgba(240,165,0,0.4)" font-size="12" font-weight="500" font-family="DM Sans, sans-serif">快乐 · 兴奋</text>
+                <text x="100" y="30" text-anchor="middle" fill="rgba(94,92,230,0.4)" font-size="12" font-weight="500" font-family="DM Sans, sans-serif">悲伤 · 激动</text>
+                <text x="100" y="385" text-anchor="middle" fill="rgba(0,210,255,0.4)" font-size="12" font-weight="500" font-family="DM Sans, sans-serif">放松 · 平静</text>
+                <text x="300" y="385" text-anchor="middle" fill="rgba(255,55,95,0.35)" font-size="12" font-weight="500" font-family="DM Sans, sans-serif">紧张 · 低落</text>
+
+                <!-- Song dots — Q1: Happy/Excited -->
+                <circle class="song-dot" cx="280" cy="80" r="7" fill="#f0a500" opacity="0.75">
+                  <animate attributeName="r" values="7;8.5;7" dur="3s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="song-dot" cx="330" cy="130" r="5" fill="#fbbf24" opacity="0.65">
+                  <animate attributeName="r" values="5;6;5" dur="4.2s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="song-dot" cx="250" cy="140" r="8" fill="#f97316" opacity="0.7">
+                  <animate attributeName="r" values="8;9.5;8" dur="3.5s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="song-dot" cx="355" cy="60" r="4.5" fill="#fbbf24" opacity="0.6">
+                  <animate attributeName="r" values="4.5;5.5;4.5" dur="5s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="song-dot" cx="310" cy="170" r="5.5" fill="#fb923c" opacity="0.65"/>
+
+                <!-- Song dots — Q2: Sad/Intense -->
+                <circle class="song-dot" cx="80" cy="70" r="6.5" fill="#5e5ce6" opacity="0.7">
+                  <animate attributeName="r" values="6.5;7.5;6.5" dur="4s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="song-dot" cx="120" cy="110" r="5" fill="#8b5cf6" opacity="0.6"/>
+                <circle class="song-dot" cx="55" cy="140" r="7" fill="#a78bfa" opacity="0.6">
+                  <animate attributeName="r" values="7;8;7" dur="3.2s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="song-dot" cx="145" cy="55" r="4" fill="#7c5cfc" opacity="0.55"/>
+
+                <!-- Song dots — Q3: Relaxed/Calm -->
+                <circle class="song-dot" cx="70" cy="280" r="6" fill="#00d2ff" opacity="0.65">
+                  <animate attributeName="r" values="6;7;6" dur="3.8s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="song-dot" cx="130" cy="310" r="5" fill="#06b6d4" opacity="0.6"/>
+                <circle class="song-dot" cx="95" cy="250" r="7.5" fill="#22d3ee" opacity="0.65">
+                  <animate attributeName="r" values="7.5;8.5;7.5" dur="4.5s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="song-dot" cx="50" cy="340" r="4" fill="#67e8f9" opacity="0.5"/>
+
+                <!-- Song dots — Q4: Tense/Low -->
+                <circle class="song-dot" cx="310" cy="300" r="5.5" fill="#ff375f" opacity="0.55">
+                  <animate attributeName="r" values="5.5;6.5;5.5" dur="4s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="song-dot" cx="345" cy="270" r="6" fill="#f87171" opacity="0.5"/>
+                <circle class="song-dot" cx="265" cy="335" r="4.5" fill="#fb7185" opacity="0.45"/>
+
+                <!-- Center cluster (mixed emotions) -->
+                <circle class="song-dot" cx="185" cy="185" r="5" fill="#f0a500" opacity="0.4"/>
+                <circle class="song-dot" cx="220" cy="215" r="4" fill="#5e5ce6" opacity="0.4"/>
+                <circle class="song-dot" cx="175" cy="225" r="5" fill="#00d2ff" opacity="0.4"/>
+                <circle class="song-dot" cx="215" cy="185" r="6" fill="#a78bfa" opacity="0.35">
+                  <animate attributeName="r" values="6;7;6" dur="5s" repeatCount="indefinite"/>
+                </circle>
+
+                <!-- Weaving paths -->
+                <path d="M80 70 Q140 100 185 185 Q215 185 280 80" stroke="rgba(94,92,230,0.15)" stroke-width="1.5" fill="none" stroke-dasharray="6 4">
+                  <animate attributeName="stroke-dashoffset" values="0;-20" dur="3s" repeatCount="indefinite"/>
+                </path>
+                <path d="M95 250 Q150 230 215 215 Q245 225 310 300" stroke="rgba(0,210,255,0.12)" stroke-width="1.5" fill="none" stroke-dasharray="6 4">
+                  <animate attributeName="stroke-dashoffset" values="0;-20" dur="4s" repeatCount="indefinite"/>
+                </path>
+              </svg>
+            </div>
+
+            <!-- Emotion tags -->
+            <div class="mt-8 flex flex-wrap items-center justify-center gap-2">
+              <span class="rounded-full bg-[#f0a500]/10 px-3 py-1 text-xs text-[#f0a500]/80">快乐</span>
+              <span class="rounded-full bg-[#5e5ce6]/10 px-3 py-1 text-xs text-[#5e5ce6]/80">悲伤</span>
+              <span class="rounded-full bg-[#00d2ff]/10 px-3 py-1 text-xs text-[#00d2ff]/80">放松</span>
+              <span class="rounded-full bg-[#f97316]/10 px-3 py-1 text-xs text-[#f97316]/80">兴奋</span>
+              <span class="rounded-full bg-[#22d3ee]/10 px-3 py-1 text-xs text-[#22d3ee]/80">宁静</span>
+              <span class="rounded-full bg-[#ff375f]/10 px-3 py-1 text-xs text-[#ff375f]/80">紧张</span>
+              <span class="rounded-full bg-[#a78bfa]/10 px-3 py-1 text-xs text-[#a78bfa]/80">怀旧</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 4: FINAL CTA — 行动召唤               -->
+    <!-- ============================================ -->
+    <section class="relative px-6 py-24 sm:py-32">
+      <div class="relative mx-auto max-w-3xl text-center">
+        <!-- Background glow -->
+        <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+          <div class="absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#5e5ce6]/[0.06] blur-[120px]"></div>
+        </div>
+
+        <h2 class="reveal-item text-[clamp(32px,5vw,56px)] font-semibold tracking-tight text-white">
+          准备好了吗？
+        </h2>
+        <p class="reveal-item mt-4 text-[15px] text-white/40" style="--reveal-delay: 0.1s">
+          让 AI 为你编织完美的情绪体验
+        </p>
+        <div class="reveal-item mt-10" style="--reveal-delay: 0.2s">
+          <a
+            href="/login"
+            class="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-[15px] font-medium text-black transition-all duration-300 hover:scale-[1.02] hover:bg-white/90 active:scale-[0.98]"
+          >
+            立即开始
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>
+
+<style>
+  /* ============================================= */
+  /* HERO — Background Glows                       */
+  /* ============================================= */
+
+  .hero-glow-primary {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(94, 92, 230, 0.15), transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-glow-secondary {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 50% 40% at 80% 80%, rgba(240, 165, 0, 0.08), transparent 60%);
+    pointer-events: none;
+  }
+
+  /* ============================================= */
+  /* HERO — Title Gradient                         */
+  /* ============================================= */
+
+  .hero-title-gradient {
+    background: linear-gradient(135deg, #5e5ce6 0%, #bf5af2 50%, #ff375f 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* ============================================= */
+  /* HERO — Fade-in Animation (Apple easing)       */
+  /* ============================================= */
+
+  .hero-fade {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation-delay: var(--delay, 0s);
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ============================================= */
+  /* HERO — Wave Subtle Breathe                    */
+  /* ============================================= */
+
+  .hero-wave {
+    animation: waveBreathe 6s ease-in-out infinite;
+  }
+
+  @keyframes waveBreathe {
+    0%, 100% { transform: scaleY(1); transform-origin: bottom; }
+    50% { transform: scaleY(1.12); transform-origin: bottom; }
+  }
+
+  /* ============================================= */
+  /* EMOTION — Title Gradient                      */
+  /* ============================================= */
+
+  .emotion-title-gradient {
+    background: linear-gradient(135deg, #5e5ce6 0%, #bf5af2 50%, #ff375f 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* ============================================= */
+  /* REVEAL ON SCROLL                              */
+  /* ============================================= */
+
+  .reveal-item {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-delay: var(--reveal-delay, 0s);
+  }
+
+  .reveal-item.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .step-card {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                background-color 0.5s ease;
+    transition-delay: var(--reveal-delay, 0s);
+  }
+
+  .step-card.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ============================================= */
+  /* EMOTION CHART                                 */
+  /* ============================================= */
+
+  .song-dot {
+    transition: r 0.3s ease;
+  }
+
+  .emotion-chart {
+    transition: border-color 0.5s ease, box-shadow 0.5s ease;
+  }
+
+  .emotion-chart:hover {
+    border-color: rgba(94, 92, 230, 0.15);
+    box-shadow: 0 0 60px rgba(94, 92, 230, 0.04);
+  }
+</style>
+
+<script>
+  // IntersectionObserver for scroll-triggered reveal animations
+  document.addEventListener('DOMContentLoaded', () => {
+    const revealItems = document.querySelectorAll('.reveal-item, .step-card');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px',
+      }
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+  });
+</script>
