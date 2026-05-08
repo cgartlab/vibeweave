@@ -40,4 +40,12 @@ __pycache__/
 .Python
 venv/
 .venv/
+
+# AI tool configurations
+.trae/
+.astro/
+.codex/
+.cursor-plugin/
+.claude-plugin/
+.opencode/
 ```
