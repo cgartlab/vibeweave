@@ -4,8 +4,8 @@ import React, {
   useContext,
   useState,
   useEffect,
-  type ReactNode,
 } from 'react';
+import type { ReactNode } from 'react';
 
 type ToastType = 'success' | 'error' | 'info';
 

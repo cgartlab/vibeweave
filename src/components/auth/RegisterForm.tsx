@@ -1,4 +1,5 @@
-import React, { useState, useMemo, type FormEvent } from 'react';
+import React, { useState, useMemo } from 'react';
+import type { FormEvent } from 'react';
 import { supabase } from '../../lib/supabase/client';
 
 interface RegisterFormProps {

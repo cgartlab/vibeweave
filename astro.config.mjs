@@ -12,7 +12,7 @@ const isNetlify = process.env.DEPLOY_TARGET === 'netlify';
 export default defineConfig({
   adapter: isNetlify ? netlify() : vercel(),
   site: process.env.SITE_URL || 'https://cgartlab.github.io',
-  base: process.env.NODE_ENV === 'production' ? '/vibeweave' : undefined,
+  base: '/',
 
   env: {
     schema: {

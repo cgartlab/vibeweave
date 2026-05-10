@@ -1,192 +1,102 @@
 ---
-import LandingLayout from '@/layouts/LandingLayout.astro';
-import { motion } from 'framer-motion';
-import Button from '@/components/ui/form/Button/Button.astro';
-import Badge from '@/components/ui/data-display/Badge/Badge.astro';
-import Card from '@/components/ui/data-display/Card/Card.astro';
-import Icon from '@/components/ui/primitives/Icon/Icon.astro';
-import Input from '@/components/ui/form/Input/Input.astro';
-
-// 动画变量
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      type: 'spring',
-      stiffness: 100
-    }
-  }
-};
-
-// 模拟情绪数据
-const emotionData = {
-  labels: ['快乐', '悲伤', '愤怒', '平静', '兴奋', '紧张'],
-  datasets: [
-    {
-      label: '情绪强度',
-      data: [65, 30, 15, 70, 60, 25],
-      backgroundColor: [
-        'rgba(139, 92, 246, 0.2)',
-        'rgba(59, 130, 246, 0.2)',
-        'rgba(236, 72, 153, 0.2)',
-        'rgba(16, 185, 129, 0.2)',
-        'rgba(249, 115, 22, 0.2)',
-        'rgba(139, 92, 246, 0.2)'
-      ],
-      borderColor: [
-        'rgba(139, 92, 246, 1)',
-        'rgba(59, 130, 246, 1)',
-        'rgba(236, 72, 153, 1)',
-        'rgba(16, 185, 129, 1)',
-        'rgba(249, 115, 22, 1)',
-        'rgba(139, 92, 246, 1)'
-      ],
-      borderWidth: 1
-    }
-  ]
-};
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<LandingLayout
+<BaseLayout
   title="VibeWeave - 音乐情绪分析平台"
   description="通过AI技术分析音乐情绪，帮助你发现音乐背后的情感密码，创建更符合你心情的播放列表"
-  image="/og-default.svg"
 >
-  <!-- 背景动效 -->
-  <div class="fixed inset-0 -z-10">
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden py-24 md:py-32">
+    <!-- Background gradient -->
     <div class="absolute inset-0 bg-gradient-to-br from-[#0F0F0F] via-[#1E3A8A] to-[#4C1D95]"></div>
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.15),transparent_70%)]"></div>
-    <div class="absolute inset-0 overflow-hidden">
-      {[...Array(12)].map((_, i) => (
-        <motion.div
-          key={i}
-          class="absolute rounded-full bg-[rgba(139,92,246,0.05)]"
-          style={{
-            width: Math.random() * 300 + 100,
-            height: Math.random() * 300 + 100,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-          }}
-          animate={{
-            x: [0, Math.random() * 100 - 50],
-            y: [0, Math.random() * 100 - 50],
-            opacity: [0.3, 0.6, 0.3]
-          }}
-          transition={{
-            duration: Math.random() * 20 + 10,
-            repeat: Infinity,
-            repeatType: 'reverse'
-          }}
-        />
-      ))}
-    </div>
-  </div>
 
-  <!-- Hero -->
-  <section class="relative z-10 py-[var(--space-section-xl)] overflow-hidden">
-    <div class="mx-auto max-w-6xl px-6">
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        class="flex flex-col items-center text-center gap-8"
-      >
-        <motion.div variants={itemVariants}>
-          <Badge variant="brand" pill pulse class="dark:text-brand-200 text-white bg-vibe-purple/20 border-vibe-purple/40">
-            AI 驱动的音乐情绪分析
-          </Badge>
-        </motion.div>
+    <div class="relative mx-auto max-w-6xl px-6">
+      <div class="flex flex-col items-center text-center gap-8">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 rounded-full bg-vibe-purple/20 border border-vibe-purple/40 px-4 py-1.5 text-sm text-white">
+          <span class="relative flex h-2 w-2">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-vibe-purple opacity-75"></span>
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-vibe-purple"></span>
+          </span>
+          AI 驱动的音乐情绪分析
+        </div>
 
-        <motion.h1 
-          variants={itemVariants}
-          class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight max-w-4xl"
-        >
+        <!-- Heading -->
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight max-w-4xl">
           <span class="bg-gradient-to-r from-vibe-purple via-vibe-blue to-vibe-pink text-transparent bg-clip-text drop-shadow-lg">
             感受音乐的 情绪脉搏
           </span>
           <br />
           <span class="text-white">VibeWeave — 音乐情绪编织师</span>
-        </motion.h1>
+        </h1>
 
-        <motion.p 
-          variants={itemVariants}
-          class="text-lg md:text-xl text-gray-300 max-w-3xl"
-        >
+        <!-- Description -->
+        <p class="text-lg md:text-xl text-gray-300 max-w-3xl">
           通过先进的AI技术分析音乐情绪，帮助你发现每首歌背后的情感密码，创建更符合你心情的播放列表，让音乐与情绪完美融合。
-        </motion.p>
+        </p>
 
-        <motion.div 
-          variants={itemVariants}
-          class="w-full max-w-2xl"
-        >
+        <!-- CTA Input -->
+        <div class="w-full max-w-2xl">
           <div class="flex flex-col sm:flex-row gap-4">
             <div class="flex-1">
-              <Input 
-                type="url" 
-                placeholder="粘贴网易云音乐歌单链接..." 
-                class="h-14 rounded-full border-gray-600 bg-black/30 backdrop-blur-sm text-white placeholder-gray-400"
+              <input
+                type="url"
+                placeholder="粘贴网易云音乐歌单链接..."
+                class="w-full h-14 rounded-full border border-gray-600 bg-black/30 backdrop-blur-sm text-white placeholder-gray-400 px-6 focus:outline-none focus:border-vibe-purple transition-colors"
               />
             </div>
-            <Button 
-              size="lg" 
+            <a
               href="/dashboard"
-              class="h-14 px-8 rounded-full bg-gradient-to-r from-vibe-purple to-vibe-blue hover:from-vibe-blue hover:to-vibe-purple transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-vibe-purple/30"
+              class="inline-flex items-center justify-center h-14 px-8 rounded-full bg-gradient-to-r from-vibe-purple to-vibe-blue hover:from-vibe-blue hover:to-vibe-purple transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-vibe-purple/30 text-white font-medium"
             >
-              <Icon name="music" size="sm" />
+              <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+              </svg>
               开始分析
-            </Button>
+            </a>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div variants={itemVariants} class="flex gap-4">
-          <Button 
-            size="lg" 
-            variant="outline" 
+        <!-- Secondary CTA -->
+        <div class="flex gap-4">
+          <a
             href="#features"
-            class="border-gray-600 text-white hover:border-vibe-purple hover:text-vibe-purple transition-all duration-300"
+            class="inline-flex items-center gap-2 h-12 px-6 rounded-full border border-gray-600 text-white hover:border-vibe-purple hover:text-vibe-purple transition-all duration-300"
           >
-            <Icon name="zap" size="sm" />
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
             了解更多
-            <Icon name="arrow-right" size="sm" />
-          </Button>
-        </motion.div>
-      </motion.div>
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Features Section -->
-  <section id="features" class="relative z-10 py-[var(--space-section-md)] bg-black/50 backdrop-blur-sm border-t border-gray-800">
+  <section id="features" class="relative py-20 bg-black/50 backdrop-blur-sm border-t border-gray-800">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-12">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        class="flex flex-col items-center gap-4 text-center"
-      >
+      <!-- Section Header -->
+      <div class="flex flex-col items-center gap-4 text-center">
         <div class="flex flex-col items-center gap-6">
-          <Badge variant="brand" pill class="bg-vibe-purple/20 border-vibe-purple/40 text-vibe-purple">核心功能</Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-white">
+          <div class="inline-flex items-center rounded-full bg-vibe-purple/20 border border-vibe-purple/40 px-4 py-1.5 text-sm text-vibe-purple">
+            核心功能
+          </div>
+          <h2 class="text-3xl md:text-4xl font-bold text-white">
             探索音乐的情感世界
           </h2>
         </div>
         <p class="text-lg text-gray-300 max-w-2xl mx-auto">
           利用AI技术，深入分析音乐的情绪特征，为你提供全新的音乐体验
         </p>
-      </motion.div>
+      </div>
 
+      <!-- Features Grid -->
       <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {[
           {
@@ -200,7 +110,7 @@ const emotionData = {
             description: '支持从网易云音乐、QQ音乐、Spotify等平台导入歌单，一键分析所有歌曲的情绪特征'
           },
           {
-            icon: 'bar-chart-3',
+            icon: 'bar-chart',
             title: '情绪可视化',
             description: '通过直观的图表和色彩，展示歌曲的情绪分布，让你更直观地了解音乐的情感表达'
           },
@@ -215,56 +125,52 @@ const emotionData = {
             description: '为歌曲添加自定义情绪标签，创建属于你自己的情绪音乐库，更精准地管理音乐'
           },
           {
-            icon: 'refresh-cw',
+            icon: 'refresh',
             title: '多设备同步',
             description: '在不同设备间同步你的歌单和情绪分析结果，随时随地享受个性化的音乐体验'
           }
         ].map((feature, index) => (
-          <motion.div
+          <div
             key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            class="h-full border border-gray-800 bg-black/40 backdrop-blur-sm rounded-2xl overflow-hidden hover:border-vibe-purple/40 hover:shadow-lg hover:shadow-vibe-purple/5 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
           >
-            <Card 
-              hover 
-              class="h-full border-gray-800 bg-black/40 backdrop-blur-sm rounded-2xl overflow-hidden"
-            >
-              <div class="p-6">
-                <div class="flex items-start gap-4">
-                  <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-vibe-purple/20 to-vibe-blue/10 flex items-center justify-center text-vibe-purple shrink-0">
-                    <Icon name={feature.icon} size="md" />
-                  </div>
-                  <div class="flex-1 min-w-0">
-                    <h3 class="text-base font-semibold text-white mb-2">{feature.title}</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
+            <div class="p-6">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-vibe-purple/20 to-vibe-blue/10 flex items-center justify-center text-vibe-purple shrink-0">
+                  <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    {feature.icon === 'heart' && <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />}
+                    {feature.icon === 'layers' && <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />}
+                    {feature.icon === 'bar-chart' && <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />}
+                    {feature.icon === 'thumbs-up' && <path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />}
+                    {feature.icon === 'tag' && <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />}
+                    {feature.icon === 'refresh' && <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />}
+                  </svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <h3 class="text-base font-semibold text-white mb-2">{feature.title}</h3>
+                  <p class="text-sm text-gray-400 leading-relaxed">
+                    {feature.description}
+                  </p>
                 </div>
               </div>
-            </Card>
-          </motion.div>
+            </div>
+          </div>
         ))}
       </div>
     </div>
   </section>
 
   <!-- How It Works -->
-  <section class="relative z-10 py-[var(--space-section-md)] bg-black/30 backdrop-blur-sm border-t border-gray-800">
+  <section class="relative py-20 bg-black/30 backdrop-blur-sm border-t border-gray-800">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-12 lg:grid-cols-2">
-        <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          class="flex flex-col justify-center"
-        >
+        <!-- Left: Steps -->
+        <div class="flex flex-col justify-center">
           <div class="flex flex-col gap-6 mb-6">
-            <Badge variant="brand" pill class="self-start bg-vibe-purple/20 border-vibe-purple/40 text-vibe-purple">如何工作</Badge>
-            <h2 class="font-display text-3xl md:text-4xl font-bold text-white">
+            <div class="inline-flex items-center self-start rounded-full bg-vibe-purple/20 border border-vibe-purple/40 px-4 py-1.5 text-sm text-vibe-purple">
+              如何工作
+            </div>
+            <h2 class="text-3xl md:text-4xl font-bold text-white">
               简单三步，
               <span class="text-vibe-purple">开启音乐情绪之旅</span>
             </h2>
@@ -287,14 +193,7 @@ const emotionData = {
                 description: '查看情绪可视化结果，创建基于情绪的播放列表，发现音乐的情感世界'
               }
             ].map((step, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                class="relative flex gap-6"
-              >
+              <div key={index} class="relative flex gap-6">
                 <div class="relative">
                   <div class="w-12 h-12 rounded-full bg-gradient-to-br from-vibe-purple to-vibe-blue flex items-center justify-center text-white font-semibold shrink-0 z-10">
                     {index + 1}
@@ -310,135 +209,133 @@ const emotionData = {
                 <div class="absolute -top-4 -left-12 text-6xl font-bold text-vibe-purple/10">
                   {step.number}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-          <Button 
-            variant="primary" 
-            href="/dashboard" 
-            class="mt-10 self-start h-12 px-8 rounded-full bg-gradient-to-r from-vibe-purple to-vibe-blue hover:from-vibe-blue hover:to-vibe-purple transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-vibe-purple/30"
+          <a
+            href="/dashboard"
+            class="mt-10 self-start inline-flex items-center h-12 px-8 rounded-full bg-gradient-to-r from-vibe-purple to-vibe-blue hover:from-vibe-blue hover:to-vibe-purple transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-vibe-purple/30 text-white font-medium"
           >
             立即开始
-            <Icon name="arrow-right" size="sm" />
-          </Button>
-        </motion.div>
-        
-        <motion.div 
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <Card variant="elevated" padding="lg" class="h-full flex flex-col border-gray-800 bg-black/40 backdrop-blur-sm rounded-2xl">
+            <svg class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Right: Platform Support Card -->
+        <div>
+          <div class="h-full flex flex-col border border-gray-800 bg-black/40 backdrop-blur-sm rounded-2xl p-6">
             <div class="bg-black/60 rounded-2xl p-8 flex flex-col items-center justify-center text-center gap-8 h-full">
               <div class="w-24 h-24 rounded-full bg-gradient-to-br from-vibe-purple/30 to-vibe-blue/10 flex items-center justify-center text-vibe-purple">
-                <Icon name="music" size="xl" />
+                <svg class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                </svg>
               </div>
               <h3 class="text-2xl font-semibold text-white">支持的平台</h3>
               <div class="grid grid-cols-3 gap-8 w-full">
                 <div class="flex flex-col items-center gap-3">
                   <div class="w-16 h-16 rounded-full bg-red-500/20 flex items-center justify-center text-red-400">
-                    <Icon name="music" size="lg" />
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                    </svg>
                   </div>
                   <p class="text-sm text-gray-300">网易云音乐</p>
                 </div>
                 <div class="flex flex-col items-center gap-3">
                   <div class="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
-                    <Icon name="music" size="lg" />
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                    </svg>
                   </div>
                   <p class="text-sm text-gray-300">QQ音乐</p>
                 </div>
                 <div class="flex flex-col items-center gap-3">
                   <div class="w-16 h-16 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400">
-                    <Icon name="music" size="lg" />
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                    </svg>
                   </div>
                   <p class="text-sm text-gray-300">Spotify</p>
                 </div>
               </div>
             </div>
-          </Card>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Emotion Visualization -->
-  <section class="relative z-10 py-[var(--space-section-md)] bg-black/50 backdrop-blur-sm border-t border-gray-800">
+  <!-- Emotion Visualization Preview -->
+  <section class="relative py-20 bg-black/50 backdrop-blur-sm border-t border-gray-800">
     <div class="mx-auto max-w-6xl px-6">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        class="flex flex-col items-center gap-8 text-center"
-      >
+      <div class="flex flex-col items-center gap-8 text-center">
         <div class="flex flex-col items-center gap-6">
-          <Badge variant="brand" pill class="bg-vibe-purple/20 border-vibe-purple/40 text-vibe-purple">情绪可视化</Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-white">
+          <div class="inline-flex items-center rounded-full bg-vibe-purple/20 border border-vibe-purple/40 px-4 py-1.5 text-sm text-vibe-purple">
+            情绪可视化
+          </div>
+          <h2 class="text-3xl md:text-4xl font-bold text-white">
             音乐情绪图谱
           </h2>
         </div>
         <p class="text-lg text-gray-300 max-w-2xl mx-auto">
           通过直观的图表，了解音乐的情绪分布，发现歌曲的情感特征
         </p>
-        
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          class="w-full max-w-3xl"
-        >
-          <Card class="border-gray-800 bg-black/40 backdrop-blur-sm rounded-2xl overflow-hidden">
+
+        <div class="w-full max-w-3xl">
+          <div class="border border-gray-800 bg-black/40 backdrop-blur-sm rounded-2xl overflow-hidden">
             <div class="p-6">
               <div class="aspect-video bg-black/60 rounded-xl flex items-center justify-center">
                 <div class="text-center">
-                  <Icon name="bar-chart-3" size="4xl" class="mx-auto text-vibe-purple mb-4" />
+                  <svg class="h-16 w-16 mx-auto text-vibe-purple mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
                   <p class="text-gray-400 mb-2">情绪图谱预览</p>
                   <p class="text-sm text-gray-500">导入歌单后自动生成</p>
                 </div>
               </div>
+              <!-- Demo emotion bars -->
               <div class="mt-4 grid grid-cols-6 gap-2">
-                {emotionData.labels.map((label, index) => (
+                {[
+                  { label: '快乐', value: 65, color: 'rgba(139, 92, 246, 0.6)' },
+                  { label: '悲伤', value: 30, color: 'rgba(59, 130, 246, 0.6)' },
+                  { label: '愤怒', value: 15, color: 'rgba(236, 72, 153, 0.6)' },
+                  { label: '平静', value: 70, color: 'rgba(16, 185, 129, 0.6)' },
+                  { label: '兴奋', value: 60, color: 'rgba(249, 115, 22, 0.6)' },
+                  { label: '紧张', value: 25, color: 'rgba(139, 92, 246, 0.6)' }
+                ].map((item, index) => (
                   <div key={index} class="flex flex-col items-center gap-1">
-                    <div 
-                      class="w-full h-2 rounded-full" 
-                      style={{ 
-                        backgroundColor: emotionData.datasets[0].backgroundColor[index],
-                        width: `${emotionData.datasets[0].data[index]}%` 
-                      }}
+                    <div
+                      class="w-full h-2 rounded-full transition-all duration-1000"
+                      style={{ backgroundColor: item.color, width: `${item.value}%` }}
                     ></div>
-                    <span class="text-xs text-gray-400">{label}</span>
+                    <span class="text-xs text-gray-400">{item.label}</span>
                   </div>
                 ))}
               </div>
             </div>
-          </Card>
-        </motion.div>
-      </motion.div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Testimonials -->
-  <section class="relative z-10 py-[var(--space-section-md)] bg-black/30 backdrop-blur-sm border-t border-gray-800">
+  <section class="relative py-20 bg-black/30 backdrop-blur-sm border-t border-gray-800">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-12">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        class="flex flex-col items-center gap-4 text-center"
-      >
+      <div class="flex flex-col items-center gap-4 text-center">
         <div class="flex flex-col items-center gap-6">
-          <Badge variant="brand" pill class="bg-vibe-purple/20 border-vibe-purple/40 text-vibe-purple">用户反馈</Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-white">
+          <div class="inline-flex items-center rounded-full bg-vibe-purple/20 border border-vibe-purple/40 px-4 py-1.5 text-sm text-vibe-purple">
+            用户反馈
+          </div>
+          <h2 class="text-3xl md:text-4xl font-bold text-white">
             用户怎么说
           </h2>
         </div>
         <p class="text-lg text-gray-300 max-w-2xl mx-auto">
           来自真实用户的体验分享
         </p>
-      </motion.div>
+      </div>
 
       <div class="grid gap-6 md:grid-cols-2">
         {[
@@ -455,111 +352,66 @@ const emotionData = {
             avatar: 'Z'
           }
         ].map((testimonial, index) => (
-          <motion.div
+          <div
             key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            class="h-full border border-gray-800 bg-black/40 backdrop-blur-sm rounded-2xl p-6 hover:border-vibe-purple/40 hover:shadow-lg hover:shadow-vibe-purple/5 transition-all duration-300"
           >
-            <Card 
-              variant="elevated" 
-              padding="lg" 
-              hover 
-              class="h-full border-gray-800 bg-black/40 backdrop-blur-sm rounded-2xl"
-            >
-              <div class="flex flex-col h-full gap-6">
-                <div class="flex gap-1 text-vibe-purple" role="img" aria-label="5 out of 5 stars">
-                  {[...Array(5)].map(() => (
-                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
+            <div class="flex flex-col h-full gap-6">
+              <div class="flex gap-1 text-vibe-purple" role="img" aria-label="5 out of 5 stars">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <blockquote class="flex-1 text-gray-300 leading-relaxed">
+                "{testimonial.quote}"
+              </blockquote>
+              <div class="flex items-center gap-4 pt-4 border-t border-gray-800">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-vibe-purple to-vibe-blue flex items-center justify-center text-white font-bold text-lg shrink-0">
+                  {testimonial.avatar}
                 </div>
-                <blockquote class="flex-1 text-gray-300 leading-relaxed">
-                  "{testimonial.quote}"
-                </blockquote>
-                <div class="flex items-center gap-4 pt-4 border-t border-gray-800">
-                  <div class="w-12 h-12 rounded-full bg-gradient-to-br from-vibe-purple to-vibe-blue flex items-center justify-center text-white font-bold text-lg shrink-0">
-                    {testimonial.avatar}
-                  </div>
-                  <div>
-                    <p class="text-sm font-semibold text-white">{testimonial.name}</p>
-                    <p class="text-xs text-gray-400">{testimonial.role}</p>
-                  </div>
+                <div>
+                  <p class="text-sm font-semibold text-white">{testimonial.name}</p>
+                  <p class="text-xs text-gray-400">{testimonial.role}</p>
                 </div>
               </div>
-            </Card>
-          </motion.div>
+            </div>
+          </div>
         ))}
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="relative z-10 py-[var(--space-section-xl)]">
+  <section class="relative py-24">
     <div class="absolute inset-0 bg-gradient-to-r from-vibe-purple/20 via-vibe-blue/20 to-vibe-pink/20"></div>
     <div class="mx-auto max-w-4xl px-6 relative z-10">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        class="bg-black/60 backdrop-blur-sm rounded-3xl p-12 text-center border border-gray-800"
-      >
-        <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-6 text-balance">
+      <div class="bg-black/60 backdrop-blur-sm rounded-3xl p-12 text-center border border-gray-800">
+        <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">
           准备好探索音乐的情感世界了吗？
         </h2>
-        <p class="text-lg text-gray-300 mb-10 text-balance max-w-2xl mx-auto">
+        <p class="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
           加入 VibeWeave，让AI技术帮助你发现音乐背后的情绪密码，创建更符合你心情的播放列表。
         </p>
         <div class="flex flex-col sm:flex-row gap-6 justify-center">
-          <Button 
-            size="xl" 
+          <a
             href="/dashboard"
-            class="h-16 px-12 rounded-full bg-gradient-to-r from-vibe-purple to-vibe-blue hover:from-vibe-blue hover:to-vibe-purple transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-vibe-purple/30 text-lg"
+            class="inline-flex items-center justify-center h-16 px-12 rounded-full bg-gradient-to-r from-vibe-purple to-vibe-blue hover:from-vibe-blue hover:to-vibe-purple transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-vibe-purple/30 text-white text-lg font-medium"
           >
             立即开始
-            <Icon name="arrow-right" size="sm" />
-          </Button>
-          <Button 
-            size="xl" 
-            variant="outline" 
+            <svg class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a
             href="/login"
-            class="h-16 px-12 rounded-full border-gray-600 text-white hover:border-vibe-purple hover:text-vibe-purple transition-all duration-300 text-lg"
+            class="inline-flex items-center justify-center h-16 px-12 rounded-full border border-gray-600 text-white hover:border-vibe-purple hover:text-vibe-purple transition-all duration-300 text-lg"
           >
             登录账户
-          </Button>
+          </a>
         </div>
-      </motion.div>
+      </div>
     </div>
   </section>
-
-  <!-- Footer -->
-  <footer class="relative z-10 py-12 bg-black/80 backdrop-blur-sm border-t border-gray-800">
-    <div class="mx-auto max-w-6xl px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-      <div class="flex items-center gap-2">
-        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-vibe-purple to-vibe-blue flex items-center justify-center text-white">
-          <Icon name="music" size="sm" />
-        </div>
-        <span class="text-xl font-bold text-white">VibeWeave</span>
-      </div>
-      <div class="flex flex-col md:flex-row gap-8 items-center">
-        <div class="flex gap-6">
-          <a href="https://github.com/cgartlab/vibeweave" class="text-gray-400 hover:text-vibe-purple transition-colors">
-            <Icon name="github" size="md" />
-          </a>
-          <a href="#" class="text-gray-400 hover:text-vibe-purple transition-colors">
-            <Icon name="twitter" size="md" />
-          </a>
-          <a href="#" class="text-gray-400 hover:text-vibe-purple transition-colors">
-            <Icon name="linkedin" size="md" />
-          </a>
-        </div>
-        <div class="text-gray-500 text-sm">
-          © 2026 VibeWeave. All rights reserved.
-        </div>
-      </div>
-    </div>
-  </footer>
-</LandingLayout>
+</BaseLayout>
