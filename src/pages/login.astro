@@ -14,139 +14,134 @@ import OAuthButtons from '../components/auth/OAuthButtons';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
     <title>登录 - VibeWeave</title>
   </head>
-  <body class="min-h-screen bg-black">
-    <div class="relative min-h-[calc(100vh-3rem)] flex items-center justify-center">
-      <!-- Subtle radial glow -->
-      <div class="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <div class="h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle_at_center,rgba(94,92,230,0.08)_0%,transparent_70%)]"></div>
-      </div>
 
-      <!-- Content -->
-      <div class="relative w-full max-w-sm px-6">
-        <!-- Brand -->
-        <div class="mb-10 text-center">
-          <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#5e5ce6] to-[#bf5af2]">
-            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+  <body class="min-h-screen" style="background-color: var(--color-vw-bg-primary); font-family: 'DM Sans', system-ui, sans-serif;">
+
+    <!-- Ambient glow -->
+    <div class="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
+      <div style="position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+                  width: 700px; height: 700px; border-radius: 50%;
+                  background: radial-gradient(circle, rgba(139,92,246,0.09) 0%, transparent 65%);
+                  filter: blur(40px);"></div>
+      <div style="position: absolute; bottom: -15%; right: 10%;
+                  width: 400px; height: 400px; border-radius: 50%;
+                  background: radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 60%);
+                  filter: blur(60px);"></div>
+    </div>
+
+    <!-- Center container -->
+    <div class="relative flex min-h-screen items-center justify-center px-4 py-16">
+      <div class="w-full max-w-sm">
+
+        <!-- Brand mark -->
+        <div class="mb-9 flex flex-col items-center text-center">
+          <div class="mb-4 flex h-13 w-13 items-center justify-center rounded-2xl"
+               style="background: linear-gradient(135deg, var(--color-vw-accent) 0%, #7c3aed 100%);
+                      width: 52px; height: 52px;
+                      box-shadow: 0 8px 24px rgba(139,92,246,0.35);">
+            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
+                 stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
             </svg>
           </div>
-          <h1 class="font-body mt-4 text-2xl font-semibold text-white">VibeWeave</h1>
-          <p class="mt-1 text-sm text-white/40">AI 驱动的音乐情绪分析</p>
+          <h1 class="text-xl font-semibold text-white" style="letter-spacing: -0.02em;">VibeWeave</h1>
+          <p class="mt-1 text-sm" style="color: rgba(255,255,255,0.35);">AI 驱动的音乐情绪分析</p>
         </div>
 
-        <!-- Tab Switcher -->
-        <div class="mb-8 flex rounded-full bg-white/[0.06] p-1" id="auth-tabs" role="tablist">
-          <button
-            id="tab-login"
-            role="tab"
-            aria-selected="true"
-            data-tab="login"
-            class="rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition-all duration-300"
-          >
-            登录
-          </button>
-          <button
-            id="tab-register"
-            role="tab"
-            aria-selected="false"
-            data-tab="register"
-            class="rounded-full px-4 py-2 text-sm font-medium text-white/50 transition-all duration-300 hover:text-white/70"
-          >
-            注册
-          </button>
+        <!-- Card -->
+        <div class="rounded-3xl border p-7"
+             style="background: rgba(255,255,255,0.03);
+                    border-color: rgba(255,255,255,0.08);
+                    backdrop-filter: blur(20px);
+                    box-shadow: 0 24px 64px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);">
+
+          <!-- Tab switcher -->
+          <div class="mb-7 flex rounded-xl p-1" style="background: rgba(255,255,255,0.05);"
+               id="auth-tabs" role="tablist">
+            <button id="tab-login" role="tab" aria-selected="true" data-tab="login"
+                    class="flex-1 rounded-lg py-2 text-sm font-semibold transition-all duration-200 text-black"
+                    style="background: #fff;">
+              登录
+            </button>
+            <button id="tab-register" role="tab" aria-selected="false" data-tab="register"
+                    class="flex-1 rounded-lg py-2 text-sm font-medium transition-all duration-200"
+                    style="color: rgba(255,255,255,0.4); background: transparent;">
+              注册
+            </button>
+          </div>
+
+          <!-- Login panel -->
+          <div id="panel-login" role="tabpanel">
+            <LoginForm client:load />
+          </div>
+
+          <!-- Register panel -->
+          <div id="panel-register" role="tabpanel" class="hidden">
+            <RegisterForm client:load />
+          </div>
+
+          <!-- Divider -->
+          <div class="my-5 flex items-center gap-3">
+            <div class="h-px flex-1" style="background: rgba(255,255,255,0.07);"></div>
+            <span class="text-xs" style="color: rgba(255,255,255,0.25);">或</span>
+            <div class="h-px flex-1" style="background: rgba(255,255,255,0.07);"></div>
+          </div>
+
+          <!-- OAuth -->
+          <OAuthButtons client:load />
         </div>
 
-        <!-- Login Form -->
-        <div id="panel-login" role="tabpanel">
-          <LoginForm client:load />
-        </div>
+        <!-- Legal -->
+        <p class="mt-6 text-center text-xs" style="color: rgba(255,255,255,0.2);">
+          继续即表示您同意我们的
+          <a href="/terms" class="transition-colors hover:text-white/50" style="color: rgba(255,255,255,0.3);">服务条款</a>
+          和
+          <a href="/privacy" class="transition-colors hover:text-white/50" style="color: rgba(255,255,255,0.3);">隐私政策</a>
+        </p>
 
-        <!-- Register Form -->
-        <div id="panel-register" role="tabpanel" class="hidden">
-          <RegisterForm client:load />
-        </div>
-
-        <!-- Divider -->
-        <div class="my-6 flex items-center gap-4">
-          <div class="h-px flex-1 border-white/[0.08]"></div>
-          <span class="text-xs text-white/30">或</span>
-          <div class="h-px flex-1 border-white/[0.08]"></div>
-        </div>
-
-        <!-- OAuth Buttons -->
-        <OAuthButtons client:load />
-
-        <!-- Bottom Links -->
-        <div class="mt-10 text-center">
-          <p class="text-xs text-white/20">
-            继续即表示您同意我们的
-            <a href="/terms" class="transition-colors hover:text-white/40">服务条款</a>
-            和
-            <a href="/privacy" class="transition-colors hover:text-white/40">隐私政策</a>
-          </p>
-        </div>
       </div>
     </div>
+
   </body>
 </html>
 
 <script>
   function initAuthTabs() {
-    const tabLogin = document.getElementById('tab-login');
+    const tabLogin    = document.getElementById('tab-login');
     const tabRegister = document.getElementById('tab-register');
-    const panelLogin = document.getElementById('panel-login');
+    const panelLogin    = document.getElementById('panel-login');
     const panelRegister = document.getElementById('panel-register');
-
     if (!tabLogin || !tabRegister || !panelLogin || !panelRegister) return;
 
-    const activeTabClasses = 'rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition-all duration-300';
-    const inactiveTabClasses = 'rounded-full px-4 py-2 text-sm font-medium text-white/50 transition-all duration-300 hover:text-white/70';
-
-    // Check URL params for initial tab
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('tab') === 'register') {
-      switchToRegister();
-    }
-
-    tabLogin?.addEventListener('click', switchToLogin);
-    tabRegister?.addEventListener('click', switchToRegister);
-
-    function switchToLogin() {
-      tabLogin.className = activeTabClasses;
-      tabLogin.setAttribute('aria-selected', 'true');
-      tabRegister.className = inactiveTabClasses;
-      tabRegister.setAttribute('aria-selected', 'false');
-      panelLogin.classList.remove('hidden');
-      panelRegister.classList.add('hidden');
-      // Update URL without reload
-      const url = new URL(window.location);
-      url.searchParams.delete('tab');
+    const setTab = (active: 'login' | 'register') => {
+      const isLogin = active === 'login';
+      [tabLogin, tabRegister].forEach((btn, i) => {
+        const mine = (i === 0) === isLogin;
+        btn.setAttribute('aria-selected', String(mine));
+        if (mine) {
+          btn.style.cssText = 'flex:1;border-radius:0.5rem;padding:0.5rem;font-size:0.875rem;font-weight:600;transition:all 0.2s;background:#fff;color:#000;';
+        } else {
+          btn.style.cssText = 'flex:1;border-radius:0.5rem;padding:0.5rem;font-size:0.875rem;font-weight:500;transition:all 0.2s;background:transparent;color:rgba(255,255,255,0.4);';
+        }
+      });
+      panelLogin.classList.toggle('hidden', !isLogin);
+      panelRegister.classList.toggle('hidden', isLogin);
+      const url = new URL(window.location.href);
+      if (isLogin) url.searchParams.delete('tab'); else url.searchParams.set('tab', 'register');
       window.history.replaceState({}, '', url);
-    }
+    };
 
-    function switchToRegister() {
-      tabRegister.className = activeTabClasses;
-      tabRegister.setAttribute('aria-selected', 'true');
-      tabLogin.className = inactiveTabClasses;
-      tabLogin.setAttribute('aria-selected', 'false');
-      panelRegister.classList.remove('hidden');
-      panelLogin.classList.add('hidden');
-      // Update URL without reload
-      const url = new URL(window.location);
-      url.searchParams.set('tab', 'register');
-      window.history.replaceState({}, '', url);
-    }
+    tabLogin.addEventListener('click', () => setTab('login'));
+    tabRegister.addEventListener('click', () => setTab('register'));
+
+    const p = new URLSearchParams(window.location.search);
+    if (p.get('tab') === 'register') setTab('register');
   }
 
-  // Run on initial load
   initAuthTabs();
-
-  // Re-run after Astro page transitions
   document.addEventListener('astro:page-load', initAuthTabs);
 </script>

@@ -1,71 +1,129 @@
 @import "tailwindcss";
 
+/* ── Brand tokens (Tailwind v4 @theme) ──────────────────────── */
 @theme {
-  /* Brand Colors */
+  /* Brand palette */
   --color-vibe-purple: #8b5cf6;
-  --color-vibe-blue: #3b82f6;
-  --color-vibe-pink: #ec4899;
+  --color-vibe-blue:   #3b82f6;
+  --color-vibe-pink:   #ec4899;
 
-  /* VibeWeave Design System */
-  --color-vw-bg-primary: #0a0a0f;
-  --color-vw-bg-card: #13131f;
-  --color-vw-bg-input: #1a1a2e;
+  /* Backgrounds */
+  --color-vw-bg-primary:  #0a0a0f;
+  --color-vw-bg-card:     #13131f;
+  --color-vw-bg-input:    #1a1a2e;
   --color-vw-bg-elevated: #1e1e32;
 
-  --color-vw-text: #e2e0f0;
+  /* Text */
+  --color-vw-text:           #e2e0f0;
   --color-vw-text-secondary: #9895a8;
-  --color-vw-text-muted: #6b6880;
+  --color-vw-text-muted:     #6b6880;
 
-  --color-vw-border: #2a2745;
-  --color-vw-accent: #8b5cf6;
-  --color-vw-accent-hover: #7c3aed;
-  --color-vw-accent-amber: #f59e0b;
-  --color-vw-cyan: #06b6d4;
-  --color-vw-success: #10b981;
-  --color-vw-error: #ef4444;
+  /* Borders & accents */
+  --color-vw-border:        #2a2745;
+  --color-vw-accent:        #8b5cf6;
+  --color-vw-accent-hover:  #7c3aed;
+  --color-vw-accent-amber:  #f59e0b;
+  --color-vw-cyan:          #06b6d4;
+  --color-vw-success:       #10b981;
+  --color-vw-error:         #ef4444;
 }
 
-/* Custom font family */
+/* ── CSS custom properties for use in inline styles / components ─
+   Tailwind v4 @theme generates these as --color-vw-* but React
+   components reference var(--vw-*). Bridge both namespaces.
+   ─────────────────────────────────────────────────────────────── */
+:root {
+  --vw-bg-primary:      var(--color-vw-bg-primary);
+  --vw-bg-card:         var(--color-vw-bg-card);
+  --vw-bg-input:        var(--color-vw-bg-input);
+  --vw-bg-elevated:     var(--color-vw-bg-elevated);
+  --vw-text:            var(--color-vw-text);
+  --vw-text-secondary:  var(--color-vw-text-secondary);
+  --vw-text-muted:      var(--color-vw-text-muted);
+  --vw-border:          var(--color-vw-border);
+  --vw-accent:          var(--color-vw-accent);
+  --vw-accent-hover:    var(--color-vw-accent-hover);
+  --vw-success:         var(--color-vw-success);
+  --vw-error:           var(--color-vw-error);
+
+  /* Radii */
+  --vw-radius-sm:   6px;
+  --vw-radius-md:   10px;
+  --vw-radius-lg:   16px;
+  --vw-radius-xl:   24px;
+  --vw-radius-full: 9999px;
+}
+
+/* ── Base layer ─────────────────────────────────────────────── */
 @layer base {
   html {
     font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
   }
 
   body {
     background-color: var(--color-vw-bg-primary);
     color: var(--color-vw-text);
+    line-height: 1.65;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar       { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: var(--color-vw-bg-primary); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-vw-bg-elevated);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-vw-text-muted);
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgba(139, 92, 246, 0.3);
+    color: var(--color-vw-text);
+  }
+
+  /* Focus ring */
+  :focus-visible {
+    outline: 2px solid var(--color-vw-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 }
 
-/* Animation utilities */
+/* ── Animation utilities ────────────────────────────────────── */
 @layer utilities {
   @keyframes slide-in-right {
-    from {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
+    from { transform: translateX(100%); opacity: 0; }
+    to   { transform: translateX(0);    opacity: 1; }
   }
 
   @keyframes slide-out-right {
-    from {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateX(100%);
-      opacity: 0;
-    }
+    from { transform: translateX(0);    opacity: 1; }
+    to   { transform: translateX(100%); opacity: 0; }
   }
 
-  .animate-slide-in-right {
-    animation: slide-in-right 0.3s ease-out;
+  @keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0);    }
   }
 
-  .animate-slide-out-right {
-    animation: slide-out-right 0.3s ease-in forwards;
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 8px  rgba(139, 92, 246, 0.3); }
+    50%       { box-shadow: 0 0 24px rgba(139, 92, 246, 0.6); }
   }
+
+  .animate-slide-in-right  { animation: slide-in-right  0.3s ease-out; }
+  .animate-slide-out-right { animation: slide-out-right 0.3s ease-in forwards; }
+  .animate-fade-in-up      { animation: fade-in-up      0.55s cubic-bezier(0.16,1,0.3,1) both; }
+  .animate-pulse-glow      { animation: pulse-glow      2.4s ease-in-out infinite; }
+
+  /* Stagger helpers */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
 }

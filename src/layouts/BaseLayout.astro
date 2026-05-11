@@ -21,6 +21,7 @@ import ToastWrapper from '../components/ui/ToastWrapper';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- DM Sans + Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -29,61 +30,126 @@ import ToastWrapper from '../components/ui/ToastWrapper';
     />
     <title>{title}</title>
   </head>
-  <body class="min-h-screen bg-[var(--vw-bg-primary)]">
-    <!-- Top Navigation -->
-    <header class="sticky top-0 z-50 border-b border-white/[0.06] bg-black/60 backdrop-blur-xl backdrop-saturate-[180%]">
-      <nav class="mx-auto flex h-12 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+
+  <body class="min-h-screen" style="background-color: var(--color-vw-bg-primary);">
+
+    <!-- ── Top navigation ──────────────────────────────────── -->
+    <header
+      id="vw-header"
+      class="sticky top-0 z-50 transition-all duration-300"
+      style="border-bottom: 1px solid transparent;"
+    >
+      <!-- Blur backdrop rendered separately so it doesn't interfere with border -->
+      <div class="absolute inset-0 -z-10 bg-black/50 backdrop-blur-xl backdrop-saturate-[160%]"></div>
+
+      <nav class="relative mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+
         <!-- Logo -->
-        <a href="/" class="flex items-center gap-2">
-          <div class="flex h-7 w-7 items-center justify-center rounded-md bg-vw-accent">
-            <svg class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+        <a href="/" class="group flex items-center gap-2.5" aria-label="VibeWeave 首页">
+          <div
+            class="flex h-7 w-7 items-center justify-center rounded-lg transition-transform duration-200 group-hover:scale-105"
+            style="background: linear-gradient(135deg, var(--color-vw-accent) 0%, #7c3aed 100%);"
+          >
+            <svg class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24"
+                 stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
             </svg>
           </div>
-          <span class="font-body text-base font-semibold text-white">
+          <span class="text-[15px] font-semibold tracking-tight text-white">
             VibeWeave
           </span>
         </a>
 
-        <!-- Navigation Links -->
-        <div class="hidden items-center gap-6 md:flex">
-          <a href="/features" class="text-xs tracking-wide text-white/60 transition-colors hover:text-white">
+        <!-- Desktop nav links -->
+        <div class="hidden items-center gap-1 md:flex">
+          <a href="/#features"
+             class="rounded-lg px-3 py-1.5 text-xs font-medium tracking-wide transition-colors duration-150"
+             style="color: rgba(255,255,255,0.5);"
+             onmouseover="this.style.color='rgba(255,255,255,0.9)'; this.style.background='rgba(255,255,255,0.06)';"
+             onmouseout="this.style.color='rgba(255,255,255,0.5)'; this.style.background='transparent';">
             Features
           </a>
-          <a href="/how-it-works" class="text-xs tracking-wide text-white/60 transition-colors hover:text-white">
+          <a href="/#how-it-works"
+             class="rounded-lg px-3 py-1.5 text-xs font-medium tracking-wide transition-colors duration-150"
+             style="color: rgba(255,255,255,0.5);"
+             onmouseover="this.style.color='rgba(255,255,255,0.9)'; this.style.background='rgba(255,255,255,0.06)';"
+             onmouseout="this.style.color='rgba(255,255,255,0.5)'; this.style.background='transparent';">
             How It Works
           </a>
         </div>
 
-        <!-- User Menu -->
+        <!-- User menu (React island) -->
         <UserMenu client:load />
       </nav>
     </header>
 
-    <!-- Page Content -->
+    <!-- ── Page content ────────────────────────────────────── -->
     <main>
       <ToastWrapper client:load>
         <slot />
       </ToastWrapper>
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-white/[0.06] py-12">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- ── Footer ──────────────────────────────────────────── -->
+    <footer style="border-top: 1px solid rgba(255,255,255,0.05);">
+      <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <p class="text-xs text-white/30">
+
+          <!-- Brand -->
+          <div class="flex items-center gap-2">
+            <div
+              class="flex h-5 w-5 items-center justify-center rounded"
+              style="background: var(--color-vw-accent);"
+            >
+              <svg class="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24"
+                   stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+              </svg>
+            </div>
+            <span class="text-xs font-semibold" style="color: rgba(255,255,255,0.4);">VibeWeave</span>
+          </div>
+
+          <p class="text-xs" style="color: rgba(255,255,255,0.25);">
             &copy; {new Date().getFullYear()} VibeWeave. All rights reserved.
           </p>
-          <div class="flex gap-6">
-            <a href="/privacy" class="text-xs text-white/30 transition-colors hover:text-white">
+
+          <div class="flex gap-5">
+            <a href="/privacy"
+               class="text-xs transition-colors duration-150"
+               style="color: rgba(255,255,255,0.25);"
+               onmouseover="this.style.color='rgba(255,255,255,0.6)';"
+               onmouseout="this.style.color='rgba(255,255,255,0.25)';">
               Privacy
             </a>
-            <a href="/terms" class="text-xs text-white/30 transition-colors hover:text-white">
+            <a href="/terms"
+               class="text-xs transition-colors duration-150"
+               style="color: rgba(255,255,255,0.25);"
+               onmouseover="this.style.color='rgba(255,255,255,0.6)';"
+               onmouseout="this.style.color='rgba(255,255,255,0.25)';">
               Terms
             </a>
           </div>
         </div>
       </div>
     </footer>
+
   </body>
 </html>
+
+<script>
+  // Add scrolled class to header for visual feedback
+  const header = document.getElementById('vw-header');
+  if (header) {
+    const onScroll = () => {
+      if (window.scrollY > 8) {
+        header.style.borderBottomColor = 'rgba(255,255,255,0.06)';
+      } else {
+        header.style.borderBottomColor = 'transparent';
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+</script>
