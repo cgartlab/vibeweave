@@ -62,7 +62,7 @@ Deno.serve(async (req) => {
     }
 
     // Update song analysis_status
-    await fetch(`${SUPABASE_URL}/rest/v1/songs?id=eq.${song_id}`, {
+    await fetch(`${SUPABASE_URL}/rest/v1/songs?id=eq.${encodeURIComponent(song_id)}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ Deno.serve(async (req) => {
     try {
       const body = await req.clone().json();
       if (body.song_id) {
-        await fetch(`${SUPABASE_URL}/rest/v1/songs?id=eq.${body.song_id}`, {
+        await fetch(`${SUPABASE_URL}/rest/v1/songs?id=eq.${encodeURIComponent(body.song_id)}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',

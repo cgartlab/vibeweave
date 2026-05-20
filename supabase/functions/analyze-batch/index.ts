@@ -42,7 +42,7 @@ Deno.serve(async (req) => {
 
     // Verify playlist belongs to user
     const playlistCheck = await fetch(
-      `${SUPABASE_URL}/rest/v1/playlists?id=eq.${playlist_id}&select=id,user_id,status`,
+      `${SUPABASE_URL}/rest/v1/playlists?id=eq.${encodeURIComponent(playlist_id)}&select=id,user_id,status`,
       {
         headers: {
           'apikey': SUPABASE_SERVICE_KEY,
@@ -74,7 +74,7 @@ Deno.serve(async (req) => {
     }
 
     // Update playlist status to analyzing
-    await fetch(`${SUPABASE_URL}/rest/v1/playlists?id=eq.${playlist_id}`, {
+    await fetch(`${SUPABASE_URL}/rest/v1/playlists?id=eq.${encodeURIComponent(playlist_id)}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ Deno.serve(async (req) => {
 
     // Fetch all pending songs for this playlist
     const songsResponse = await fetch(
-      `${SUPABASE_URL}/rest/v1/songs?playlist_id=eq.${playlist_id}&analysis_status=in.(pending,failed)&select=id,title,artist,album,lyrics`,
+      `${SUPABASE_URL}/rest/v1/songs?playlist_id=eq.${encodeURIComponent(playlist_id)}&analysis_status=in.(pending,failed)&select=id,title,artist,album,lyrics`,
       {
         headers: {
           'apikey': SUPABASE_SERVICE_KEY,
@@ -103,7 +103,7 @@ Deno.serve(async (req) => {
 
     if (songs.length === 0) {
       // No songs to analyze, mark as completed
-      await fetch(`${SUPABASE_URL}/rest/v1/playlists?id=eq.${playlist_id}`, {
+      await fetch(`${SUPABASE_URL}/rest/v1/playlists?id=eq.${encodeURIComponent(playlist_id)}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -140,7 +140,7 @@ Deno.serve(async (req) => {
       }
 
       // Update playlist analyzed_count
-      await fetch(`${SUPABASE_URL}/rest/v1/playlists?id=eq.${playlist_id}`, {
+      await fetch(`${SUPABASE_URL}/rest/v1/playlists?id=eq.${encodeURIComponent(playlist_id)}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -158,7 +158,7 @@ Deno.serve(async (req) => {
 
     // Update final playlist status
     const finalStatus = failedCount === 0 ? 'completed' : 'completed_with_errors';
-    await fetch(`${SUPABASE_URL}/rest/v1/playlists?id=eq.${playlist_id}`, {
+    await fetch(`${SUPABASE_URL}/rest/v1/playlists?id=eq.${encodeURIComponent(playlist_id)}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -187,7 +187,7 @@ Deno.serve(async (req) => {
     try {
       const body = await req.clone().json();
       if (body.playlist_id) {
-        await fetch(`${SUPABASE_URL}/rest/v1/playlists?id=eq.${body.playlist_id}`, {
+        await fetch(`${SUPABASE_URL}/rest/v1/playlists?id=eq.${encodeURIComponent(body.playlist_id)}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',

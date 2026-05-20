@@ -75,10 +75,10 @@ CREATE TABLE vibe_analysis (
 ALTER TABLE vibe_analysis ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "users_isolate_own_analysis" ON vibe_analysis FOR ALL USING (
   auth.uid() = (
-    SELECT p.user_id FROM vibe_analysis va
-    JOIN songs s ON va.song_id = s.id
+    SELECT p.user_id 
+    FROM songs s 
     JOIN playlists p ON s.playlist_id = p.id
-    WHERE va.id = vibe_analysis.id
+    WHERE s.id = vibe_analysis.song_id
   )
 );
 

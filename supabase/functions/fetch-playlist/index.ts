@@ -372,7 +372,7 @@ Deno.serve(async (req) => {
     }
 
     // Update playlist with final count
-    await fetch(`${SUPABASE_URL}/rest/v1/playlists?id=eq.${dbPlaylistId}`, {
+    await fetch(`${SUPABASE_URL}/rest/v1/playlists?id=eq.${encodeURIComponent(dbPlaylistId)}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
